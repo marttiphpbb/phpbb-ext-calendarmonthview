@@ -1,15 +1,15 @@
 <?php
 /**
-* phpBB Extension - marttiphpbb calendar
-* @copyright (c) 2014 - 2017 marttiphpbb <info@martti.be>
+* phpBB Extension - marttiphpbb calendarmonthview
+* @copyright (c) 2014 - 2018 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
-namespace marttiphpbb\calendar\core;
+namespace marttiphpbb\calendarmonthview\core;
 
-use marttiphpbb\calendar\core\timespan;
+use marttiphpbb\calendarmonthview\core\timespan;
 
-class calendar_event
+class calendarmonthview_event
 {
 
 	/**
@@ -55,7 +55,7 @@ class calendar_event
 
 	/*
 	 * @param int 	$id
-	 * @return calendar_event
+	 * @return calendarmonthview_event
 	*/
 	public function set_id($id)
 	{
@@ -73,7 +73,7 @@ class calendar_event
 
 	/*
 	 * @param timespan 	$timespan
-	 * @return calendar_event
+	 * @return calendarmonthview_event
 	*/
 	public function set_timespan(timespan $timespan)
 	{
@@ -100,7 +100,7 @@ class calendar_event
 
 	/*
 	 * @param int 	$topic_id
-	 * @return calendar_event
+	 * @return calendarmonthview_event
 	*/
 	public function set_topic_id($topic_id)
 	{
@@ -118,7 +118,7 @@ class calendar_event
 
 	/*
 	 * @param int 	$forum_id
-	 * @return calendar_event
+	 * @return calendarmonthview_event
 	*/
 	public function set_forum_id($forum_id)
 	{
@@ -136,7 +136,7 @@ class calendar_event
 
 	/*
 	 * @param boolean 	$topic_reported
-	 * @return calendar_event
+	 * @return calendarmonthview_event
 	*/
 	public function set_topic_reported($topic_reported)
 	{

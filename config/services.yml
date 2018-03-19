@@ -1,41 +1,17 @@
 services:
-    marttiphpbb.calendar.main_listener:
-        class: marttiphpbb\calendar\event\main_listener
+    marttiphpbb.calendarmonthview.main_listener:
+        class: marttiphpbb\calendarmonthview\event\main_listener
         arguments:
             - '@controller.helper'
             - '%core.php_ext%'
             - '@template'
             - '@language'
-            - '@marttiphpbb.calendar.render.links'
+            - '@marttiphpbb.calendarmonthview.render.links'
         tags:
             - { name: event.listener }
 
-    marttiphpbb.calendar.tag_listener:
-        class: marttiphpbb\calendar\event\tag_listener
-        arguments:
-            - '@template'
-            - '@marttiphpbb.calendar.render.tag'
-        tags:
-            - { name: event.listener }
-
-    marttiphpbb.calendar.posting_listener:
-        class: marttiphpbb\calendar\event\posting_listener
-        arguments:
-            - '@auth'
-            - '@config'
-            - '@controller.helper'
-            - '@request'
-            - '@template'
-            - '@user'
-            - '@language'
-            - '@marttiphpbb.calendar.render.include_assets'
-            - '@marttiphpbb.calendar.render.input_settings'
-            - '@marttiphpbb.calendar.render.posting'
-        tags:
-            - { name: event.listener }
-
-    marttiphpbb.calendar.controller:
-        class: marttiphpbb\calendar\controller\main
+    marttiphpbb.calendarmonthview.controller:
+        class: marttiphpbb\calendarmonthview\controller\main
         arguments:
             - '@auth'
             - '@cache'
@@ -48,14 +24,14 @@ services:
             - '@language'
             - '@controller.helper'
             - '%core.root_path%'
-            - '@marttiphpbb.calendar.core.event_container'
-            - '@marttiphpbb.calendar.moonphase_calculator'
-            - '@marttiphpbb.calendar.timeformat'
-            - '@marttiphpbb.calendar.render.render_settings'
-            - '@marttiphpbb.calendar.render.pagination'
+            - '@marttiphpbb.calendarmonthview.core.event_container'
+            - '@marttiphpbb.calendarmonthview.moonphase_calculator'
+            - '@marttiphpbb.calendarmonthview.timeformat'
+            - '@marttiphpbb.calendarmonthview.render.render_settings'
+            - '@marttiphpbb.calendarmonthview.render.pagination'
 
-    marttiphpbb.calendar.core.event_container:
-        class: marttiphpbb\calendar\core\event_container
+    marttiphpbb.calendarmonthview.core.event_container:
+        class: marttiphpbb\calendarmonthview\core\event_container
         arguments:
             - '@auth'
             - '@config'
@@ -63,78 +39,78 @@ services:
             - '@dbal.conn'
             - '%tables.topics%'
 
-    marttiphpbb.calendar.moonphase_calculator:
-        class: marttiphpbb\calendar\util\moonphase_calculator
+    marttiphpbb.calendarmonthview.moonphase_calculator:
+        class: marttiphpbb\calendarmonthview\util\moonphase_calculator
 
-    marttiphpbb.calendar.timeformat:
-        class: marttiphpbb\calendar\util\timeformat
+    marttiphpbb.calendarmonthview.timeformat:
+        class: marttiphpbb\calendarmonthview\util\timeformat
         arguments:
             - '@user'
 
-    marttiphpbb.calendar.render.links:
-        class: marttiphpbb\calendar\render\links
+    marttiphpbb.calendarmonthview.render.links:
+        class: marttiphpbb\calendarmonthview\render\links
         arguments:
             - '@config'
             - '@template'
             - '@language'
 
-    marttiphpbb.calendar.render.include_assets:
-        class: marttiphpbb\calendar\render\include_assets
+    marttiphpbb.calendarmonthview.render.include_assets:
+        class: marttiphpbb\calendarmonthview\render\include_assets
         arguments:
             - '@config'
             - '@template'
             - '@language'
             - '%core.root_path%'
 
-    marttiphpbb.calendar.render.render_settings:
-        class: marttiphpbb\calendar\render\render_settings
+    marttiphpbb.calendarmonthview.render.render_settings:
+        class: marttiphpbb\calendarmonthview\render\render_settings
         arguments:
             - '@config'
             - '@template'
             - '@language'
 
-    marttiphpbb.calendar.render.pagination:
-        class: marttiphpbb\calendar\render\pagination
+    marttiphpbb.calendarmonthview.render.pagination:
+        class: marttiphpbb\calendarmonthview\render\pagination
         arguments:
             - '@config'
             - '@controller.helper'
             - '@template'
             - '@language'
 
-    marttiphpbb.calendar.render.input_settings:
-        class: marttiphpbb\calendar\render\input_settings
+    marttiphpbb.calendarmonthview.render.input_settings:
+        class: marttiphpbb\calendarmonthview\render\input_settings
         arguments:
             - '@config'
             - '@config_text'
             - '@template'
             - '@language'
 
-    marttiphpbb.calendar.render.input_settings:
-        class: marttiphpbb\calendar\render\input_settings
+    marttiphpbb.calendarmonthview.render.input_settings:
+        class: marttiphpbb\calendarmonthview\render\input_settings
         arguments:
             - '@config'
             - '@template'
             - '@language'
-            - '@marttiphpbb.calendar.render.input_settings'
-            - '@marttiphpbb.calendar.render.include_assets'
+            - '@marttiphpbb.calendarmonthview.render.input_settings'
+            - '@marttiphpbb.calendarmonthview.render.include_assets'
 
-    marttiphpbb.calendar.render.tag:
-        class: marttiphpbb\calendar\render\tag
+    marttiphpbb.calendarmonthview.render.tag:
+        class: marttiphpbb\calendarmonthview\render\tag
         arguments:
             - '@controller.helper'
-            - '@marttiphpbb.calendar.dateformat'
+            - '@marttiphpbb.calendarmonthview.dateformat'
 
-    marttiphpbb.calendar.render.posting:
-        class: marttiphpbb\calendar\render\posting
+    marttiphpbb.calendarmonthview.render.posting:
+        class: marttiphpbb\calendarmonthview\render\posting
         arguments:
             - '@config'
             - '@template'
             - '@language'
-            - '@marttiphpbb.calendar.render.input_settings'
-            - '@marttiphpbb.calendar.render.include_assets'
+            - '@marttiphpbb.calendarmonthview.render.input_settings'
+            - '@marttiphpbb.calendarmonthview.render.include_assets'
 
-    marttiphpbb.calendar.dateformat:
-        class: marttiphpbb\calendar\util\dateformat
+    marttiphpbb.calendarmonthview.dateformat:
+        class: marttiphpbb\calendarmonthview\util\dateformat
         arguments:
             - '@user'
             - '@language'

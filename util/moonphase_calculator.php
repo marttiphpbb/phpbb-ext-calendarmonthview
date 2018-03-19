@@ -1,15 +1,15 @@
 <?php
 /**
-* @package phpBB Extension - marttiphpbb calendar
-* @copyright (c) 2014 - 2017 marttiphpbb <info@martti.be>
+* @package phpBB Extension - marttiphpbb calendarmonthview
+* @copyright (c) 2014 - 2018 marttiphpbb <info@martti.be>
 * @license http://opensource.org/licenses/MIT
 * adapted from Stephen A. Zarkos, Calculate Moon Phase Data with PHP
 * http://www.obsid.org/2008/05/calculate-moon-phase-data-with-php.html
 */
 
-namespace marttiphpbb\calendar\util;
+namespace marttiphpbb\calendarmonthview\util;
 
-use marttiphpbb\calendar\core\timespan;
+use marttiphpbb\calendarmonthview\core\timespan;
 
 class moonphase_calculator
 {

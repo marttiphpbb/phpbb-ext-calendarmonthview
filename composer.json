@@ -1,11 +1,11 @@
 {
-	"name": "marttiphpbb/calendar",
+	"name": "marttiphpbb/calendarmonthview",
 	"type": "phpbb-extension",
-	"description": "Calendar Extension for phpBB 3.2",
-	"homepage": "https://github.com/marttiphpbb/phpbb-ext-calendar",
+	"description": "Calendar Month View Extension for phpBB 3.2",
+	"homepage": "https://github.com/marttiphpbb/phpbb-ext-calendarmonthview",
 	"version": "0.1.0",
-	"time": "2017-01-30",
-	"keywords": ["phpbb", "extension", "calendar"],
+	"time": "2018-3-19",
+	"keywords": ["phpbb", "extension", "calendar", "monthview"],
 	"license": "GPL-2.0",
 	"authors": [{
 			"name": "martti",
@@ -19,14 +19,14 @@
 		"robloach/component-installer": "*"
 	},
 	"extra": {
-		"display-name": "Calendar",
+		"display-name": "Calendar Month View",
 		"soft-require": {
 			"phpbb/phpbb": ">=3.2.0,<3.3.*@dev"
 		},
 		"version-check": {
 			"host": "marttiphpbb.github.io",
 			"directory": "/version",
-			"filename": "calendar.json"
+			"filename": "calendarmonthview.json"
 		}
 	}
 }
