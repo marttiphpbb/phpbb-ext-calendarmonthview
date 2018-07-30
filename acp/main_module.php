@@ -7,6 +7,8 @@
 
 namespace marttiphpbb\calendarmonthview\acp;
 
+use marttiphpbb\calendarmonthview\util\cnst;
+
 class main_module
 {
 	var $u_action;
@@ -18,8 +20,8 @@ class main_module
 		global $phpbb_container;
 
 		$language = $phpbb_container->get('language');
-		$language->add_lang('acp', 'marttiphpbb/calendarmonthview');
-		add_form_key('marttiphpbb/calendarmonthview');
+		$language->add_lang('acp', cnst::FOLDER);
+		add_form_key(cnst::FOLDER);
 
 		switch($mode)
 		{
@@ -28,18 +30,18 @@ class main_module
 				$links = $phpbb_container->get('marttiphpbb.calendarmonthview.render.links');
 
 				$this->tpl_name = 'links';
-				$this->page_title = $language->lang('ACP_CALENDARMONTHVIEW_LINKS');
+				$this->page_title = $language->lang(cnst::L_ACP . '_LINKS');
 
 				if ($request->is_set_post('submit'))
 				{
-					if (!check_form_key('marttiphpbb/calendarmonthview'))
+					if (!check_form_key(cnst::FOLDER))
 					{
 						trigger_error('FORM_INVALID');
 					}
 
 					$links->set($request->variable('links', [0 => 0]), $request->variable('calendarmonthview_repo_link', 0));
 
-					trigger_error($language->lang('ACP_CALENDARMONTHVIEW_SETTING_SAVED') . adm_back_link($this->u_action));
+					trigger_error($language->lang(cnst::L_ACP . '_SETTING_SAVED') . adm_back_link($this->u_action));
 				}
 
 				$links->assign_acp_select_template_vars();
@@ -51,11 +53,11 @@ class main_module
 				$render_settings = $phpbb_container->get('marttiphpbb.calendarmonthview.render.render_settings');
 
 				$this->tpl_name = 'page_rendering';
-				$this->page_title = $language->lang('ACP_CALENDARMONTHVIEW_PAGE_RENDERING');
+				$this->page_title = $language->lang(cnst::L_ACP . '_PAGE_RENDERING');
 
 				if ($request->is_set_post('submit'))
 				{
-					if (!check_form_key('marttiphpbb/calendarmonthview'))
+					if (!check_form_key(cnst::FOLDER))
 					{
 						trigger_error('FORM_INVALID');
 					}
@@ -64,10 +66,10 @@ class main_module
 					$config->set('calendarmonthview_first_weekday', $request->variable('calendarmonthview_first_weekday', 0));
 					$config->set('calendarmonthview_min_rows', $request->variable('calendarmonthview_min_rows', 5));
 
-					trigger_error($language->lang('ACP_CALENDARMONTHVIEW_SETTING_SAVED') . adm_back_link($this->u_action));
+					trigger_error($language->lang(cnst::L_ACP . '_SETTING_SAVED') . adm_back_link($this->u_action));
 				}
 
-				$weekdays = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
+				$weekdays = ['Sunday', 'Monday'];
 
 				foreach ($weekdays as $value => $name)
 				{

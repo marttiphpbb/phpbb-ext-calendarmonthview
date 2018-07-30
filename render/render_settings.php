@@ -13,13 +13,8 @@ use phpbb\language\language;
 
 class render_settings
 {
-	/* @var config */
 	protected $config;
-
-	/* @var template */
 	protected $template;
-
-	/* @var language */
 	protected $language;
 
 	protected $render_settings = [
@@ -28,12 +23,6 @@ class render_settings
 		4		=> 'TODAY',
 	];
 
-	/**
-	* @param config		$config
-	* @param template	$template
-	* @param language		$language
-	* @return render_settings
-	*/
 	public function __construct(
 		config $config,
 		template $template,
@@ -45,9 +34,6 @@ class render_settings
 		$this->language = $language;
 	}
 
-	/*
-	 * @return self
-	 */
 	public function assign_template_vars():self
 	{
 		$render_settings = $this->config['calendarmonthview_render_settings'];
@@ -65,9 +51,6 @@ class render_settings
 		return $this;
 	}
 
-	/*
-	 * @return self
-	 */
 	public function assign_acp_template_vars():self
 	{
 		$render_settings = $this->config['calendarmonthview_render_settings'];
@@ -88,11 +71,6 @@ class render_settings
 		return $this;
 	}
 
-	/*
-	 * @param array		$render_settings
-	 * @param int		$repo_link
-	 * @return self
-	 */
 	public function set(array $render_settings):self
 	{
 		$this->config->set('calendarmonthview_render_settings', array_sum($render_settings));

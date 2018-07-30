@@ -13,35 +13,10 @@ use phpbb\language\language;
 
 class links
 {
-	/* @var config */
 	protected $config;
-
-	/* @var template */
 	protected $template;
-
-	/* @var language */
 	protected $language;
 
-	protected $links = [
-		1		=> 'OVERALL_FOOTER_COPYRIGHT_APPEND',
-		2		=> 'OVERALL_HEADER_NAVIGATION_PREPEND',
-		4		=> 'OVERALL_HEADER_NAVIGATION_APPEND',
-		8		=> 'NAVBAR_HEADER_QUICK_LINKS_BEFORE',
-		16		=> 'NAVBAR_HEADER_QUICK_LINKS_AFTER',
-		32		=> 'OVERALL_HEADER_BREADCRUMBS_BEFORE',
-		64		=> 'OVERALL_HEADER_BREADCRUMBS_AFTER',
-		128		=> 'OVERALL_FOOTER_TIMEZONE_BEFORE',
-		256		=> 'OVERALL_FOOTER_TIMEZONE_AFTER',
-		512		=> 'OVERALL_FOOTER_TEAMLINK_BEFORE',
-		1024	=> 'OVERALL_FOOTER_TEAMLINK_AFTER',
-	];
-
-	/**
-	* @param config		$config
-	* @param template	$template
-	* @param language 	$language
-	* @return links
-	*/
 	public function __construct(
 		config $config,
 		template $template,
@@ -53,9 +28,6 @@ class links
 		$this->language = $language;
 	}
 
-	/*
-	 * @return self
-	 */
 	public function assign_template_vars():self
 	{
 		$links_enabled = $this->config['calendarmonthview_links'];
@@ -73,15 +45,12 @@ class links
 		return $this;
 	}
 
-	/*
-	 * @return self
-	 */
 	public function assign_acp_select_template_vars():self
 	{
 		$links_enabled = $this->config['calendarmonthview_links'];
 
 		$this->template->assign_var('S_CALENDARMONTHVIEW_REPO_LINK', $links_enabled & 1 ? true : false);
-	
+
 		$links = $this->links;
 
 		unset($links[1]);
@@ -97,11 +66,6 @@ class links
 		return $this;
 	}
 
-	/*
-	 * @param array		$links
-	 * @param int		$repo_link
-	 * @return self
-	 */
 	public function set(array $links, int $calendarmonthview_repo_link):self
 	{
 		$this->config->set('calendarmonthview_links', array_sum($links) + $calendarmonthview_repo_link);

@@ -11,142 +11,72 @@ use marttiphpbb\calendarmonthview\core\timespan;
 
 class calendarmonthview_event
 {
-
-	/**
-	 * @var int
-	 */
-
 	protected $id;
-
-	/**
-	 * @var timespan
-	 */
-
 	protected $timespan;
-
-	/**
-	 * @var int
-	 */
-
 	protected $topic_id;
-
-	/**
-	 * @var int
-	 */
-
 	protected $forum_id;
-
-	/**
-	 * @var boolean
-	 */
-
 	protected $topic_reported;
-
-	/**
-	 * @var string
-	 */
-
 	protected $topic_title;
-
 
 	public function __construct()
 	{
 	}
 
-	/*
-	 * @param int 	$id
-	 * @return calendarmonthview_event
-	*/
-	public function set_id($id)
+	public function set_id(int $id)
 	{
 		$this->id = $id;
 		return $this;
 	}
 
-	/*
-	 * @return int
-	 */
-	public function get_id()
+	public function get_id():int
 	{
 		return $this->id;
 	}
 
-	/*
-	 * @param timespan 	$timespan
-	 * @return calendarmonthview_event
-	*/
 	public function set_timespan(timespan $timespan)
 	{
 		$this->timespan = $timespan;
 		return $this;
 	}
 
-	/*
-	 * @return timespan
-	 */
-	public function get_timespan()
+	public function get_timespan():timespan
 	{
 		return $this->timespan;
 	}
 
-	/*
-	 * @param timespan
-	 * @return bool
-	 */
 	public function overlaps(timespan $timespan)
 	{
 		return $this->timespan->overlaps($timespan);
 	}
 
-	/*
-	 * @param int 	$topic_id
-	 * @return calendarmonthview_event
-	*/
 	public function set_topic_id($topic_id)
 	{
 		$this->topic_id = $topic_id;
 		return $this;
 	}
 
-	/*
-	 * @return int
-	 */
 	public function get_topic_id()
 	{
 		return $this->topic_id;
 	}
 
-	/*
-	 * @param int 	$forum_id
-	 * @return calendarmonthview_event
-	*/
 	public function set_forum_id($forum_id)
 	{
 		$this->forum_id = $forum_id;
 		return $this;
 	}
 
-	/*
-	 * @return int
-	 */
 	public function get_forum_id()
 	{
 		return $this->forum_id;
 	}
 
-	/*
-	 * @param boolean 	$topic_reported
-	 * @return calendarmonthview_event
-	*/
 	public function set_topic_reported($topic_reported)
 	{
 		$this->topic_reported = $topic_reported;
 		return $this;
 	}
 
-	/*
-	 * @return boolean
-	 */
 	public function get_topic_reported()
 	{
 		return $this->topic_reported;

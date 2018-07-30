@@ -7,7 +7,9 @@
 
 namespace marttiphpbb\calendarmonthview\migrations;
 
-class v_0_1_0 extends \phpbb\db\migration\migration
+use marttiphpbb\calendarmonthview\util\cnst;
+
+class mgr_1 extends \phpbb\db\migration\migration
 {
 	public function update_data()
 	{
@@ -21,11 +23,11 @@ class v_0_1_0 extends \phpbb\db\migration\migration
 			['module.add', [
 				'acp',
 				'ACP_CAT_DOT_MODS',
-				'ACP_CALENDARMONTHVIEW'
+				cnst::L_ACP
 			]],
 			['module.add', [
 				'acp',
-				'ACP_CALENDARMONTHVIEW',
+				cnst::L_ACP,
 				[
 					'module_basename'	=> '\marttiphpbb\calendarmonthview\acp\main_module',
 					'modes'				=> [

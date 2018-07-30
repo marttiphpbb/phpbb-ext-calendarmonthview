@@ -11,41 +11,18 @@ use phpbb\controller\helper;
 use phpbb\template\template;
 use phpbb\language\language;
 use phpbb\event\data as event;
-
 use marttiphpbb\calendarmonthview\render\links;
-
-/**
-* @ignore
-*/
+use marttiphpbb\calendarmonthview\util\cnst;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-/**
-* Event listener
-*/
 class main_listener implements EventSubscriberInterface
 {
-	/* @var helper */
 	protected $helper;
-
-	/* @var php_ext */
 	protected $php_ext;
-
-	/* @var template */
 	protected $template;
-
-	/* @var language */
 	protected $language;
-
-	/* @var links */
 	protected $links;
 
-	/**
-	* @param helper		$helper
-	* @param string		$php_ext
-	* @param template	$template
-	* @param language	$language
-	* @param links		$links
-	*/
 	public function __construct(
 		helper $helper,
 		string $php_ext,
@@ -74,7 +51,7 @@ class main_listener implements EventSubscriberInterface
 	{
 		$lang_set_ext = $event['lang_set_ext'];
 		$lang_set_ext[] = [
-			'ext_name' => 'marttiphpbb/calendarmonthview',
+			'ext_name' => cnst::FOLDER,
 			'lang_set' => 'common',
 		];
 		$event['lang_set_ext'] = $lang_set_ext;
@@ -85,7 +62,6 @@ class main_listener implements EventSubscriberInterface
 		$this->links->assign_template_vars();
 		$this->template->assign_vars([
 			'U_CALENDARMONTHVIEW'			=> $this->helper->route('marttiphpbb_calendarmonthview_defaultview_controller'),
-			'CALENDARMONTHVIEW_EXTENSION'	=> $this->language->lang('CALENDARMONTHVIEW_EXTENSION', '<a href="http://github.com/marttiphpbb/phpbb-ext-calendarmonthview">', '</a>'),
 		]);
 	}
 
@@ -93,7 +69,7 @@ class main_listener implements EventSubscriberInterface
 	{
 		if (strrpos($event['row']['session_page'], 'app.' . $this->php_ext . '/calendarmonthview') === 0)
 		{
-			$event['location'] = $this->language->lang('CALENDARMONTHVIEW_VIEWING');
+			$event['location'] = $this->language->lang(cnst::L . '_VIEWING');
 			$event['location_url'] = $this->helper->route('marttiphpbb_calendarmonthview_defaultview_controller');
 		}
 	}

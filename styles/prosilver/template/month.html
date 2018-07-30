@@ -1,4 +1,4 @@
-<!-- INCLUDE overall_header.html -->
+{%- include 'overall_header.html' -%}
 
 <p>{{- CURRENT_TIME -}}</p>
 <h2>{{- MONTH }}{%- if U_YEAR %} <a href="{{- U_YEAR -}}">{{- YEAR -}}</a>{%- else %} {{ YEAR -}}{%- endif -%}</h2>
@@ -30,7 +30,7 @@
 			{%- wd.MOON_NAME and S_MOONPHASE -%}
 			 	<div class="moon">
 					<span class="fa-stack">
-						<i class="icon fa-circle fa-stack-2x fa-inverse"></i>						
+						<i class="icon fa-circle fa-stack-2x fa-inverse"></i>
 						<i class="icon {{ wd.MOON_ICON }} fa-stack-1x"></i>
 					</span> {{- wd.MOON_TIME -}}
 				</div>

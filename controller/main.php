@@ -30,54 +30,16 @@ use Symfony\Component\HttpFoundation\Response;
 
 class main
 {
-	/* @var auth */
 	protected $auth;
-
-	/* @var cache */
 	protected $cache;
-
-	/* @var config */
 	protected $config;
-
-	/* @var array */
 	protected $now;
-
-	/* @var event_container */
 	protected $event_container;
-
-	/* @var moonphase_calculator */
 	protected $moonphase_calculator;
-
-	/* @var int */
 	protected $time_offset;
-
-	/* @var timeformat */
 	protected $timeformat;
-
-	/* @var render_settings */
 	protected $render_settings;
-
-	/* @var pagination */
 	protected $pagination;
-
-	/**
-	* @param auth $auth
-	* @param cache $cache
-	* @param config   $config
-	* @param db   $db
-	* @param string $php_ext
-	* @param request   $request
-	* @param template   $template
-	* @param user   $user
-	* @param language $language
-	* @param helper $helper
-	* @param string $root_path
-	* @param moonphase_calculator $moonphase_calculator
-	* @param timeformat $timeformat
-	* @param render_settings $render_settings
-	* @param pagination $pagination
-	*
-	*/
 
 	public function __construct(
 		auth $auth,
@@ -120,30 +82,12 @@ class main
 		$this->now = phpbb_gmgetdate($now->getTimestamp() + $this->time_offset);
 	}
 
-	/**
-	* @return Response
-	*/
 	public function defaultview():Response
 	{
 		make_jumpbox(append_sid($this->root_path . 'viewforum.' . $this->php_ext));
 		return $this->monthview($this->now['year'], $this->now['mon']);
 	}
 
-	/**
-	* @param int   $year
-	* @return Response
-	*/
-	public function yearview($year):Response
-	{
-		make_jumpbox(append_sid($this->root_path . 'viewforum.' . $this->php_ext));
-		return $this->helper->render('year.html');
-	}
-
-	/**
-	* @param int   $year
-	* @param int   $month
-	* @return Response
-	*/
 	public function monthview(int $year, int $month):Response
 	{
 		$month_start_time = gmmktime(0,0,0, (int) $month, 1, (int) $year);
@@ -260,7 +204,7 @@ class main
 
 						$d = $day + $d7;
 						$this->template->assign_block_vars('week.eventrow.day', $day_tpl[$d]['day']);
-					} 
+					}
 				}
 			}
 

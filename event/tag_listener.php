@@ -10,27 +10,13 @@ namespace marttiphpbb\calendarmonthview\event;
 use phpbb\template\template;
 use marttiphpbb\calendarmonthview\render\tag;
 use phpbb\event\data as event;
-
-/**
-* @ignore
-*/
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-/**
-* Event listener
-*/
 class tag_listener implements EventSubscriberInterface
 {
-	/* @var template */
 	protected $template;
-
-	/* @var tag */
 	protected $tag;
 
-	/**
-	* @param template	$template
-	* @param tag 		$tag
-	*/
 	public function __construct(template $template, tag $tag)
 	{
 		$this->template = $template;
@@ -68,12 +54,12 @@ class tag_listener implements EventSubscriberInterface
 
 	public function core_viewforum_modify_topicrow(event $event)
 	{
-		$event['topic_row'] = array_merge($event['topic_row'], $this->tag->get($event['row']));		
+		$event['topic_row'] = array_merge($event['topic_row'], $this->tag->get($event['row']));
 	}
 
 	public function core_mcp_view_forum_modify_topicrow(event $event)
 	{
-		$event['topic_row'] = array_merge($event['topic_row'], $this->tag->get($event['row']));		
+		$event['topic_row'] = array_merge($event['topic_row'], $this->tag->get($event['row']));
 	}
 
 	public function core_viewtopic_assign_template_vars_before(event $event)

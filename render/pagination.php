@@ -14,16 +14,9 @@ use phpbb\language\language;
 
 class pagination
 {
-	/* @var config */
 	protected $config;
-
-	/* @var helper */
 	protected $helper;
-
-	/* @var template */
 	protected $template;
-
-	/* @var language */
 	protected $language;
 
 	static protected $month_abbrev = [
@@ -41,13 +34,6 @@ class pagination
 		12	=> 'Dec',
 	];
 
-	/**
-	* @param config		$config
-	* @param helper 	$helper
-	* @param template	$template
-	* @param language		$language
-	* @return pagination
-	*/
 	public function __construct(
 		config $config,
 		helper $helper,
@@ -61,11 +47,6 @@ class pagination
 		$this->language = $language;
 	}
 
-	/*
-	 * @param int $year
-	 * @param int $month
-	 * @return self
-	 */
 	public function render(int $year, int $month):self
 	{
 		$this->template->assign_block_vars('pagination', [

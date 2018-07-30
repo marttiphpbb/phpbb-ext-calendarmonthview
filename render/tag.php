@@ -13,26 +13,15 @@ use marttiphpbb\calendarmonthview\util\dateformat;
 
 class tag
 {
-	/* @var helper */
-	private $helper;
+	protected $helper;
+	protected $dateformat;
 
-	/* @var dateformat */
-	private $dateformat;
-
-	/**
-	* @param helper		$helper
-	* @param dateformat	$dateformat
-	*/
 	public function __construct(helper $helper, dateformat $dateformat)
 	{
 		$this->helper = $helper;
 		$this->dateformat = $dateformat;
 	}
 
-	/*
-	 * @param array 
-	 * @return array
-	 */
 	public function get(array $input):array
 	{
 		$start = $input['topic_calendarmonthview_start'];
@@ -43,7 +32,7 @@ class tag
 		}
 
 		$end = $input['topic_calendarmonthview_end'];
-		
+
 		$year = gmdate('Y', $start);
 		$month = gmdate('n', $start);
 

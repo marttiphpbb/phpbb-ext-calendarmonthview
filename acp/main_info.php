@@ -7,23 +7,25 @@
 
 namespace marttiphpbb\calendarmonthview\acp;
 
+use marttiphpbb\calendarmonthview\util\cnst;
+
 class main_info
 {
 	function module()
 	{
 		return [
 			'filename'	=> '\marttiphpbb\calendarmonthview\acp\main_module',
-			'title'		=> 'ACP_CALENDARMONTHVIEW',
+			'title'		=> cnst::L_ACP,
 			'modes'		=> [
 				'links'	=> [
-					'title' => 'ACP_CALENDARMONTHVIEW_LINKS',
+					'title' => cnst::L_ACP . '_LINKS',
 					'auth' => 'ext_marttiphpbb/calendarmonthview && acl_a_board',
-					'cat' => ['ACP_CALENDARMONTHVIEW'],
+					'cat' => [cnst::L_ACP],
 				],
 				'page_rendering'	=> [
-					'title' => 'ACP_CALENDARMONTHVIEW_PAGE_RENDERING',
+					'title' => cnst::L_ACP . '_PAGE_RENDERING',
 					'auth' => 'ext_marttiphpbb/calendarmonthview && acl_a_board',
-					'cat' => ['ACP_CALENDARMONTHVIEW'],
+					'cat' => [cnst::L_ACP],
 				],
 			],
 		];

@@ -1,12 +1,3 @@
-/* suffix */
-
-span.calendarmonthview-topicrow
-{
-	display: none;
-}
-
-/* calendarmonthview page */
-
 div.calendarmonthview div.calendarmonthview-panel table
 {
 	border-collapse: collapse;
@@ -147,16 +138,16 @@ div.calendarmonthview table tbody tr td:last-child div
 
 @media only screen and (max-width: 500px), only screen and (max-device-width: 500px)
 {
-	 div.calendarmonthview div.moon > span
-	 {
-		 display: none;
-	 }
-	 div.calendarmonthview td > div > span
-	 {
-		 display: none;
-	 }
-	 div.calendarmonthview td div.isoweek
-	 {
-		 display: none;
-	 }
+	div.calendarmonthview div.moon > span
+	{
+		display: none;
+	}
+	div.calendarmonthview td > div > span
+	{
+		display: none;
+	}
+	div.calendarmonthview td div.isoweek
+	{
+		display: none;
+	}
 }

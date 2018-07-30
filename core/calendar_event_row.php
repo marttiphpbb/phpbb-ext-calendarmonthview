@@ -13,18 +13,9 @@ use marttiphpbb\calendarmonthview\core\calendarmonthview_event;
 
 class calendarmonthview_event_row
 {
-	/* @var timespan  */
 	protected $timespan;
-
-	/* @var array */
 	protected $free_timespans = [];
-
-	/* @var array */
 	protected $calendarmonthview_events = [];
-
-	/**
-	 * @param timespan $timespan
-	 */
 
 	public function __construct(
 		timespan $timespan
@@ -34,8 +25,6 @@ class calendarmonthview_event_row
 		$this->free_timespans = [$timespan];
 	}
 
-	/*
-	*/
 	public function insert_calendarmonthview_event(calendarmonthview_event $calendarmonthview_event)
 	{
 		$timespan = $calendarmonthview_event->get_timespan();
