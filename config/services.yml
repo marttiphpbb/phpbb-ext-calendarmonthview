@@ -39,20 +39,10 @@ services:
             - '@dbal.conn'
             - '%tables.topics%'
 
-    marttiphpbb.calendarmonthview.moonphase_calculator:
-        class: marttiphpbb\calendarmonthview\util\moonphase_calculator
-
     marttiphpbb.calendarmonthview.timeformat:
         class: marttiphpbb\calendarmonthview\util\timeformat
         arguments:
             - '@user'
-
-    marttiphpbb.calendarmonthview.render.links:
-        class: marttiphpbb\calendarmonthview\render\links
-        arguments:
-            - '@config'
-            - '@template'
-            - '@language'
 
     marttiphpbb.calendarmonthview.render.include_assets:
         class: marttiphpbb\calendarmonthview\render\include_assets
