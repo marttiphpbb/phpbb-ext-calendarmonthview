@@ -19,7 +19,6 @@ use phpbb\language\language;
 use phpbb\controller\helper;
 
 use marttiphpbb\calendarmonthview\core\event_container;
-use marttiphpbb\calendarmonthview\util\moonphase_calculator;
 use marttiphpbb\calendarmonthview\util\timeformat;
 use marttiphpbb\calendarmonthview\model\pagination;
 
@@ -67,7 +66,6 @@ class main
 		$this->helper = $helper;
 		$this->root_path = $root_path;
 		$this->event_container = $event_container;
-		$this->moonphase_calculator = $moonphase_calculator;
 		$this->timeformat = $timeformat;
 		$this->pagination = $pagination;
 	}
@@ -106,9 +104,6 @@ class main
 		$mday_total = 0;
 
 		$timespan = new timespan($start - $this->time_offset, $end - $this->time_offset);
-
-		$moonphases = $this->moonphase_calculator->find($timespan);
-		reset($moonphases);
 
 		$this->event_container->set_timespan($timespan)
 			->fetch()
@@ -155,27 +150,6 @@ class main
 
 			$day_tpl[$day]['day'] = $day_template;
 
-			$moonphase = current($moonphases);
-
-			if (is_array($moonphase)
-				&& ($moonphase['time'] >= $time
-				&& $moonphase['time'] <= $day_end_time))
-			{
-				$day_template = array_merge($day_template, [
-					'MOON_NAME'			=> $moonphase['name'],
-					'MOON_ICON'			=> $moonphase['icon'],
-					'MOON_PHASE'		=> $moonphase['phase'],
-					'MOON_TIME'			=> $this->user->format_date($moonphase['time'], (string) $this->timeformat, true),
-				]);
-
-				if (!next($moonphases))
-				{
-					$moonphases = [];
-				}
-			}
-
-			$day_tpl[$day]['day_moon'] = $day_template;
-
 			$mday++;
 			$time += 86400;
 		}
@@ -201,7 +175,7 @@ class main
 				}
 			}
 
-			$this->template->assign_block_vars('week.day', $tpl['day_moon']);
+			$this->template->assign_block_vars('week.day', []);
 		}
 
 		$this->template->assign_vars([
