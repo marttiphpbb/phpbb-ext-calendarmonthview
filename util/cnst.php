@@ -13,7 +13,7 @@ class cnst
 	const ID = 'marttiphpbb_calendarmonthview';
 	const PREFIX = self::ID . '_';
 	const CACHE_ID = '_' . self::ID;
-	const L = 'MARTTIPHPBB_CALENDARMONTHVIEW';
+	const L = 'MARTTIPHPBB_MARTTIPHPBB_CALENDARMONTHVIEW';
 	const L_ACP = 'ACP_' . self::L;
 	const L_MCP = 'MCP_' . self::L;
 	const TPL = '@' . self::ID . '/';

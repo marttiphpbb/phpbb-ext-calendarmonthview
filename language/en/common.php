@@ -18,16 +18,6 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 
-	'CALENDARMONTHVIEW'						=> 'Calendar',
-	'CALENDARMONTHVIEW_EXTENSION'			=> '%sCalendar%s extension for phpBB',
-
-// viewonline
-	'CALENDARMONTHVIEW_VIEWING'			=> 'Viewing Calendar',
-
-// Calendar page
-
-	'CALENDARMONTHVIEW_NEW_MOON'			=> 'New moon@%s',
-	'CALENDARMONTHVIEW_FIRST_QUARTER_MOON'	=> 'First quarter moon@%s',
-	'CALENDARMONTHVIEW_FULL_MOON'			=> 'Full moon@%s',
-	'CALENDARMONTHVIEW_THIRD_QUARTER_MOON'	=> 'Third quarter moon%s',
+	'MARTTIPHPBB_CALENDARMONTHVIEW'				=> 'Calendar',
+	'MARTTIPHPBB_CALENDARMONTHVIEW_VIEWING'		=> 'Viewing Calendar',
 ]);

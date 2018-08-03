@@ -1,7 +1,7 @@
 {%- extends '@marttiphpbb_calendarmonthview/base.html' -%}
 
 {%- block heading -%}
-	{{- lang('ACP_CALENDARMONTHVIEW_PAGE_RENDERING') -}}
+	{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_PAGE_RENDERING') -}}
 {%- endblock -%}
 
 {%- block form_content -%}
@@ -22,7 +22,7 @@
 		<dl>
 			<dt>
 				<label for="first_weekday">
-					{{- lang('ACP_CALENDARMONTHVIEW_SELECT_FIRST_WEEKDAY') -}}
+					{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_SELECT_FIRST_WEEKDAY') -}}
 				</label></dt>
 			<dd>
 				<select id="first_weekday" name="first_weekday">
@@ -38,10 +38,10 @@
 		<dl>
 			<dt>
 				<label for="min_rows">
-					{{- lang('ACP_CALENDARMONTHVIEW_MIN_ROWS') -}}
+					{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_MIN_ROWS') -}}
 				</label>
 				<br>
-				{{- lang('ACP_CALENDARMONTHVIEW_MIN_ROWS_EXPLAIN') -}}</dt>
+				{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_MIN_ROWS_EXPLAIN') -}}</dt>
 			<dd>
 				<input type="number" name="min_rows" id="min_rows" value="{{- MIN_ROWS -}}">
 			</dd>

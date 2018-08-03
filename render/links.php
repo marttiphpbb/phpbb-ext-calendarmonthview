@@ -37,7 +37,7 @@ class links
 		{
 			if ($key & $links_enabled)
 			{
-				$template_vars['S_CALENDARMONTHVIEW_' . $value] = true;
+				$template_vars['S_MARTTIPHPBB_CALENDARMONTHVIEW_' . $value] = true;
 			}
 		}
 
@@ -49,7 +49,7 @@ class links
 	{
 		$links_enabled = $this->config['calendarmonthview_links'];
 
-		$this->template->assign_var('S_CALENDARMONTHVIEW_REPO_LINK', $links_enabled & 1 ? true : false);
+		$this->template->assign_var('S_MARTTIPHPBB_CALENDARMONTHVIEW_REPO_LINK', $links_enabled & 1 ? true : false);
 
 		$links = $this->links;
 
@@ -60,7 +60,7 @@ class links
 			$this->template->assign_block_vars('links', [
 				'VALUE'			=> $key,
 				'S_SELECTED'	=> ($key & $links_enabled) ? true : false,
-				'LANG'			=> $this->language->lang('ACP_CALENDARMONTHVIEW_' . $value),
+				'LANG'			=> $this->language->lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_' . $value),
 			]);
 		}
 		return $this;

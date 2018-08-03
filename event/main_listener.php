@@ -61,7 +61,7 @@ class main_listener implements EventSubscriberInterface
 	{
 /*		$this->links->assign_template_vars();
 		$this->template->assign_vars([
-			'U_CALENDARMONTHVIEW'			=> $this->helper->route('marttiphpbb_calendarmonthview_defaultview_controller'),
+			'U_MARTTIPHPBB_CALENDARMONTHVIEW'			=> $this->helper->route('marttiphpbb_calendarmonthview_defaultview_controller'),
 		]); */
 	}
 

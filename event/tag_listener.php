@@ -29,16 +29,6 @@ class tag_listener implements EventSubscriberInterface
 		];
 	}
 
-	/*
-	* @event
-	* @var string 	link		url to the calendar view to set
-	* @var array 	topic_data
-	* @var	int  	year
-	* @var	int		month
-	* @var int   	day
-	* @var int 	start_jd	start julian day
-	* @var int 	end_jd		end julian day
-	* @var int 	now_jd 		julian day of today*/
 	public function link(event $event)
 	{
 		$link = $event['link'];
