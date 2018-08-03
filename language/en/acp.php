@@ -32,14 +32,10 @@ $lang = array_merge($lang, [
 	=> 'Calendar page',
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_ISOWEEK'
 	=> 'Display the week number (ISO 1806)',
-	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_ISOWEEK_EXPLAIN'
-	=> 'According to ISO 1806, the first day of the week is defined monday.',
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_TODAY'
 	=> 'Mark today´s date',
-	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_SELECT_FIRST_WEEKDAY'
+	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_FIRST_WEEKDAY'
 	=> 'First day of the week',
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_MIN_ROWS'
 	=> 'Minumum rows of the Calendar table',
-	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_MIN_ROWS_EXPLAIN'
-	=> '',
 ]);

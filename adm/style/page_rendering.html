@@ -6,47 +6,50 @@
 
 {%- block form_content -%}
 	<fieldset>
-		{%- for rs in render_settings -%}
-			<dl>
-				<dt>
-					<label for="render_settings_{{- rs.VALUE -}}">
-						{{- rs.LABEL -}}
-					</label>
-				<br>{{- rs.EXPLAIN -}}</dt>
-				<dd>
-					<input type="radio" class="radio" name="render_settings[{{- rs.VALUE -}}]" id="render_settings_{{- rs.VALUE -}}" value="{{- rs.VALUE -}}"{%- if rs.S_CHECKED %} checked="checked"{%- endif -%}/> {{- lang('YES') -}} &nbsp;
-				<input type="radio" class="radio" name="render_settings[{{- rs.VALUE -}}]" value="0"{%- if not rs.S_CHECKED %} checked="checked"{%- endif -%} /> {{- lang('NO') -}}</dd>
-			</dl>
-		{%- endfor -%}
+		{%- embed '@marttiphpbb_calendarmonthview/include/radio.html' with {'checked': SHOW_TODAY} only -%}
+			{%- block label -%}
+				{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_TODAY') -}}
+			{%- endblock -%}
+			{%- block name -%}
+				show_today
+			{%- endblock -%}
+		{%- endembed -%}
 
-		<dl>
-			<dt>
-				<label for="first_weekday">
-					{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_SELECT_FIRST_WEEKDAY') -}}
-				</label></dt>
-			<dd>
-				<select id="first_weekday" name="first_weekday">
-					{%- for w in weekdays -%}
-						<option value="{{- w.VALUE -}}"{%- if w.VALUE == FIRST_WEEKDAY %} selected="selected"{%- endif -%}>
-							{{- lang('datetime', w.VALUE) -}}
-						</option>
-					{%- endfor -%}
-				</select>
-			</dd>
-		</dl>
+		{%- embed '@marttiphpbb_calendarmonthview/include/radio.html' with {'checked': FIRST_WEEKDAY} only -%}
+			{%- block label -%}
+				{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_FIRST_WEEKDAY') -}}
+			{%- endblock -%}
+			{%- block name -%}
+				first_weekday
+			{%- endblock -%}
+			{%- block zero -%}
+				{{- lang('datetime', 'Sunday') -}}
+			{%- endblock -%}
+			{%- block one -%}
+				{{- lang('datetime', 'Monday') -}}
+			{%- endblock -%}
+		{%- endembed -%}
 
-		<dl>
-			<dt>
-				<label for="min_rows">
-					{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_MIN_ROWS') -}}
-				</label>
-				<br>
-				{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_MIN_ROWS_EXPLAIN') -}}</dt>
-			<dd>
-				<input type="number" name="min_rows" id="min_rows" value="{{- MIN_ROWS -}}">
-			</dd>
-		</dl>
+		{%- embed '@marttiphpbb_calendarmonthview/include/radio.html' with {'checked': SHOW_ISOWEEK} only -%}
+			{%- block label -%}
+				{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_ISOWEEK') -}}
+			{%- endblock -%}
+			{%- block name -%}
+				show_isoweek
+			{%- endblock -%}
+		{%- endembed -%}
 
+		{%- embed '@marttiphpbb_calendarmonthview/include/number.html' -%}
+			{%- block label -%}
+				{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_MIN_ROWS') -}}
+			{%- endblock -%}
+			{%- block name -%}
+				min_rows
+			{%- endblock -%}
+			{%- block value -%}
+				{{- MIN_ROWS -}}
+			{%- endblock -%}
+		{%- endembed -%}
 	</fieldset>
 
 {%- endblock form_content -%}

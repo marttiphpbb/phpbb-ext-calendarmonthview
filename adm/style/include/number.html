@@ -1,11 +1,11 @@
 <dl>
-    <dt><label for="{{- name -}}">{{- lang(label) -}}</label>
-    {%- if explain is defined -%}
-    <br>
-    {{- lang(explain) -}} 
-    {%- endif -%}
+    <dt>
+        <label for="{{- name -}}">
+            {{- lang(label) -}}
+        </label>
+        {%- block explain -%}{%- endblock -%}
     </dt>
     <dd>
-    <input type="number" name="{{- name -}}" id="{{- name -}}" value="{{- value -}}"{%- if min is defined %} min="{{- min -}}"{%- endif -%}>
+        <input type="number" name="{%- block name -%}{%- endblock -%}" id="{{- block('name') -}}" value="{%- block value -%}{%- endblock -%}"{%- block attr -%}{%- endblock -%}>
     </dd>
 </dl>
