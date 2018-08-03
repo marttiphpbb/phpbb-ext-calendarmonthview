@@ -67,8 +67,12 @@ class main_module
 					}
 
 					$render_settings->set($request->variable('render_settings', [0 => 0]));
-					$config->set('calendarmonthview_first_weekday', $request->variable('calendarmonthview_first_weekday', 0));
-					$config->set('calendarmonthview_min_rows', $request->variable('calendarmonthview_min_rows', 5));
+
+					$store->transaction_start();
+					$store->set_show_isoweek($request->variable('show_isoweek', 0) ? true : false);
+					$store->set_first_weekday($request->variable('first_weekday', 0));
+					$store->set_min_rows($request->variable('min_rows', 0));
+					$store->transaction_end();
 
 					trigger_error($language->lang(cnst::L_ACP . '_SETTINGS_SAVED') . adm_back_link($this->u_action));
 				}
@@ -87,7 +91,9 @@ class main_module
 				$render_settings->assign_acp_template_vars();
 
 				$template->assign_vars([
-					'CALENDARMONTHVIEW_MIN_ROWS'	=> $config['calendarmonthview_min_rows'],
+					'SHOW_ISOWEEK'		=> $store->get_show_isoweek(),
+					'FIRST_WEEKDAY'		=> $store->get_first_weekday(),
+					'MIN_ROWS'			=> $store->get_min_rows(),
 				]);
 
 				break;

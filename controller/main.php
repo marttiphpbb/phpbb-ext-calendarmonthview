@@ -21,7 +21,6 @@ use phpbb\controller\helper;
 use marttiphpbb\calendarmonthview\core\event_container;
 use marttiphpbb\calendarmonthview\util\moonphase_calculator;
 use marttiphpbb\calendarmonthview\util\timeformat;
-use marttiphpbb\calendarmonthview\model\render_settings;
 use marttiphpbb\calendarmonthview\model\pagination;
 
 use marttiphpbb\calendarmonthview\core\timespan;
@@ -37,7 +36,6 @@ class main
 	protected $event_container;
 	protected $time_offset;
 	protected $timeformat;
-	protected $render_settings;
 	protected $pagination;
 
 	public function __construct(
@@ -54,7 +52,6 @@ class main
 		string $root_path,
 		event_container $event_container,
 		timeformat $timeformat,
-		render_settings $render_settings,
 		pagination $pagination
 	)
 	{
@@ -72,10 +69,7 @@ class main
 		$this->event_container = $event_container;
 		$this->moonphase_calculator = $moonphase_calculator;
 		$this->timeformat = $timeformat;
-		$this->render_settings = $render_settings;
 		$this->pagination = $pagination;
-
-
 	}
 
 	public function defaultview():Response
@@ -210,17 +204,12 @@ class main
 			$this->template->assign_block_vars('week.day', $tpl['day_moon']);
 		}
 
-
-		$this->render_settings->assign_template_vars();
-
 		$this->template->assign_vars([
 			'MONTH'			=> $this->user->format_date($month_start_time, 'F', true),
 			'YEAR'			=> $year,
 			'U_YEAR'		=> $this->helper->route('marttiphpbb_calendarmonthview_yearview_controller', [
 				'year' => $year]),
 		]);
-
-		$this->render_settings->assign_template_vars();
 
 		$this->pagination->render($year, $month);
 

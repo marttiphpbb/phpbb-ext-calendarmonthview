@@ -39,7 +39,6 @@ services:
             - '%core.root_path%'
             - '@marttiphpbb.calendarmonthview.core.event_container'
             - '@marttiphpbb.calendarmonthview.timeformat'
-            - '@marttiphpbb.calendarmonthview.render.render_settings'
             - '@marttiphpbb.calendarmonthview.render.pagination'
 
     marttiphpbb.calendarmonthview.redirect_controller:
@@ -58,38 +57,10 @@ services:
             - '@dbal.conn'
             - '%tables.topics%'
 
-    marttiphpbb.calendarmonthview.render.render_settings:
-        class: marttiphpbb\calendarmonthview\render\render_settings
-        arguments:
-            - '@config'
-            - '@template'
-            - '@language'
-
     marttiphpbb.calendarmonthview.render.pagination:
         class: marttiphpbb\calendarmonthview\render\pagination
         arguments:
             - '@config'
             - '@controller.helper'
             - '@template'
-            - '@language'
-
-    marttiphpbb.calendarmonthview.render.tag:
-        class: marttiphpbb\calendarmonthview\render\tag
-        arguments:
-            - '@controller.helper'
-            - '@marttiphpbb.calendarmonthview.dateformat'
-
-    marttiphpbb.calendarmonthview.render.posting:
-        class: marttiphpbb\calendarmonthview\render\posting
-        arguments:
-            - '@config'
-            - '@template'
-            - '@language'
-            - '@marttiphpbb.calendarmonthview.render.input_settings'
-            - '@marttiphpbb.calendarmonthview.render.include_assets'
-
-    marttiphpbb.calendarmonthview.dateformat:
-        class: marttiphpbb\calendarmonthview\util\dateformat
-        arguments:
-            - '@user'
             - '@language'
