@@ -14,29 +14,22 @@ class mgr_1 extends \phpbb\db\migration\migration
 	static public function depends_on()
 	{
 		return [
-			'\phpbb\db\migration\data\v32x\v321',
+			'\marttiphpbb\calendarmonthview\migrations\mgr_1',
 		];
 	}
 
 	public function update_data()
 	{
+		$data = [
+			'first_weekday'		=> 0,
+			'min_rows'			=> 5,
+			'links'				=> 2,
+			'show_today'		=> true,
+			'show_isoweek'		=> false,
+		];
+
 		return [
-			['module.add', [
-				'acp',
-				'ACP_CAT_DOT_MODS',
-				cnst::L_ACP
-			]],
-			['module.add', [
-				'acp',
-				cnst::L_ACP,
-				[
-					'module_basename'	=> '\marttiphpbb\calendarmonthview\acp\main_module',
-					'modes'				=> [
-						'links',
-						'page_rendering',
-					],
-				],
-			]],
+			['config_text.add', [cnst::ID, serialize($data)]],
 		];
 	}
 }

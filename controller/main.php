@@ -35,7 +35,6 @@ class main
 	protected $config;
 	protected $now;
 	protected $event_container;
-	protected $moonphase_calculator;
 	protected $time_offset;
 	protected $timeformat;
 	protected $render_settings;
@@ -54,7 +53,6 @@ class main
 		helper $helper,
 		string $root_path,
 		event_container $event_container,
-		moonphase_calculator $moonphase_calculator,
 		timeformat $timeformat,
 		render_settings $render_settings,
 		pagination $pagination
@@ -77,18 +75,19 @@ class main
 		$this->render_settings = $render_settings;
 		$this->pagination = $pagination;
 
-		$now = $user->create_datetime();
-		$this->time_offset = $now->getOffset();
-		$this->now = phpbb_gmgetdate($now->getTimestamp() + $this->time_offset);
+
 	}
 
 	public function defaultview():Response
 	{
+		$now = $user->create_datetime();
+		$time_offset = $now->getOffset();
+		$now = phpbb_gmgetdate($now->getTimestamp() + $time_offset);
 		make_jumpbox(append_sid($this->root_path . 'viewforum.' . $this->php_ext));
-		return $this->monthview($this->now['year'], $this->now['mon']);
+		return $this->show($now['year'], $now['mon']);
 	}
 
-	public function monthview(int $year, int $month):Response
+	public function show(int $year, int $month):Response
 	{
 		$month_start_time = gmmktime(0,0,0, (int) $month, 1, (int) $year);
 		$month_start_weekday = gmdate('w', $month_start_time);

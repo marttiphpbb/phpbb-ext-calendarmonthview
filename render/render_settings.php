@@ -17,12 +17,6 @@ class render_settings
 	protected $template;
 	protected $language;
 
-	protected $render_settings = [
-		1		=> 'ISOWEEK',
-		2		=> 'MOONPHASE',
-		4		=> 'TODAY',
-	];
-
 	public function __construct(
 		config $config,
 		template $template,

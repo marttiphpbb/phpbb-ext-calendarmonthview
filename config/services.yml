@@ -10,6 +10,19 @@ services:
         tags:
             - { name: event.listener }
 
+    marttiphpbb.calendarmonthview.tag_listener:
+        class: marttiphpbb\calendarmonthview\event\tag_listener
+        arguments:
+            - '@controller.helper'
+        tags:
+            - { name: event.listener }
+
+    marttiphpbb.calendarmonthview.store:
+        class: marttiphpbb\calendarmonthview\service\store
+        arguments:
+            - '@config_text'
+            - '@cache.driver'
+
     marttiphpbb.calendarmonthview.controller:
         class: marttiphpbb\calendarmonthview\controller\main
         arguments:
@@ -25,10 +38,16 @@ services:
             - '@controller.helper'
             - '%core.root_path%'
             - '@marttiphpbb.calendarmonthview.core.event_container'
-            - '@marttiphpbb.calendarmonthview.moonphase_calculator'
             - '@marttiphpbb.calendarmonthview.timeformat'
             - '@marttiphpbb.calendarmonthview.render.render_settings'
             - '@marttiphpbb.calendarmonthview.render.pagination'
+
+    marttiphpbb.calendarmonthview.redirect_controller:
+        class: marttiphpbb\calendarmonthview\controller\redirect
+        arguments:
+            - '@auth'
+            - '@user'
+            - '@controller.helper'
 
     marttiphpbb.calendarmonthview.core.event_container:
         class: marttiphpbb\calendarmonthview\core\event_container
@@ -38,19 +57,6 @@ services:
             - '@content.visibility'
             - '@dbal.conn'
             - '%tables.topics%'
-
-    marttiphpbb.calendarmonthview.timeformat:
-        class: marttiphpbb\calendarmonthview\util\timeformat
-        arguments:
-            - '@user'
-
-    marttiphpbb.calendarmonthview.render.include_assets:
-        class: marttiphpbb\calendarmonthview\render\include_assets
-        arguments:
-            - '@config'
-            - '@template'
-            - '@language'
-            - '%core.root_path%'
 
     marttiphpbb.calendarmonthview.render.render_settings:
         class: marttiphpbb\calendarmonthview\render\render_settings
@@ -66,23 +72,6 @@ services:
             - '@controller.helper'
             - '@template'
             - '@language'
-
-    marttiphpbb.calendarmonthview.render.input_settings:
-        class: marttiphpbb\calendarmonthview\render\input_settings
-        arguments:
-            - '@config'
-            - '@config_text'
-            - '@template'
-            - '@language'
-
-    marttiphpbb.calendarmonthview.render.input_settings:
-        class: marttiphpbb\calendarmonthview\render\input_settings
-        arguments:
-            - '@config'
-            - '@template'
-            - '@language'
-            - '@marttiphpbb.calendarmonthview.render.input_settings'
-            - '@marttiphpbb.calendarmonthview.render.include_assets'
 
     marttiphpbb.calendarmonthview.render.tag:
         class: marttiphpbb\calendarmonthview\render\tag

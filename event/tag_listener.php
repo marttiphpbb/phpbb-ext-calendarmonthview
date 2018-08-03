@@ -7,6 +7,7 @@
 
 namespace marttiphpbb\calendarmonthview\event;
 
+use phpbb\controller\helper;
 use phpbb\template\template;
 use marttiphpbb\calendarmonthview\render\tag;
 use phpbb\event\data as event;
@@ -14,24 +15,46 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class tag_listener implements EventSubscriberInterface
 {
-	protected $template;
-	protected $tag;
+	protected $helper;
 
-	public function __construct(template $template, tag $tag)
+	public function __construct(helper $helper)
 	{
-		$this->template = $template;
-		$this->tag = $tag;
+		$this->helper = $helper;
 	}
 
 	static public function getSubscribedEvents()
 	{
 		return [
-
+			'marttiphpbb.calendartag.link'	=> 'link',
 		];
 	}
 
-	public function core_posting_modify_template_vars(event $event)
+	/*
+	* @event
+	* @var string 	link		url to the calendar view to set
+	* @var array 	topic_data
+	* @var	int  	year
+	* @var	int		month
+	* @var int   	day
+	* @var int 	start_jd	start julian day
+	* @var int 	end_jd		end julian day
+	* @var int 	now_jd 		julian day of today*/
+	public function link(event $event)
 	{
-	}
+		$link = $event['link'];
+		$year = $event['year'];
+		$month = $event['month'];
 
+		if ($link)
+		{
+			return;
+		}
+
+		$link = $this->helper->route('marttiphpbb_calendarmonthview_controller', [
+				'year'	=> $year,
+				'month'	=> $month,
+			]);
+
+		$event['link'] = $link;
+	}
 }

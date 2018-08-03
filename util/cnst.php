@@ -18,7 +18,4 @@ class cnst
 	const L_MCP = 'MCP_' . self::L;
 	const TPL = '@' . self::ID . '/';
 	const EXT_PATH = 'ext/' . self::FOLDER . '/';
-	const TABLE = self::ID;
-	const COLUMN_START = 'start_jd';
-	const COLUMN_END = 'end_jd';
 }

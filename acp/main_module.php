@@ -15,9 +15,13 @@ class main_module
 
 	function main($id, $mode)
 	{
-		global $template, $request;
-		global $config, $phpbb_root_path;
 		global $phpbb_container;
+
+		$template = $phpbb_container->get('template');
+		$config = $phpbb_container->get('config');
+		$request = $phpbb_container->get('request');
+		$store = $phpbb_container->get('marttiphpbb.calendarmonthview.store');
+		$phpbb_root_path = $phpbb_container->getParameter('core.root_path');
 
 		$language = $phpbb_container->get('language');
 		$language->add_lang('acp', cnst::FOLDER);
@@ -41,7 +45,7 @@ class main_module
 
 					$links->set($request->variable('links', [0 => 0]), $request->variable('calendarmonthview_repo_link', 0));
 
-					trigger_error($language->lang(cnst::L_ACP . '_SETTING_SAVED') . adm_back_link($this->u_action));
+					trigger_error($language->lang(cnst::L_ACP . '_SETTINGS_SAVED') . adm_back_link($this->u_action));
 				}
 
 				$links->assign_acp_select_template_vars();
@@ -66,7 +70,7 @@ class main_module
 					$config->set('calendarmonthview_first_weekday', $request->variable('calendarmonthview_first_weekday', 0));
 					$config->set('calendarmonthview_min_rows', $request->variable('calendarmonthview_min_rows', 5));
 
-					trigger_error($language->lang(cnst::L_ACP . '_SETTING_SAVED') . adm_back_link($this->u_action));
+					trigger_error($language->lang(cnst::L_ACP . '_SETTINGS_SAVED') . adm_back_link($this->u_action));
 				}
 
 				$weekdays = ['Sunday', 'Monday'];
@@ -82,7 +86,9 @@ class main_module
 
 				$render_settings->assign_acp_template_vars();
 
-				$template->assign_var('CALENDARMONTHVIEW_MIN_ROWS', $config['calendarmonthview_min_rows']);
+				$template->assign_vars([
+					'CALENDARMONTHVIEW_MIN_ROWS'	=> $config['calendarmonthview_min_rows'],
+				]);
 
 				break;
 		}

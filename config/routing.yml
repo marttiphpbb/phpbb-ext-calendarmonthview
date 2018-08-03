@@ -1,12 +1,12 @@
-marttiphpbb_calendarmonthview_defaultview_controller:
+marttiphpbb_calendarmonthview_redirect_controller:
     pattern: /calendar
-    defaults: { _controller: marttiphpbb.calendarmonthview.controller:defaultview }
+    defaults: { _controller: marttiphpbb.calendarmonthview.redirect_controller:redirect }
     requirements:
         _method: GET
 
-marttiphpbb_calendarmonthview_monthview_controller:
+marttiphpbb_calendarmonthview_controller:
     pattern: /calendarmonthview/{year}/{month}
-    defaults: { _controller: marttiphpbb.calendarmonthview.controller:monthview }
+    defaults: { _controller: marttiphpbb.calendarmonthview.controller:show }
     requirements:
         _method: GET
         year: ^(19|20)[0-9]{2}$
