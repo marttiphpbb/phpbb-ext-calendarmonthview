@@ -6,7 +6,6 @@ services:
             - '%core.php_ext%'
             - '@template'
             - '@language'
-            - '@marttiphpbb.calendarmonthview.render.links'
         tags:
             - { name: event.listener }
 
@@ -38,8 +37,7 @@ services:
             - '@controller.helper'
             - '%core.root_path%'
             - '@marttiphpbb.calendarmonthview.core.event_container'
-            - '@marttiphpbb.calendarmonthview.timeformat'
-            - '@marttiphpbb.calendarmonthview.render.pagination'
+            - '@marttiphpbb.calendarmonthview.pagination'
 
     marttiphpbb.calendarmonthview.redirect_controller:
         class: marttiphpbb\calendarmonthview\controller\redirect
@@ -57,7 +55,7 @@ services:
             - '@dbal.conn'
             - '%tables.topics%'
 
-    marttiphpbb.calendarmonthview.render.pagination:
+    marttiphpbb.calendarmonthview.pagination:
         class: marttiphpbb\calendarmonthview\render\pagination
         arguments:
             - '@config'

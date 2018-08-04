@@ -31,8 +31,6 @@ class main_module
 		{
 			case 'links':
 
-				$links = $phpbb_container->get('marttiphpbb.calendarmonthview.render.links');
-
 				$this->tpl_name = 'links';
 				$this->page_title = $language->lang(cnst::L_ACP . '_LINKS');
 
@@ -43,18 +41,16 @@ class main_module
 						trigger_error('FORM_INVALID');
 					}
 
-					$links->set($request->variable('links', [0 => 0]), $request->variable('calendarmonthview_repo_link', 0));
+//					$links->set($request->variable('links', [0 => 0]), $request->variable('calendarmonthview_repo_link', 0));
 
 					trigger_error($language->lang(cnst::L_ACP . '_SETTINGS_SAVED') . adm_back_link($this->u_action));
 				}
 
-				$links->assign_acp_select_template_vars();
+//				$links->assign_acp_select_template_vars();
 
 				break;
 
 			case 'page_rendering':
-
-				$render_settings = $phpbb_container->get('marttiphpbb.calendarmonthview.render.render_settings');
 
 				$this->tpl_name = 'page_rendering';
 				$this->page_title = $language->lang(cnst::L_ACP . '_PAGE_RENDERING');
@@ -66,9 +62,8 @@ class main_module
 						trigger_error('FORM_INVALID');
 					}
 
-					$render_settings->set($request->variable('render_settings', [0 => 0]));
-
 					$store->transaction_start();
+					$store->set_show_today($request->variable('show_today', 0) ? true : false);
 					$store->set_show_isoweek($request->variable('show_isoweek', 0) ? true : false);
 					$store->set_first_weekday($request->variable('first_weekday', 0));
 					$store->set_min_rows($request->variable('min_rows', 0));
@@ -77,20 +72,8 @@ class main_module
 					trigger_error($language->lang(cnst::L_ACP . '_SETTINGS_SAVED') . adm_back_link($this->u_action));
 				}
 
-				$weekdays = ['Sunday', 'Monday'];
-
-				foreach ($weekdays as $value => $name)
-				{
-					$template->assign_block_vars('weekdays', [
-						'VALUE'			=> $value,
-						'S_SELECTED'	=> $config['calendarmonthview_first_weekday'] == $value ? true : false,
-						'LANG'			=> $language->lang(['datetime', $name]),
-					]);
-				}
-
-				$render_settings->assign_acp_template_vars();
-
 				$template->assign_vars([
+					'SHOW_TODAY'		=> $store->get_show_today(),
 					'SHOW_ISOWEEK'		=> $store->get_show_isoweek(),
 					'FIRST_WEEKDAY'		=> $store->get_first_weekday(),
 					'MIN_ROWS'			=> $store->get_min_rows(),

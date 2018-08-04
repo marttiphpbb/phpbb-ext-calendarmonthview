@@ -19,7 +19,6 @@ use phpbb\language\language;
 use phpbb\controller\helper;
 
 use marttiphpbb\calendarmonthview\core\event_container;
-use marttiphpbb\calendarmonthview\util\timeformat;
 use marttiphpbb\calendarmonthview\model\pagination;
 
 use marttiphpbb\calendarmonthview\core\timespan;
@@ -34,7 +33,6 @@ class main
 	protected $now;
 	protected $event_container;
 	protected $time_offset;
-	protected $timeformat;
 	protected $pagination;
 
 	public function __construct(
@@ -50,7 +48,6 @@ class main
 		helper $helper,
 		string $root_path,
 		event_container $event_container,
-		timeformat $timeformat,
 		pagination $pagination
 	)
 	{
@@ -66,7 +63,6 @@ class main
 		$this->helper = $helper;
 		$this->root_path = $root_path;
 		$this->event_container = $event_container;
-		$this->timeformat = $timeformat;
 		$this->pagination = $pagination;
 	}
 

@@ -11,7 +11,6 @@ use phpbb\controller\helper;
 use phpbb\template\template;
 use phpbb\language\language;
 use phpbb\event\data as event;
-use marttiphpbb\calendarmonthview\render\links;
 use marttiphpbb\calendarmonthview\util\cnst;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -21,21 +20,18 @@ class main_listener implements EventSubscriberInterface
 	protected $php_ext;
 	protected $template;
 	protected $language;
-	protected $links;
 
 	public function __construct(
 		helper $helper,
 		string $php_ext,
 		template $template,
-		language $language,
-		links $links
+		language $language
 	)
 	{
 		$this->helper = $helper;
 		$this->php_ext = $php_ext;
 		$this->template = $template;
 		$this->language = $language;
-		$this->links = $links;
 	}
 
 	static public function getSubscribedEvents()
@@ -59,7 +55,7 @@ class main_listener implements EventSubscriberInterface
 
 	public function core_page_header(event $event)
 	{
-/*		$this->links->assign_template_vars();
+/*
 		$this->template->assign_vars([
 			'U_MARTTIPHPBB_CALENDARMONTHVIEW'			=> $this->helper->route('marttiphpbb_calendarmonthview_defaultview_controller'),
 		]); */
