@@ -22,10 +22,13 @@ $lang = array_merge($lang, [
 	=> 'The settings have been saved successfully!',
 
 // links
+	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_MENUITEMS_NOT_ENABLED'
+	=> 'The %1$sMenu Items extension%2$s should be installed
+	for this functionality.',
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_LINKS'
 	=> 'Links',
-	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_LINK_LOCATIONS'
-	=> 'Link locations to the Calendar page',
+	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_LINKS_EXPLAIN'
+	=> 'Menu link locations to the Calendar Month View page',
 
 // page_rendering
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_PAGE'

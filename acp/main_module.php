@@ -20,6 +20,7 @@ class main_module
 		$template = $phpbb_container->get('template');
 		$config = $phpbb_container->get('config');
 		$request = $phpbb_container->get('request');
+		$ext_manager = $phpbb_container->get('ext.manager');
 		$store = $phpbb_container->get('marttiphpbb.calendarmonthview.store');
 		$phpbb_root_path = $phpbb_container->getParameter('core.root_path');
 
@@ -34,6 +35,16 @@ class main_module
 				$this->tpl_name = 'links';
 				$this->page_title = $language->lang(cnst::L_ACP . '_LINKS');
 
+				if (!$ext_manager->is_enabled('marttiphpbb/menuitems'))
+				{
+					$msg = $language->lang(cnst::L_ACP . '_MENUITEMS_NOT_ENABLED',
+						'<a href="https://github.com/marttiphpbb/phpbb-ext-menuitems">',
+						'</a>');
+					trigger_error($msg, E_USER_WARNING);
+				}
+
+				$menuitems_acp = $phpbb_container->get('marttiphpbb.menuitems.acp');
+
 				if ($request->is_set_post('submit'))
 				{
 					if (!check_form_key(cnst::FOLDER))
@@ -41,14 +52,14 @@ class main_module
 						trigger_error('FORM_INVALID');
 					}
 
-//					$links->set($request->variable('links', [0 => 0]), $request->variable('calendarmonthview_repo_link', 0));
+					$menuitems_acp->process_form('marttiphpbb/menuitemsexample', 'links');
 
 					trigger_error($language->lang(cnst::L_ACP . '_SETTINGS_SAVED') . adm_back_link($this->u_action));
 				}
 
-//				$links->assign_acp_select_template_vars();
+				$menuitems_acp->assign_to_template('marttiphpbb/menuitemsexample');
 
-				break;
+			break;
 
 			case 'page_rendering':
 
@@ -79,7 +90,7 @@ class main_module
 					'MIN_ROWS'			=> $store->get_min_rows(),
 				]);
 
-				break;
+			break;
 		}
 
 		$template->assign_var('U_ACTION', $this->u_action);
