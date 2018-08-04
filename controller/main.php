@@ -19,7 +19,7 @@ use phpbb\language\language;
 use phpbb\controller\helper;
 
 use marttiphpbb\calendarmonthview\core\event_container;
-use marttiphpbb\calendarmonthview\model\pagination;
+use marttiphpbb\calendarmonthview\render\pagination;
 
 use marttiphpbb\calendarmonthview\core\timespan;
 
@@ -66,16 +66,17 @@ class main
 		$this->pagination = $pagination;
 	}
 
-	public function defaultview():Response
+	public function redirect():Response
 	{
 		$now = $user->create_datetime();
 		$time_offset = $now->getOffset();
 		$now = phpbb_gmgetdate($now->getTimestamp() + $time_offset);
-		make_jumpbox(append_sid($this->root_path . 'viewforum.' . $this->php_ext));
-		return $this->show($now['year'], $now['mon']);
+
+// to do redirect
+		return $this->page($now['year'], $now['mon']);
 	}
 
-	public function show(int $year, int $month):Response
+	public function page(int $year, int $month):Response
 	{
 		$month_start_time = gmmktime(0,0,0, (int) $month, 1, (int) $year);
 		$month_start_weekday = gmdate('w', $month_start_time);

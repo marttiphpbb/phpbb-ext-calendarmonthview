@@ -40,7 +40,7 @@ class tag_listener implements EventSubscriberInterface
 			return;
 		}
 
-		$link = $this->helper->route('marttiphpbb_calendarmonthview_controller', [
+		$link = $this->helper->route('marttiphpbb_calendarmonthview_page_controller', [
 				'year'	=> $year,
 				'month'	=> $month,
 			]);
