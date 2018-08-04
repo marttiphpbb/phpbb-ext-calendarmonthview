@@ -56,7 +56,7 @@ services:
             - '%tables.topics%'
 
     marttiphpbb.calendarmonthview.pagination:
-        class: marttiphpbb\calendarmonthview\render\pagination
+        class: marttiphpbb\calendarmonthview\util\pagination
         arguments:
             - '@config'
             - '@controller.helper'

@@ -8,36 +8,36 @@
 
 namespace marttiphpbb\calendarmonthview\core;
 
-use marttiphpbb\calendarmonthview\core\timespan;
-use marttiphpbb\calendarmonthview\core\calendarmonthview_event;
+use marttiphpbb\calendarmonthview\core\dayspan;
+use marttiphpbb\calendarmonthview\core\calendar_event;
 
-class calendarmonthview_event_row
+class calendar_event_row
 {
-	protected $timespan;
-	protected $free_timespans = [];
-	protected $calendarmonthview_events = [];
+	protected $dayspan;
+	protected $free_dayspans = [];
+	protected $calendar_events = [];
 
 	public function __construct(
-		timespan $timespan
+		dayspan $dayspan
 	)
 	{
-		$this->timespan = $timespan;
-		$this->free_timespans = [$timespan];
+		$this->dayspan = $dayspan;
+		$this->free_dayspans = [$dayspan];
 	}
 
-	public function insert_calendarmonthview_event(calendarmonthview_event $calendarmonthview_event)
+	public function insert_calendar_event(calendar_event $calendar_event)
 	{
-		$timespan = $calendarmonthview_event->get_timespan();
+		$dayspan = $calendar_event->get_dayspan();
 
-		foreach ($this->calendarmonthview_events as $ev)
+		foreach ($this->calendar_events as $ev)
 		{
-			if ($ev->overlaps($timespan))
+			if ($ev->overlaps($dayspan))
 			{
 				return false;
 			}
 		}
 
-		$this->calendarmonthview_events[] = $calendarmonthview_event;
+		$this->calendar_events[] = $calendar_event;
 
 		return true;
 	}

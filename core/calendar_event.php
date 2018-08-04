@@ -7,12 +7,12 @@
 
 namespace marttiphpbb\calendarmonthview\core;
 
-use marttiphpbb\calendarmonthview\core\timespan;
+use marttiphpbb\calendarmonthview\core\dayspan;
 
-class calendarmonthview_event
+class calendar_event
 {
 	protected $id;
-	protected $timespan;
+	protected $dayspan;
 	protected $topic_id;
 	protected $forum_id;
 	protected $topic_reported;
@@ -33,20 +33,20 @@ class calendarmonthview_event
 		return $this->id;
 	}
 
-	public function set_timespan(timespan $timespan)
+	public function set_dayspan(dayspan $dayspan)
 	{
-		$this->timespan = $timespan;
+		$this->dayspan = $dayspan;
 		return $this;
 	}
 
-	public function get_timespan():timespan
+	public function get_dayspan():dayspan
 	{
-		return $this->timespan;
+		return $this->dayspan;
 	}
 
-	public function overlaps(timespan $timespan)
+	public function overlaps(dayspan $dayspan)
 	{
-		return $this->timespan->overlaps($timespan);
+		return $this->dayspan->overlaps($dayspan);
 	}
 
 	public function set_topic_id($topic_id)
