@@ -1,7 +1,7 @@
 {%- include 'overall_header.html' -%}
 
 <p>{{- CURRENT_TIME -}}</p>
-<h2>{{- MONTH }}{%- if U_YEAR %} <a href="{{- U_YEAR -}}">{{- YEAR -}}</a>{%- else %} {{ YEAR -}}{%- endif -%}</h2>
+<h2>{{- MONTH }} {{ YEAR -}}</h2>
 
 <div class="calendarmonthview">
 
@@ -75,3 +75,4 @@
 {%- include '@marttiphpbb_calendarmonthview/include/pagination.html' -%}
 {%- include 'jumpbox.html' -%}
 {%- include 'overall_footer.html' -%}
+{%- INCLUDECSS '@marttiphpbb_calendarmonthview/calendarmonthview.css' -%}

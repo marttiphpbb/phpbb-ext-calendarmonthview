@@ -42,17 +42,18 @@ class menu_listener implements EventSubscriberInterface
 	{
 		$items = $event['items'];
 
-		if ($link)
+		if (!count($this->auth->acl_getf('f_read')))
 		{
 			return;
 		}
 
-		$year = '2018';
-		$month = '8';
+		$now = $this->user->create_datetime();
+		$time_offset = $now->getOffset();
+		$now = phpbb_gmgetdate($now->getTimestamp() + $time_offset);
 
 		$link = $this->helper->route('marttiphpbb_calendarmonthview_page_controller', [
-			'year'	=> $year,
-			'month'	=> $month,
+			'year'	=> $now['year'],
+			'month'	=> $now['mon'],
 		]);
 
 		$items[cnst::FOLDER]['links'] = [
