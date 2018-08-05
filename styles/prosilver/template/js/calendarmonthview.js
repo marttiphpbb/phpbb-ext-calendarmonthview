@@ -1,3 +1,22 @@
+;(function($, window, document) {
+	$('document').ready(function(){
+		var $topic = $('table tr td[data-topic]');
+		$topic.hover(function(){
+			var t = $(this).data('topic');
+			$('table tr td[data-topic="' + t + '"').each(function(){
+				$(this).removeClass('calendarevent-hover');
+			});
+		}, function(){
+			t = $(this).data('topic');
+			$('table tr td[data-topic="' + t + '"').each(function(){
+				$(this).removeClass('calendarevent-hover');
+			});
+		});
+	});
+})(jQuery, window, document);
+
+
+
 var mouseover_evt_id_ary = [{SCRIPT_MSVR_EVT_ID_ARY}];
 var mouseover_color = '#330022';
 var mouseout_color_ary = new Array();

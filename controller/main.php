@@ -138,33 +138,17 @@ class main
 		$col = 0;
 
 		$year_begin_jd = cal_to_jd(CAL_GREGORIAN, 1, 1, $year);
-		$start_unix = jdtounix($start_jd);
-		$year_weekday = jddayofweek($year_begin_jd);
+		$isoweek = gmdate('W', jdtounix($start_jd));
 
 		for ($jd = $start_jd; $jd <= $end_jd; $jd++)
 		{
 			$day = cal_from_jd($jd, CAL_GREGORIAN);
 			$day_of_year = $year_begin_jd - $jd + 1;
-			$isoweek = ($day_of_year + 6) / 7;
-			$isoweek += $day['dow'] < $year_weekday ? 1 : 0;
 
-/*
-			int julian = getDayOfYear(myDate)  // Jan 1 = 1, Jan 2 = 2, etc...
-			int dow = getDayOfWeek(myDate)     // Sun = 0, Mon = 1, etc...
-			int dowJan1 = getDayOfWeek("1/1/" + thisYear)   // find out first of year's day
-			// int badWeekNum = (julian / 7) + 1  // Get our week# (wrong!  Don't use this)
-			int weekNum = ((julian + 6) / 7)   // probably better.  CHECK THIS LINE. (See comments.)
-			if (dow < dowJan1)                 // adjust for being after Saturday of week #1
-				++weekNum;
-			return (weekNum)
-
-			To clarify, this algorithm assumes you number your weeks like this:
-
-			S  M  T  W  R  F  S
-						1  2  3    <-- week #1
-			4  5  6  7  8  9 10    <-- week #2
-			[etc.]
-*/
+			if ($day[''] === '')
+			{
+				$isoweek = gmdate('W', jdtounix($jd));
+			}
 
 			if (!$wday)
 			{
@@ -225,10 +209,10 @@ class main
 		}
 
 		$this->template->assign_vars([
-			'MONTH'			=> $this->user->format_date($month_start_time, 'F', true),
+			'MONTH'			=> $month,
+			'MONTH_NAME'	=> $this->language->lang(['datetime', $month_name]),
+			'MONTH_ABBREV'	=> $this->language->lang(['datetime', $month_abbrev]),
 			'YEAR'			=> $year,
-			'U_YEAR'		=> $this->helper->route('marttiphpbb_calendarmonthview_yearview_controller', [
-				'year' => $year]),
 		]);
 
 		$this->pagination->render($year, $month);
