@@ -45,12 +45,12 @@ class main_listener implements EventSubscriberInterface
 
 	public function core_user_setup(event $event)
 	{
-/*		$lang_set_ext = $event['lang_set_ext'];
+		$lang_set_ext = $event['lang_set_ext'];
 		$lang_set_ext[] = [
 			'ext_name' => cnst::FOLDER,
 			'lang_set' => 'common',
 		];
-		$event['lang_set_ext'] = $lang_set_ext; */
+		$event['lang_set_ext'] = $lang_set_ext;
 	}
 
 	public function core_page_header(event $event)

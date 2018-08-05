@@ -40,5 +40,5 @@ $lang = array_merge($lang, [
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_FIRST_WEEKDAY'
 	=> 'First day of the week',
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_MIN_ROWS'
-	=> 'Minumum rows in the Calendar table',
+	=> 'Minumum rows in the calendar table',
 ]);

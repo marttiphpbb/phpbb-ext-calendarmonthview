@@ -16,6 +16,15 @@ services:
         tags:
             - { name: event.listener }
 
+    marttiphpbb.calendarmonthview.menu_listener:
+        class: marttiphpbb\calendarmonthview\event\menu_listener
+        arguments:
+            - '@controller.helper'
+            - '@user'
+            - '@auth'
+        tags:
+            - { name: event.listener }
+
     marttiphpbb.calendarmonthview.store:
         class: marttiphpbb\calendarmonthview\service\store
         arguments:

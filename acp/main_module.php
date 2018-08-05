@@ -52,12 +52,12 @@ class main_module
 						trigger_error('FORM_INVALID');
 					}
 
-					$menuitems_acp->process_form('marttiphpbb/menuitemsexample', 'links');
+					$menuitems_acp->process_form(cnst::FOLDER, 'links');
 
 					trigger_error($language->lang(cnst::L_ACP . '_SETTINGS_SAVED') . adm_back_link($this->u_action));
 				}
 
-				$menuitems_acp->assign_to_template('marttiphpbb/menuitemsexample');
+				$menuitems_acp->assign_to_template(cnst::FOLDER);
 
 			break;
 

@@ -8,7 +8,6 @@
 namespace marttiphpbb\calendarmonthview\event;
 
 use phpbb\controller\helper;
-use phpbb\template\template;
 use marttiphpbb\calendarmonthview\render\tag;
 use phpbb\event\data as event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

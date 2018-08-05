@@ -18,10 +18,13 @@ use phpbb\user;
 use phpbb\language\language;
 use phpbb\controller\helper;
 
-use marttiphpbb\calendarmonthview\core\event_container;
+use marttiphpbb\calendarmonthview\render\row_container;
+use marttiphpbb\calendarmonthview\value\topic;
+use marttiphpbb\calendarmonthview\value\dayspan;
+use marttiphpbb\calendarmonthview\value\calendar_event;
+
 use marttiphpbb\calendarmonthview\render\pagination;
 
-use marttiphpbb\calendarmonthview\core\timespan;
 
 use Symfony\Component\HttpFoundation\Response;
 
@@ -78,44 +81,90 @@ class main
 
 	public function page(int $year, int $month):Response
 	{
-		$month_start_time = gmmktime(0,0,0, (int) $month, 1, (int) $year);
-		$month_start_weekday = gmdate('w', $month_start_time);
-		$month_days_num = gmdate('t', $month_start_time);
+		$month_start_jd = cal_to_jd(CAL_GREGORIAN, $month, 1, $year);
+		$month_days_num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+		$month_end_jd = $month_start_jd + $month_days_num;
+		$month_start_weekday = jddayofweek($month_start_jd);
 
-		$days_prefill = $month_start_weekday - $this->config['calendarmonthview_first_weekday'];
+		$first_weekday = $this->store->get_first_weekday();
+		$days_prefill = $month_start_weekday - $first_weekday;
 		$days_prefill += $days_prefill < 0 ? 7 : 0;
-		$prefill = $days_prefill * 86400;
 
 		$days_endfill = 7 - (($month_days_num + $days_prefill) % 7);
-		$days_endfill = ($days_endfill == 7) ? 0 : $days_endfill;
-		$endfill = $days_endfill * 86400 - 1;
+		$days_endfill = $days_endfill == 7 ? 0 : $days_endfill;
 
-		$month_length = $month_days_num * 86400;
+		$start_jd = $month_start_jd - $days_prefill;
+		$end_jd = $month_end_jd + $days_endfill;
+		$days_num = $end_jd - $start_jd;
 
-		$start = $month_start_time - $prefill;
-		$end = $month_start_time + $month_length + $endfill;
+		$events = [];
 
-		$days_num = $days_prefill + $month_days_num + $days_endfill;
+		/**
+		 * Event to fetch the calendar events for the view
+		 *
+		 * @event
+		 * @var int 	start_jd	start julian day of the view
+		 * @var int 	end_jd		end julian day of the view
+		 * @var array   events      items should contain
+		 * start_jd, end_jd, topic_id, forum_id, topic_title, topic_reported
+		 */
+		$vars = ['start_jd', 'end_jd', 'events'];
+		extract($this->dispatcher->trigger_event('marttiphpbb.calendar.view', compact($vars)));
+
+		$row_container = new row_container();
+
+		foreach($events as $e)
+		{
+			$dayspan = new dayspan($e['start_jd'], $e['end_jd']);
+			$topic = new topic($e['topic_id'], $e['forum_id'], $e['topic_title'], $e['topic_reported']);
+			$calendar_event = new calendar_event($topic, $dayspan);
+			$row_container->add_calendar_event($calendar_event);
+		}
 
 		$mday = 1;
 		$mday_total = 0;
 
-		$timespan = new timespan($start - $this->time_offset, $end - $this->time_offset);
+		$dayspan = new dayspan($start - $this->time_offset, $end - $this->time_offset);
 
-		$this->event_container->set_timespan($timespan)
+		$this->event_container->set_dayspan($dayspan)
 			->fetch()
-			->create_event_rows($this->config['calendarmonthview_min_rows'])
+			->create_event_rows($this->store->get_min_rows())
 			->arrange();
-
-		//var_dump($this->event_container->get_events());
 
 		$day_tpl = [];
 
 		$time = $start;
 
-		for ($day = 0; $day < $days_num; $day++)
+		$col = 0;
+
+		$year_begin_jd = cal_to_jd(CAL_GREGORIAN, 1, 1, $year);
+		$start_unix = jdtounix($start_jd);
+		$year_weekday = jddayofweek($year_begin_jd);
+
+		for ($jd = $start_jd; $jd <= $end_jd; $jd++)
 		{
-			$wday = $day % 7;
+			$day = cal_from_jd($jd, CAL_GREGORIAN);
+			$day_of_year = $year_begin_jd - $jd + 1;
+			$isoweek = ($day_of_year + 6) / 7;
+			$isoweek += $day['dow'] < $year_weekday ? 1 : 0;
+
+/*
+			int julian = getDayOfYear(myDate)  // Jan 1 = 1, Jan 2 = 2, etc...
+			int dow = getDayOfWeek(myDate)     // Sun = 0, Mon = 1, etc...
+			int dowJan1 = getDayOfWeek("1/1/" + thisYear)   // find out first of year's day
+			// int badWeekNum = (julian / 7) + 1  // Get our week# (wrong!  Don't use this)
+			int weekNum = ((julian + 6) / 7)   // probably better.  CHECK THIS LINE. (See comments.)
+			if (dow < dowJan1)                 // adjust for being after Saturday of week #1
+				++weekNum;
+			return (weekNum)
+
+			To clarify, this algorithm assumes you number your weeks like this:
+
+			S  M  T  W  R  F  S
+						1  2  3    <-- week #1
+			4  5  6  7  8  9 10    <-- week #2
+			[etc.]
+*/
 
 			if (!$wday)
 			{
