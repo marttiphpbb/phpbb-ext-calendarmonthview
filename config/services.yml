@@ -1,11 +1,16 @@
 services:
     marttiphpbb.calendarmonthview.main_listener:
         class: marttiphpbb\calendarmonthview\event\main_listener
+        tags:
+            - { name: event.listener }
+
+    marttiphpbb.calendarmonthview.viewing_listener:
+        class: marttiphpbb\calendarmonthview\event\viewing_listener
         arguments:
             - '@controller.helper'
             - '%core.php_ext%'
-            - '@template'
             - '@language'
+            - '@user'
         tags:
             - { name: event.listener }
 
