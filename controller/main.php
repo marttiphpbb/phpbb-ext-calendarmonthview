@@ -8,13 +8,9 @@
 
 namespace marttiphpbb\calendarmonthview\controller;
 
-use phpbb\auth\auth;
-use phpbb\cache\service as cache;
-use phpbb\config\db as config;
-use phpbb\db\driver\factory as db;
-use phpbb\request\request;
+
+use phpbb\event\dispatcher;
 use phpbb\template\twig\twig as template;
-use phpbb\user;
 use phpbb\language\language;
 use phpbb\controller\helper;
 
@@ -22,65 +18,58 @@ use marttiphpbb\calendarmonthview\render\row_container;
 use marttiphpbb\calendarmonthview\value\topic;
 use marttiphpbb\calendarmonthview\value\dayspan;
 use marttiphpbb\calendarmonthview\value\calendar_event;
-
-use marttiphpbb\calendarmonthview\render\pagination;
-
+use marttiphpbb\calendarmonthview\service\store;
+use marttiphpbb\calendarmonthview\service\pagination;
 
 use Symfony\Component\HttpFoundation\Response;
 
 class main
 {
-	protected $auth;
-	protected $cache;
-	protected $config;
+	protected $dispatcher;
+	protected $php_ext;
+	protected $template;
+	protected $language;
+	protected $helper;
+	protected $root_path;
 	protected $now;
-	protected $event_container;
 	protected $time_offset;
 	protected $pagination;
 
 	public function __construct(
-		auth $auth,
-		cache $cache,
-		config $config,
-		db $db,
+		dispatcher $dispatcher,
 		string $php_ext,
-		request $request,
 		template $template,
-		user $user,
 		language $language,
 		helper $helper,
 		string $root_path,
-		event_container $event_container,
-		pagination $pagination
+		pagination $pagination,
+		store $store
 	)
 	{
-		$this->auth = $auth;
-		$this->cache = $cache;
-		$this->config = $config;
-		$this->db = $db;
+		$this->dispatcher = $dispatcher;
 		$this->php_ext = $php_ext;
-		$this->request = $request;
 		$this->template = $template;
-		$this->user = $user;
 		$this->language = $language;
 		$this->helper = $helper;
 		$this->root_path = $root_path;
-		$this->event_container = $event_container;
 		$this->pagination = $pagination;
-	}
-
-	public function redirect():Response
-	{
-		$now = $user->create_datetime();
-		$time_offset = $now->getOffset();
-		$now = phpbb_gmgetdate($now->getTimestamp() + $time_offset);
-
-// to do redirect
-		return $this->page($now['year'], $now['mon']);
+		$this->store = $store;
 	}
 
 	public function page(int $year, int $month):Response
 	{
+/*
+		global $phpbb_container;
+
+		$ext_manager = $phpbb_container->get('ext.manager');
+
+		if ($ext_manager->is_enabled('marttiphpbb/codemirror'))
+		{
+			$load = $phpbb_container->get('marttiphpbb.codemirror.load');
+			$load->set_mode('json'); // or javascript, css, html, php, markdown, etc.s
+		}
+*/
+
 		$month_start_jd = cal_to_jd(CAL_GREGORIAN, $month, 1, $year);
 		$month_days_num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 		$month_end_jd = $month_start_jd + $month_days_num;
@@ -111,7 +100,7 @@ class main
 		$vars = ['start_jd', 'end_jd', 'events'];
 		extract($this->dispatcher->trigger_event('marttiphpbb.calendar.view', compact($vars)));
 
-		$row_container = new row_container();
+		$row_container = new row_container($this->store->get_min_rows());
 
 		foreach($events as $e)
 		{
@@ -121,21 +110,7 @@ class main
 			$row_container->add_calendar_event($calendar_event);
 		}
 
-		$mday = 1;
-		$mday_total = 0;
-
-		$dayspan = new dayspan($start - $this->time_offset, $end - $this->time_offset);
-
-		$this->event_container->set_dayspan($dayspan)
-			->fetch()
-			->create_event_rows($this->store->get_min_rows())
-			->arrange();
-
-		$day_tpl = [];
-
-		$time = $start;
-
-		$col = 0;
+		$tpl = [];
 
 		$year_begin_jd = cal_to_jd(CAL_GREGORIAN, 1, 1, $year);
 		$isoweek = gmdate('W', jdtounix($start_jd));
@@ -145,60 +120,46 @@ class main
 			$day = cal_from_jd($jd, CAL_GREGORIAN);
 			$day_of_year = $year_begin_jd - $jd + 1;
 
-			if ($day[''] === '')
+			if ($day['dayname'] === 'Monday')
 			{
 				$isoweek = gmdate('W', jdtounix($jd));
 			}
 
-			if (!$wday)
-			{
-				$day_tpl[$day]['week'] = [
-					'ISOWEEK'  => gmdate('W', $time + 86400),
-				];
-			}
+			$month_abbrev = $day['abbrevmonth'] === 'May' ? 'May_short' : $day['abbrevmonth'];
 
-			if ($mday > $mday_total)
-			{
-				$mday = gmdate('j', $time);
-				$mday_total = gmdate('t', $time);
-				$mon = gmdate('n', $time);
-			}
-
-			$day_end_time = $time + 86399;
-
-			$weekday_abbrev = gmdate('D', $time);
-			$weekday_name = gmdate('l', $time);
-
-			$day_template = [
-				'CLASS' 	=> strtolower($weekday_abbrev),
-				'NAME'		=> $this->language->lang(['datetime', $weekday_name]),
-				'ABBREV'	=> $this->language->lang(['datetime', $weekday_abbrev]),
-				'MDAY'		=> $mday,
-				'S_TODAY'	=> $this->now['year'] == $year && $this->now['mon'] == $mon && $this->now['mday'] == $mday ? true : false,
-				'S_BLUR'	=> $mon != $month ? true : false,
+			$day_tpl = [
+				'JD'				=> $jd,
+				'WEEKDAY'			=> $day['dow'],
+				'WEEKDAY_NAME'		=> $this->language->lang(['datetime', $day['dayname']]),
+				'WEEKDAY_ABBREV'	=> $this->language->lang(['datetime', $day['abbrevdayname']]),
+				'MONTHDAY'			=> $day['day'],
+				'MONTH'				=> $day['month'],
+				'MONTH_NAME'		=> $this->language->lang(['datetime', $day['monthname']]),
+				'MONTH_ABBREV'		=> $this->language->lang(['datetime', $month_abbrev]),
+				'YEAR'				=> $day['year'],
+				'ISOWEEK'			=> $isoweek,
+				'COLUMN'			=> $col,
 			];
 
-			$day_tpl[$day]['day'] = $day_template;
+			$tpl[] = $day_tpl;
 
-			$mday++;
-			$time += 86400;
+			$col++;
 		}
 
-		$event_row_num = $this->event_container->get_row_num();
+		$event_row_count = $row_container->get_row_count();
 
-		foreach($day_tpl as $day => $tpl)
+		foreach($tpl as $day => $tpl)
 		{
 			if (isset($tpl['week']))
 			{
 				$this->template->assign_block_vars('week', $tpl['week']);
 
-				for($evrow = 0; $evrow < $event_row_num; $evrow++)
+				for($evrow = 0; $evrow < $event_row_count; $evrow++)
 				{
 					$this->template->assign_block_vars('week.eventrow', $tpl['week']);
 
 					for($d7 = 0; $d7 < 7; $d7++)
 					{
-
 						$d = $day + $d7;
 						$this->template->assign_block_vars('week.eventrow.day', $day_tpl[$d]['day']);
 					}
@@ -208,9 +169,12 @@ class main
 			$this->template->assign_block_vars('week.day', []);
 		}
 
+		$day = cal_from_jd($month_start_jd, CAL_GREGORIAN);
+		$month_abbrev = $day['abbrevmonth'] === 'May' ? 'May_short' : $day['abbrevmonth'];
+
 		$this->template->assign_vars([
 			'MONTH'			=> $month,
-			'MONTH_NAME'	=> $this->language->lang(['datetime', $month_name]),
+			'MONTH_NAME'	=> $this->language->lang(['datetime', $day['monthname']]),
 			'MONTH_ABBREV'	=> $this->language->lang(['datetime', $month_abbrev]),
 			'YEAR'			=> $year,
 		]);

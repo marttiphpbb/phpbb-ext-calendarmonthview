@@ -1,0 +1,17 @@
+{%- include 'overall_header.html' -%}
+
+<p>{{- CURRENT_TIME -}}</p>
+
+<div class="calendarmonthview">
+
+<textarea name="content" id="content"{{- marttiphpbb_codemirror.data_attr ?? '' -}}>
+	{{- CONTENT -}}
+</textarea>
+
+</div>
+
+{#- include '@marttiphpbb_calendarmonthview/include/pagination.html' -#}
+{%- include 'jumpbox.html' -%}
+{%- include 'overall_footer.html' -%}
+{%- INCLUDECSS '@marttiphpbb_calendarmonthview/calendarmonthview.css' -%}
+{%- INCLUDEJS '@marttiphpbb_calendarmonthview/js/calendarmonthview.js' -%}

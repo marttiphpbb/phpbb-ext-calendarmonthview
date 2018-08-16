@@ -5,7 +5,7 @@
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
-namespace marttiphpbb\calendarmonthview\util;
+namespace marttiphpbb\calendarmonthview\service;
 
 use phpbb\config\config;
 use phpbb\controller\helper;
@@ -51,7 +51,7 @@ class pagination
 	{
 		$this->template->assign_block_vars('pagination', [
 			'S_IS_PREV'		=> true,
-			'PAGE_URL'		=> $this->helper->route('marttiphpbb_calendarmonthview_monthview_controller', [
+			'PAGE_URL'		=> $this->helper->route('marttiphpbb_calendarmonthview_page_controller', [
 				'year' 	=> ($month == 1) ? $year - 1 : $year,
 				'month'	=> ($month == 1) ? 12 : $month - 1,
 			]),
@@ -76,7 +76,7 @@ class pagination
 			$this->template->assign_block_vars('pagination', [
 				'S_IS_CURRENT'	=> ($i) ? false : true,
 				'PAGE_NUMBER'	=> $this->language->lang(['datetime', pagination::$month_abbrev[$pag_month]]),
-				'PAGE_URL'		=> $this->helper->route('marttiphpbb_calendarmonthview_monthview_controller', [
+				'PAGE_URL'		=> $this->helper->route('marttiphpbb_calendarmonthview_page_controller', [
 					'year' 	=> $pag_year,
 					'month'	=> $pag_month,
 				]),
@@ -85,7 +85,7 @@ class pagination
 
 		$this->template->assign_block_vars('pagination', [
 			'S_IS_NEXT'		=> true,
-			'PAGE_URL'		=> $this->helper->route('marttiphpbb_calendarmonthview_monthview_controller', [
+			'PAGE_URL'		=> $this->helper->route('marttiphpbb_calendarmonthview_page_controller', [
 				'year' 	=> ($month == 12) ? $year + 1 : $year,
 				'month'	=> ($month == 12) ? 1 : $month + 1,
 			]),

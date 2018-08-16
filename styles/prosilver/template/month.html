@@ -1,7 +1,7 @@
 {%- include 'overall_header.html' -%}
 
 <p>{{- CURRENT_TIME -}}</p>
-<h2>{{- MONTH }} {{ YEAR -}}</h2>
+<h2>{{- MONTH_NAME }} {{ YEAR -}}</h2>
 
 <div class="calendarmonthview">
 
@@ -9,9 +9,11 @@
 
 <div class="calendarmonthview-panel">
 
+
 <table>
 {%- for w in week -%}
 <tbody>
+
 	<tr>
 	{%- for wd in day -%}
 		{%- include '@marttiphpbb_calendarmonthview/include/calendarmonthview_table_td.html' %}
@@ -27,7 +29,7 @@
 	{%- for wd in day -%}
 		{%- include '@marttiphpbb_calendarmonthview/include/calendarmonthview_table_td.html' %}
 			<div>
-			{%- wd.MOON_NAME and S_MOONPHASE -%}
+			{%- if wd.MOON_NAME and S_MOONPHASE -%}
 			 	<div class="moon">
 					<span class="fa-stack">
 						<i class="icon fa-circle fa-stack-2x fa-inverse"></i>
@@ -35,7 +37,7 @@
 					</span> {{- wd.MOON_TIME -}}
 				</div>
 			{%- endif -%}
-			{%- wd.CLASS == 'mon' and S_ISOWEEK -%}
+			{%- if wd.CLASS == 'mon' and S_ISOWEEK -%}
 				<div class="isoweek" title="{L_ISOWEEK_TITLE}">{{- w.ISOWEEK -}}</div>
 			{%- endif -%}
 			</div>
@@ -49,7 +51,7 @@
 	{%- for d in day -%}
 
 		{%- if d.S_EVENT -%}
-		<td{%- IF d.COLSPAN %} colspan="{{- d.COLSPAN -}}"{%- endif -%}>
+		<td{%- if d.COLSPAN %} colspan="{{- d.COLSPAN -}}"{%- endif -%}>
 		<div class="calendarmonthview-event">Brr popi</div>
 		</td>
 		{%- else -%}
@@ -70,9 +72,14 @@
 {%- endfor -%}
 </table>
 
+
+<textarea name="content" id="content"{{- marttiphpbb_codemirror.data_attr ?? '' -}}>
+	{{- CONTENT -}}
+</textarea>
+
 </div>
 
-{%- include '@marttiphpbb_calendarmonthview/include/pagination.html' -%}
+{#- include '@marttiphpbb_calendarmonthview/include/pagination.html' -#}
 {%- include 'jumpbox.html' -%}
 {%- include 'overall_footer.html' -%}
 {%- INCLUDECSS '@marttiphpbb_calendarmonthview/calendarmonthview.css' -%}

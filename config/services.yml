@@ -39,38 +39,23 @@ services:
     marttiphpbb.calendarmonthview.controller:
         class: marttiphpbb\calendarmonthview\controller\main
         arguments:
-            - '@auth'
-            - '@cache'
-            - '@config'
-            - '@dbal.conn'
+            - '@dispatcher'
             - '%core.php_ext%'
-            - '@request'
             - '@template'
-            - '@user'
             - '@language'
             - '@controller.helper'
             - '%core.root_path%'
-            - '@marttiphpbb.calendarmonthview.core.event_container'
             - '@marttiphpbb.calendarmonthview.pagination'
+            - '@marttiphpbb.calendarmonthview.store'
 
     marttiphpbb.calendarmonthview.redirect_controller:
         class: marttiphpbb\calendarmonthview\controller\redirect
         arguments:
-            - '@auth'
             - '@user'
             - '@controller.helper'
 
-    marttiphpbb.calendarmonthview.core.event_container:
-        class: marttiphpbb\calendarmonthview\core\event_container
-        arguments:
-            - '@auth'
-            - '@config'
-            - '@content.visibility'
-            - '@dbal.conn'
-            - '%tables.topics%'
-
     marttiphpbb.calendarmonthview.pagination:
-        class: marttiphpbb\calendarmonthview\util\pagination
+        class: marttiphpbb\calendarmonthview\service\pagination
         arguments:
             - '@config'
             - '@controller.helper'
