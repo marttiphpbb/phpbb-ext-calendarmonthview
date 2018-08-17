@@ -1,0 +1,19 @@
+{%- extends '@marttiphpbb_calendarmonthview/month_head_rows.html' -%}
+
+{%- block event_rows -%}
+	{%- for e in eventrow -%}
+		<tr>
+		{%- for d in day -%}
+
+			{%- if d.S_EVENT -%}
+			<td{%- if d.COLSPAN %} colspan="{{- d.COLSPAN -}}"{%- endif -%}>
+			<div class="calendarmonthview-event">Brr popi</div>
+			</td>
+			{%- else -%}
+				{%- include '@marttiphpbb_calendarmonthview/include/calendarmonthview_table_td_empty.html' %}
+			{%- endif -%}
+
+		{%- endfor -%}
+		</tr>
+	{%- endfor -%}
+{%- endblock event_rows -%}

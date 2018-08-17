@@ -1,0 +1,57 @@
+{%- include 'overall_header.html' -%}
+
+<p>{{- CURRENT_TIME -}}</p>
+<h2>{{- lang('MARTTIPHPBB_CALENDARMONTHVIEW_MONTH_YEAR', MONTH_NAME, YEAR) -}}</h2>
+
+<div class="calendarmonthview">
+	{%- include '@marttiphpbb_calendarmonthview/include/pagination.html' -%}
+		<div class="month">
+			<div class="week">
+			<div class="weekdays">
+				<div class="day"><div class="head">mon</div></div>
+				<div class="day">tue</div>
+				<div class="day">wed</div>
+				<div class="day">thu</div>
+				<div class="day">fri</div>
+				<div class="day">sat</div>
+				<div class="day">sun</div>
+			</div>
+			<div class="events">
+				<div class="col">
+						<div class="transp flex-2"></div>
+						<div class="ev ev-start ev-end flex-3"></div>
+						<div class="transp flex-2"></div>
+
+				</div>
+				<div class="col">
+					<div class="transp flex-3"></div>
+					<div class="ev flex-4"></div>
+
+
+				</div>
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"></div>
+				<div class="col"></div>
+
+
+			</div>
+			</div>
+
+
+
+			{#
+			<table>
+				{%- block table_contents -%}
+				{%- endblock -%}
+			</table>
+			#}
+		</div>
+	{%- include '@marttiphpbb_calendarmonthview/include/pagination.html' -%}
+</div>
+
+{%- include 'jumpbox.html' -%}
+{%- include 'overall_footer.html' -%}
+{%- INCLUDECSS '@marttiphpbb_calendarmonthview/calendarmonthview.css' -%}
+{%- INCLUDEJS '@marttiphpbb_calendarmonthview/js/calendarmonthview.js' -%}

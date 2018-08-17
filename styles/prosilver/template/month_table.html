@@ -1,0 +1,11 @@
+{%- extends '@marttiphpbb_calendarmonthview/month_base.html' -%}
+
+{%- block table_contents -%}
+	{%- for w in week -%}
+		<tbody>
+			{%- block head_rows -%}{%- endblock -%}
+			{%- block event_rows -%}{%- endblock -%}
+			{%- block foot_rows -%}{%- endblock -%}
+		</tbody>
+	{%- endfor -%}
+{%- endblock table_contents -%}

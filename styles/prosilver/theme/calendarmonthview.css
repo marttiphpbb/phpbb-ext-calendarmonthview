@@ -156,3 +156,95 @@ div.calendarmonthview table tbody tr td:last-child div
 		display: none;
 	}
 }
+
+div.calendarmonthview div.month
+{
+	position:relative;
+	width: 100%;
+	height: 500px;
+}
+
+div.calendarmonthview div.month div.week
+{
+	display:flex;
+	position:absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+div.calendarmonthview div.month div.week div.day
+{
+	flex: 1;
+	background: #ddd;
+	margin: .05em;
+	border-radius: .3em;
+	border: 1px solid #aaa;
+}
+
+div.calendarmonthview div.month div.week div.head
+{
+	font-size: 2em;
+	color: #0b004d;
+	padding: .2em;
+}
+
+div.calendarmonthview div.month div.events
+{
+	display:flex;
+	flex-direction: column;
+	position:absolute;
+	width: 100%;
+	height: 85%;
+	top: 5em;
+	left: 0;
+}
+
+div.calendarmonthview div.month div.events div.col
+{
+	flex: 1;
+	display: flex;
+	z-index: 10;
+}
+
+div.calendarmonthview div.month div.events div.col div.ev
+{
+	background: #777;
+	border-radius: .4em;
+	border: 1px solid #444;
+	margin: .2em;
+}
+
+div.calendarmonthview div.month div.events div.col div.ev:hover{
+	background: rgba(0,0,0,.2);
+}
+
+div.calendarmonthview div.month div.events div.col div.ev a
+{
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+div.calendarmonthview div.month div.events div.col div.flex-1{
+	flex: 1;
+}
+div.calendarmonthview div.month div.events div.col div.flex-2{
+	flex: 2;
+}
+div.calendarmonthview div.month div.events div.col div.flex-3{
+	flex: 3;
+}
+div.calendarmonthview div.month div.events div.col div.flex-4{
+	flex: 4;
+}
+div.calendarmonthview div.month div.events div.col div.flex-5{
+	flex: 5;
+}
+div.calendarmonthview div.month div.events div.col div.flex-6{
+	flex: 6;
+}
+div.calendarmonthview div.month div.events div.col div.flex-7{
+	flex: 7;
+}
