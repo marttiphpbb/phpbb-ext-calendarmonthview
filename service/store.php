@@ -147,6 +147,16 @@ class store
 		return $this->get_boolean('show_isoweek');
 	}
 
+	public function set_hilit_topic(bool $hilit_topic):void
+	{
+		$this->set_boolean('hilit_topic', $hilit_topic);
+	}
+
+	public function get_hilit_topic():bool
+	{
+		return $this->get_boolean('hilit_topic');
+	}
+
 	public function set_first_weekday(int $first_weekday):void
 	{
 		$this->set_int('first_weekday', $first_weekday);

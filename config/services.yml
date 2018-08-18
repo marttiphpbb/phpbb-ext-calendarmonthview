@@ -18,6 +18,7 @@ services:
         class: marttiphpbb\calendarmonthview\event\tag_listener
         arguments:
             - '@controller.helper'
+            - '@marttiphpbb.calendarmonthview.store'
         tags:
             - { name: event.listener }
 
@@ -40,6 +41,7 @@ services:
         class: marttiphpbb\calendarmonthview\controller\main
         arguments:
             - '@dispatcher'
+            - '@request'
             - '%core.php_ext%'
             - '@template'
             - '@language'

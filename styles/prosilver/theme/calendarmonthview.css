@@ -164,7 +164,7 @@ div.calendarmonthview div.month
 	height: 500px;
 }
 
-div.calendarmonthview div.month div.week
+div.calendarmonthview div.month div.weekdays
 {
 	display:flex;
 	position:absolute;
@@ -178,8 +178,8 @@ div.calendarmonthview div.month div.week div.day
 {
 	flex: 1;
 	background: #ddd;
-	margin: .05em;
-	border-radius: .3em;
+	margin: .2em;
+	border-radius: 1em;
 	border: 1px solid #aaa;
 }
 
@@ -211,13 +211,17 @@ div.calendarmonthview div.month div.events div.col
 div.calendarmonthview div.month div.events div.col div.ev
 {
 	background: #777;
-	border-radius: .4em;
+	border-radius: 1em;
 	border: 1px solid #444;
 	margin: .2em;
 }
 
-div.calendarmonthview div.month div.events div.col div.ev:hover{
-	background: rgba(0,0,0,.2);
+div.calendarmonthview div.month div.events div.col:nth-child(even) div.ev{
+	background: rgb(189, 1, 1);
+}
+
+div.calendarmonthview div.month div.events div.col div.ev:hover a{
+	background: rgba(243, 228, 88, 0.2);
 }
 
 div.calendarmonthview div.month div.events div.col div.ev a
@@ -225,6 +229,8 @@ div.calendarmonthview div.month div.events div.col div.ev a
 	width: 100%;
 	height: 100%;
 	text-align: center;
+	line-height: 2em;
+	font-size: 1.5em;
 }
 
 div.calendarmonthview div.month div.events div.col div.flex-1{

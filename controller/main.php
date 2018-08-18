@@ -10,10 +10,10 @@ namespace marttiphpbb\calendarmonthview\controller;
 
 
 use phpbb\event\dispatcher;
+use phpbb\request\request;
 use phpbb\template\twig\twig as template;
 use phpbb\language\language;
 use phpbb\controller\helper;
-
 use marttiphpbb\calendarmonthview\render\row_container;
 use marttiphpbb\calendarmonthview\value\topic;
 use marttiphpbb\calendarmonthview\value\dayspan;
@@ -21,23 +21,22 @@ use marttiphpbb\calendarmonthview\value\calendar_event;
 use marttiphpbb\calendarmonthview\service\store;
 use marttiphpbb\calendarmonthview\service\pagination;
 use marttiphpbb\calendarmonthview\util\cnst;
-
 use Symfony\Component\HttpFoundation\Response;
 
 class main
 {
 	protected $dispatcher;
+	protected $request;
 	protected $php_ext;
 	protected $template;
 	protected $language;
 	protected $helper;
 	protected $root_path;
-	protected $now;
-	protected $time_offset;
 	protected $pagination;
 
 	public function __construct(
 		dispatcher $dispatcher,
+		request $request,
 		string $php_ext,
 		template $template,
 		language $language,
@@ -48,6 +47,7 @@ class main
 	)
 	{
 		$this->dispatcher = $dispatcher;
+		$this->request = $request;
 		$this->php_ext = $php_ext;
 		$this->template = $template;
 		$this->language = $language;
@@ -166,6 +166,7 @@ class main
 			'MONTH_NAME'	=> $this->language->lang(['datetime', $day['monthname']]),
 			'MONTH_ABBREV'	=> $this->language->lang(['datetime', $month_abbrev]),
 			'YEAR'			=> $year,
+			'TOPIC_HILIT'	=> $this->request->variable('t', 0),
 		]);
 
 		$this->pagination->render($year, $month);

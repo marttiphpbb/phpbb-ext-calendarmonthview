@@ -23,9 +23,9 @@ class mgr_2 extends \phpbb\db\migration\migration
 		$data = [
 			'first_weekday'		=> 0,
 			'min_rows'			=> 5,
-			'links'				=> 2,
 			'show_today'		=> true,
 			'show_isoweek'		=> false,
+			'hilit_topic'		=> false,
 		];
 
 		return [

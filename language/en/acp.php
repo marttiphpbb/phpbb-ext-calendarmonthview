@@ -35,6 +35,10 @@ $lang = array_merge($lang, [
 	=> 'Calendar page',
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_ISOWEEK'
 	=> 'Display the week number (ISO 1806)',
+	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_HILIT_TOPIC'
+	=> 'Hilight topic',
+	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_HILIT_TOPIC_EXPLAIN'
+	=> 'when linked from a topic tag',
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_TODAY'
 	=> 'Mark today´s date',
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_FIRST_WEEKDAY'
