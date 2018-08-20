@@ -50,7 +50,7 @@ div.calendarmonthview table tbody td.blur span.mday
 .isoweek
 {
 	font-style: italic;
-	font-size: 0.5em;
+	font-size: 0.9em;
 	float: right;
 	clear: right;
 	padding-right: 5px;
@@ -183,14 +183,20 @@ div.calendarmonthview div.month div.week div.day
 	border: 1px solid #aaa;
 }
 
-div.calendarmonthview div.month div.week div.head
+div.calendarmonthview div.month div.week div.dayhead
 {
-	font-size: 2em;
-	color: #0b004d;
-	padding: .2em;
+	padding: .5em;
 }
 
-div.calendarmonthview div.month div.events
+div.calendarmonthview div.month div.week div.dayhead div.monthday
+{
+	font-size: 1.8em;
+	color: #0b004d;
+	float: left;
+}
+
+
+div.calendarmonthview div.month div.eventrows
 {
 	display:flex;
 	flex-direction: column;
@@ -201,36 +207,56 @@ div.calendarmonthview div.month div.events
 	left: 0;
 }
 
-div.calendarmonthview div.month div.events div.col
+div.calendarmonthview div.month div.eventrows div.col
 {
 	flex: 1;
 	display: flex;
 	z-index: 10;
 }
 
-div.calendarmonthview div.month div.events div.col div.ev
+div.calendarmonthview div.month div.eventrows div.evrow div.ev
 {
-	background: #777;
+	background: rgb(201, 200, 200);
 	border-radius: 1em;
 	border: 1px solid #444;
 	margin: .2em;
 }
 
-div.calendarmonthview div.month div.events div.col:nth-child(even) div.ev{
-	background: rgb(189, 1, 1);
+div.calendarmonthview div.month div.eventrows div.evrow:nth-child(even) div.ev{
+	background: rgb(182, 182, 182);
 }
 
-div.calendarmonthview div.month div.events div.col div.ev:hover a{
-	background: rgba(243, 228, 88, 0.2);
+div.calendarmonthview div.month div.eventrows div.evrow div.ev:hover a{
+	background: rgba(0, 0, 0, 0.2);
 }
 
-div.calendarmonthview div.month div.events div.col div.ev a
+div.calendarmonthview div.month div.eventrows div.evrow div.ev a
 {
 	width: 100%;
 	height: 100%;
 	text-align: center;
 	line-height: 2em;
 	font-size: 1.5em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	text-align: left;
+	padding-left: .5em;
+}
+div.calendarmonthview div.month div.eventrows div.evrow div.ev-start
+{
+	border-top-left-radius: 1em;
+	border-bottom-left-radius: 1em;
+}
+div.calendarmonthview div.month div.eventrows div.evrow div.ev-end
+{
+	border-top-right-radius: 1em;
+	border-bottom-right-radius: 1em;
+}
+div.calendarmonthview div.month div.eventrows div.evrow div.ev-topic-hilit
+{
+	border: 3px solid #333;
 }
 
 div.calendarmonthview div.month div.events div.col div.flex-1{

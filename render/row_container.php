@@ -53,6 +53,14 @@ class row_container
 		}
 	}
 
+	public function sort_and_reset():void
+	{
+		foreach ($this->rows as $row)
+		{
+			$row->sort_and_reset();
+		}
+	}
+
 	public function get_row_count():int
 	{
 		return count($this->rows);

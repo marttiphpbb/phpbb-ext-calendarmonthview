@@ -19,9 +19,9 @@ class calendar_event_row
 	{
 		$dayspan = $calendar_event->get_dayspan();
 
-		foreach ($this->calendar_events as $calendar_event)
+		foreach ($this->calendar_events as $c)
 		{
-			if ($calendar_event->get_dayspan()->overlaps($dayspan))
+			if ($c->overlaps($calendar_event))
 			{
 				return false;
 			}
@@ -38,5 +38,30 @@ class calendar_event_row
 	public function get_calendar_events():array
 	{
 		return $this->calendar_events;
+	}
+
+	public function sort_and_reset():void
+	{
+		usort($this->calendar_events, function(calendar_event $a, calendar_event $b){
+			return $a->compare_start_with($b);
+		});
+
+		reset($this->calendar_events);
+	}
+
+	public function get_segment(dayspan $dayspan):?dayspan
+	{
+		$segment = current($this->calendar_events);
+
+		if (!$segment)
+		{
+			return $dayspan;
+		}
+
+		if ($segment->is_before($dayspan))
+		{
+		}
+
+
 	}
 }

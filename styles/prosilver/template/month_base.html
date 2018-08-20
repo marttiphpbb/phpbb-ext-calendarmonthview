@@ -6,9 +6,47 @@
 <div class="calendarmonthview">
 	{%- include '@marttiphpbb_calendarmonthview/include/pagination.html' -%}
 		<div class="month">
+		{%- for w in weeks -%}
+			<div class="week">
+				<div class="weekdays">
+					{%- for d in weekdays -%}
+						<div class="day">
+							<div class="dayhead">
+								<div class="monthday">{{- d.MONTHDAY -}}</div>
+								<div class="weekday">{{- d.WEEKDAY -}}</div>
+								<div class="isoweek">{{- d.ISOWEEK -}}</div>
+							</div>
+						</div>
+					{%- endfor -%}
+				</div>
+				<div class="eventrows">
+					{%- for er in eventrows -%}
+						<div class="evrow">
+						{%- for e in eventsegments -%}
+							{%- if e.TOPIC_ID -%}
+								<div class="flex-{{- e.FLEX }} "></div>
+
+							{%- else -%}
+								<div class="flex-{{- e.FLEX -}}"></div>
+							{%- endif -%}
+						{%- endfor -%}
+						</div>
+					{%- endfor -%}
+				</div>
+			{%- endfor -%}
+
+
+
+
+
 			<div class="week">
 			<div class="weekdays">
-				<div class="day"><div class="head">mon</div></div>
+				<div class="day">
+					<div class="head">
+						<div class="monthday">10</div>
+						<div class="isoweek">55</div>
+					</div>
+				</div>
 				<div class="day">tue</div>
 				<div class="day">wed</div>
 				<div class="day">thu</div>
@@ -19,7 +57,7 @@
 			<div class="events">
 				<div class="col">
 						<div class="transp flex-2"></div>
-						<div class="ev ev-start ev-end flex-3"><a href="#">Oufti</a></div>
+						<div class="ev ev-start ev-end flex-3"></div>
 						<div class="transp flex-2"></div>
 
 				</div>
@@ -38,15 +76,6 @@
 
 			</div>
 			</div>
-
-
-
-			{#
-			<table>
-				{%- block table_contents -%}
-				{%- endblock -%}
-			</table>
-			#}
 		</div>
 	{%- include '@marttiphpbb_calendarmonthview/include/pagination.html' -%}
 </div>

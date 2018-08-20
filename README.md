@@ -1,8 +1,11 @@
 # phpBB Extension - marttiphpbb Calendar Month View
 
-This phpBB extension provides a Calendar Month View page for the [Calendar Input extension](https://github.com/marttiphpbb/phpbb-ext-calendarinput)
+This phpBB extension provides a Calendar Month View page for the [Calendar extension set](https://github.com/marttiphpbb/phpbb-ext-calendarmono)
 
-## This extension is only in the stage of initial development
+## Requirements
+
+* phpBB 3.2.1
+* PHP 7.1+
 
 ## Quick Install
 

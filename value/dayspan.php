@@ -78,6 +78,11 @@ class dayspan
 		return $this->end_jd - $this->start_jd;
 	}
 
+	public function compare_start_with(dayspan $dayspan):int
+	{
+		return $this->start_jd <=> $dayspan->get_start_jd();
+	}
+
 	public function get_start_jd():int
 	{
 		return $this->start_jd;

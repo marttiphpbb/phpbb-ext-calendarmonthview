@@ -8,7 +8,6 @@
 
 namespace marttiphpbb\calendarmonthview\controller;
 
-
 use phpbb\event\dispatcher;
 use phpbb\request\request;
 use phpbb\template\twig\twig as template;
@@ -93,81 +92,113 @@ class main
 
 		foreach($events as $e)
 		{
-			$dayspan = new dayspan($e['start_jd'], $e['end_jd']);
 			$topic = new topic($e['topic_id'], $e['forum_id'], $e['topic_title'], $e['topic_reported']);
-			$calendar_event = new calendar_event($topic, $dayspan);
+			$calendar_event = new calendar_event($e['start_jd'], $e['end_jd'], $topic, $dayspan);
 			$row_container->add_calendar_event($calendar_event);
 		}
 
-		$tpl = [];
+		$col = 0;
 
 		$year_begin_jd = cal_to_jd(CAL_GREGORIAN, 1, 1, $year);
-		$isoweek = gmdate('W', jdtounix($start_jd));
+		$row_container->sort_and_reset();
+		$rows = $row_container->get_rows();
 
 		for ($jd = $start_jd; $jd <= $end_jd; $jd++)
 		{
+			$first_day = !$col;
+			$weekcol = $col % 7;
 			$day = cal_from_jd($jd, CAL_GREGORIAN);
-			$day_of_year = $year_begin_jd - $jd + 1;
 
-			if ($day['dayname'] === 'Monday')
+			if ($day['dayname'] === 'Monday' || $first_day)
 			{
 				$isoweek = gmdate('W', jdtounix($jd));
 			}
 
-			$month_abbrev = $day['abbrevmonth'] === 'May' ? 'May_short' : $day['abbrevmonth'];
+			if ($day['day'] === 1 || $first_day)
+			{
+				$month_abbrev = $day['abbrevmonth'] === 'May' ? 'May_short' : $day['abbrevmonth'];
+				$month_abbrev = $this->language->lang(['datetime', $month_abbrev]);
+				$month_name = $this->language->lang(['datetime', $day['monthname']]);
 
-			$day_tpl = [
+				if ($month === $day['month'])
+				{
+					$this->template->assign_vars([
+						'MONTH'				=> $month,
+						'MONTH_NAME'		=> $this->language->lang(['datetime', $day['monthname']]),
+						'MONTH_ABBREV'		=> $this->language->lang(['datetime', $month_abbrev]),
+						'YEAR'				=> $year,
+						'TOPIC_HILIT'		=> $this->request->variable('t', 0),
+						'S_SHOW_ISOWEEK'	=> $this->store->get_show_isoweek(),
+					]);
+				}
+			}
+
+			if (!$weekcol)
+			{
+				$this->template->assign_block_vars('weeks', []);
+
+				foreach($rows as $row)
+				{
+					$this->template->assign_block_vars('weeks.rows', []);
+
+					$seg_start_jd = $jd;
+					$seg_end_jd = $jd + 6;
+
+					while($segment = $row->get_segment(new dayspan($seg_start_jd, $seg_end_jd)))
+					{
+						if ($segment instanceof calendar_event)
+						{
+							$topic = $segment->get_topic();
+							$params = [
+								't'		=> $topic->get_topic_id(),
+								'f'		=> $topic->get_forum_id(),
+							];
+							$link = append_sid($this->root_path . 'viewtopic.' . $this->php_ext, $params);
+
+							$this->template->assign_block_vars('weeks.rows.segments', [
+								'TOPIC_ID'			=> $topic->get_topic_id(),
+								'FORUM_ID'			=> $topic->get_forum_id(),
+								'TOPIC_TITLE'		=> $topic->get_topic_title(),
+								'TOPIC_APPROVED'	=> $topic->get_topic_approved(),
+								'TOPIC_LINK'		=> $link,
+								'FLEX'				=> $segment->get_flex(),
+							]);
+						}
+						else if ($segment instanceof dayspan)
+						{
+							$this->template->assign_block_vars('weeks.rows.segments', [
+								'FLEX'		=> $segment,
+							]);
+						}
+
+						$seg_start_jd = $segment->get_end_jd() + 1;
+
+						if ($seg_start_jd > $seg_end_jd)
+						{
+							break;
+						}
+					}
+				}
+			}
+
+			$this->template->assign_block_vars('weeks.days', [
 				'JD'				=> $jd,
 				'WEEKDAY'			=> $day['dow'],
 				'WEEKDAY_NAME'		=> $this->language->lang(['datetime', $day['dayname']]),
 				'WEEKDAY_ABBREV'	=> $this->language->lang(['datetime', $day['abbrevdayname']]),
 				'MONTHDAY'			=> $day['day'],
-				'MONTH'				=> $day['month'],
-				'MONTH_NAME'		=> $this->language->lang(['datetime', $day['monthname']]),
-				'MONTH_ABBREV'		=> $this->language->lang(['datetime', $month_abbrev]),
+				'MONTH'				=> $month,
+				'MONTH_NAME'		=> $month_name,
+				'MONTH_ABBREV'		=> $month_abbrev,
 				'YEAR'				=> $day['year'],
+				'YEARDAY'			=> $year_begin_jd - $jd + 1,
 				'ISOWEEK'			=> $isoweek,
-				'COLUMN'			=> $col,
-			];
-
-			$tpl[] = $day_tpl;
+				'COL'				=> $col,
+				'WEEKCOL'			=> $weekcol,
+			]);
 
 			$col++;
 		}
-
-		$event_row_count = $row_container->get_row_count();
-
-		foreach($tpl as $day => $tpl)
-		{
-			if (isset($tpl['week']))
-			{
-				$this->template->assign_block_vars('week', $tpl['week']);
-
-				for($evrow = 0; $evrow < $event_row_count; $evrow++)
-				{
-					$this->template->assign_block_vars('week.eventrow', $tpl['week']);
-
-					for($d7 = 0; $d7 < 7; $d7++)
-					{
-						$d = $day + $d7;
-						$this->template->assign_block_vars('week.eventrow.day', $day_tpl[$d]['day']);
-					}
-				}
-			}
-
-			$this->template->assign_block_vars('week.day', []);
-		}
-
-		$day = cal_from_jd($month_start_jd, CAL_GREGORIAN);
-		$month_abbrev = $day['abbrevmonth'] === 'May' ? 'May_short' : $day['abbrevmonth'];
-
-		$this->template->assign_vars([
-			'MONTH'			=> $month,
-			'MONTH_NAME'	=> $this->language->lang(['datetime', $day['monthname']]),
-			'MONTH_ABBREV'	=> $this->language->lang(['datetime', $month_abbrev]),
-			'YEAR'			=> $year,
-			'TOPIC_HILIT'	=> $this->request->variable('t', 0),
-		]);
 
 		$this->pagination->render($year, $month);
 		$this->language->add_lang('calendar_page', cnst::FOLDER);
