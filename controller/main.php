@@ -98,10 +98,18 @@ class main
 		}
 
 		$col = 0;
+		$total_dayspan = new dayspan($start_jd, $end_jd);
 
 		$year_begin_jd = cal_to_jd(CAL_GREGORIAN, 1, 1, $year);
-		$row_container->sort_and_reset();
+		$row_container->sort_and_fill($total_dayspan);
 		$rows = $row_container->get_rows();
+
+		foreach($rows as $row)
+		{
+			var_dump($row->get_segments());
+		}
+
+		var_dump($events);
 
 		for ($jd = $start_jd; $jd <= $end_jd; $jd++)
 		{
@@ -128,7 +136,9 @@ class main
 						'MONTH_ABBREV'		=> $this->language->lang(['datetime', $month_abbrev]),
 						'YEAR'				=> $year,
 						'TOPIC_HILIT'		=> $this->request->variable('t', 0),
-						'S_SHOW_ISOWEEK'	=> $this->store->get_show_isoweek(),
+						'SHOW_ISOWEEK'		=> $this->store->get_show_isoweek(),
+						'LOAD_STYLESHEET'	=> $this->store->get_load_stylesheet(),
+						'EXTRA_STYLESHEET'	=> $this->store->get_extra_stylesheet(),
 					]);
 				}
 			}

@@ -43,10 +43,10 @@ class tag_listener implements EventSubscriberInterface
 		$topic_id = $event['topic_id'];
 
 		$link = $this->helper->route('marttiphpbb_calendarmonthview_page_controller', [
-				'year'	=> $year,
-				'month'	=> $month,
-				't'		=> $topic_id,
-			]);
+			'year'	=> $year,
+			'month'	=> $month,
+			't'		=> $topic_id,
+		]);
 
 		$event['link'] = $link;
 	}

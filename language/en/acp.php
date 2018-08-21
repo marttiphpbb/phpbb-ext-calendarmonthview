@@ -45,4 +45,17 @@ $lang = array_merge($lang, [
 	=> 'First day of the week',
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_MIN_ROWS'
 	=> 'Minumum rows in the calendar table',
+	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_PAGINATION_NEIGHBOURS'
+	=> 'Pagination: number of neighbour months',
+	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_PAGINATION_SHOW_PREV_NEXT'
+	=> 'Pagination: show previous/next month links',
+	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_LOAD_STYLESHEET'
+	=> 'Load stylesheet',
+	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_LOAD_STYLESHEET_EXPLAIN'
+	=> 'Disable when you load your own stylesheet',
+	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_EXTRA_STYLESHEET'
+	=> 'Extra stylesheet',
+	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_EXTRA_STYLESHEET_EXPLAIN'
+	=> 'Location of your own stylesheet to overwrite or replace the
+	default one. Leave empty when not used.',
 ]);

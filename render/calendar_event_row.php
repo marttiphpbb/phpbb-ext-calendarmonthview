@@ -13,13 +13,11 @@ use marttiphpbb\calendarmonthview\value\calendar_event;
 
 class calendar_event_row
 {
-	protected $calendar_events = [];
+	protected $segments = [];
 
 	public function can_insert(calendar_event $calendar_event):bool
 	{
-		$dayspan = $calendar_event->get_dayspan();
-
-		foreach ($this->calendar_events as $c)
+		foreach ($this->segments as $c)
 		{
 			if ($c->overlaps($calendar_event))
 			{
@@ -32,31 +30,62 @@ class calendar_event_row
 
 	public function insert(calendar_event $calendar_event):void
 	{
-		$this->calendar_events[] = $calendar_event;
+		$this->segments[] = $calendar_event;
 	}
 
-	public function get_calendar_events():array
+	public function get_segments():array
 	{
-		return $this->calendar_events;
+		return $this->segments;
 	}
 
-	public function sort_and_reset():void
+	public function sort_and_fill(dayspan $dayspan):void
 	{
-		usort($this->calendar_events, function(calendar_event $a, calendar_event $b){
+		usort($this->segments, function(calendar_event $a, calendar_event $b){
 			return $a->compare_start_with($b);
 		});
 
-		reset($this->calendar_events);
+		reset($this->segments);
+
+		$segments = [];
+
+		foreach($this->segments as $s)
+		{
+			if ($s->is_before($dayspan))
+			{
+				continue;
+			}
+
+			if ($s->is_after($dayspan))
+			{
+				if (!$s->touches($dayspan))
+				{
+					$segments[] = $dayspan->create_with_end_jd($s->get_jd_before());
+				}
+			}
+
+			$segments[] = $s;
+
+			if ($s->has_same_end($dayspan) || $s->ends_after($dayspan))
+			{
+				break;
+			}
+
+			$dayspan = $dayspan->create_with_start_jd($s->get_first_jd_after());
+		}
+
+		$this->segments = $segments;
 	}
 
 	public function get_segment(dayspan $dayspan):?dayspan
 	{
-		$segment = current($this->calendar_events);
+		$segment = current($this->segments);
 
 		if (!$segment)
 		{
 			return $dayspan;
 		}
+
+		return $segment;
 
 		if ($segment->is_before($dayspan))
 		{

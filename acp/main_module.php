@@ -79,17 +79,25 @@ class main_module
 					$store->set_hilit_topic($request->variable('hilit_topic', 0) ? true : false);
 					$store->set_first_weekday($request->variable('first_weekday', 0));
 					$store->set_min_rows($request->variable('min_rows', 0));
+					$store->set_pag_neighbours($request->variable('pag_neighbours', 0));
+					$store->set_pag_show_prev_next($request->variable('pag_show_prev_next', 0) ? true : false);
+					$store->set_load_stylesheet($request->variable('load_stylesheet', 0) ? true : false);
+					$store->set_extra_stylesheet($request->variable('extra_stylesheet', ''));
 					$store->transaction_end();
 
 					trigger_error($language->lang(cnst::L_ACP . '_SETTINGS_SAVED') . adm_back_link($this->u_action));
 				}
 
 				$template->assign_vars([
-					'SHOW_TODAY'		=> $store->get_show_today(),
-					'SHOW_ISOWEEK'		=> $store->get_show_isoweek(),
-					'HILIT_TOPIC'		=> $store->get_hilit_topic(),
-					'FIRST_WEEKDAY'		=> $store->get_first_weekday(),
-					'MIN_ROWS'			=> $store->get_min_rows(),
+					'SHOW_TODAY'			=> $store->get_show_today(),
+					'SHOW_ISOWEEK'			=> $store->get_show_isoweek(),
+					'HILIT_TOPIC'			=> $store->get_hilit_topic(),
+					'FIRST_WEEKDAY'			=> $store->get_first_weekday(),
+					'MIN_ROWS'				=> $store->get_min_rows(),
+					'PAG_NEIGHBOURS'		=> $store->get_pag_neighbours(),
+					'PAG_SHOW_PREV_NEXT'	=> $store->get_pag_show_prev_next(),
+					'LOAD_STYLESHEET'		=> $store->get_load_stylesheet(),
+					'EXTRA_STYLESHEET'		=> $store->get_extra_stylesheet(),
 				]);
 
 			break;

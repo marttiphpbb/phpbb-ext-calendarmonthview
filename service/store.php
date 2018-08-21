@@ -176,137 +176,44 @@ class store
 	{
 		return $this->get_int('min_rows');
 	}
-/////
 
-	public function set_format_diff_year(string $format):void
+	public function set_pag_neighbours(int $pag_neighbours):void
 	{
-		$ary = $this->get_all();
-		$ary['format']['diff_year'] = $format;
-		$this->set($ary);
+		$this->set_int('pag_neighbours', $pag_neighbours);
 	}
 
-	public function get_format_diff_year():string
+	public function get_pag_neighbours():int
 	{
-		return $this->get_all()['format']['diff_year'];
+		return $this->get_int('pag_neighbours');
 	}
 
-	public function set_format_diff_month(string $format):void
+	public function set_pag_show_prev_next(bool $pag_show_prev_next):void
 	{
-		$ary = $this->get_all();
-		$ary['format']['diff_month'] = $format;
-		$this->set($ary);
+		$this->set_boolean('pag_show_prev_next', $pag_show_prev_next);
 	}
 
-	public function get_format_diff_month():string
+	public function get_pag_show_prev_next():bool
 	{
-		return $this->get_all()['format']['diff_month'];
+		return $this->get_boolean('pag_show_prev_next');
 	}
 
-	public function set_format_diff_day(string $format):void
+	public function set_load_stylesheet(bool $load_stylesheet):void
 	{
-		$ary = $this->get_all();
-		$ary['format']['diff_day'] = $format;
-		$this->set($ary);
+		$this->set_boolean('load_stylesheet', $load_stylesheet);
 	}
 
-	public function get_format_diff_day():string
+	public function get_load_stylesheet():bool
 	{
-		return $this->get_all()['format']['diff_day'];
+		return $this->get_boolean('load_stylesheet');
 	}
 
-	public function set_format_same_day(string $format):void
+	public function set_extra_stylesheet(string $extra_stylesheet):void
 	{
-		$ary = $this->get_all();
-		$ary['format']['same_day'] = $format;
-		$this->set($ary);
+		$this->set_string('extra_stylesheet', $extra_stylesheet);
 	}
 
-	public function get_format_same_day():string
+	public function get_extra_stylesheet():string
 	{
-		return $this->get_all()['format']['same_day'];
-	}
-
-	public function set_template_single_before(string $format):void
-	{
-		$ary = $this->get_all();
-		$ary['template']['single']['before'] = $format;
-		$this->set($ary);
-	}
-
-	public function get_template_single_before():string
-	{
-		return $this->get_all()['template']['single']['before'];
-	}
-
-	public function set_template_single_now(string $format):void
-	{
-		$ary = $this->get_all();
-		$ary['template']['single']['now'] = $format;
-		$this->set($ary);
-	}
-
-	public function get_template_single_now():string
-	{
-		return $this->get_all()['template']['single']['now'];
-	}
-
-	public function set_template_single_after(string $format):void
-	{
-		$ary = $this->get_all();
-		$ary['template']['single']['after'] = $format;
-		$this->set($ary);
-	}
-
-	public function get_template_single_after():string
-	{
-		return $this->get_all()['template']['single']['after'];
-	}
-
-	public function set_template_multi_first(string $format):void
-	{
-		$ary = $this->get_all();
-		$ary['template']['multi']['first'] = $format;
-		$this->set($ary);
-	}
-
-	public function get_template_multi_first():string
-	{
-		return $this->get_all()['template']['multi']['first'];
-	}
-
-	public function set_template_multi_next(string $format):void
-	{
-		$ary = $this->get_all();
-		$ary['template']['multi']['next'] = $format;
-		$this->set($ary);
-	}
-
-	public function get_template_multi_next():string
-	{
-		return $this->get_all()['template']['multi']['next'];
-	}
-
-	public function set_template_multi_now(string $format):void
-	{
-		$ary = $this->get_all();
-		$ary['template']['multi']['now'] = $format;
-		$this->set($ary);
-	}
-
-	public function get_template_multi_now():string
-	{
-		return $this->get_all()['template']['multi']['now'];
-	}
-
-	public function set_template_multi_last(string $format):void
-	{
-		$ary = $this->get_all();
-		$ary['template']['multi']['last'] = $format;
-		$this->set($ary);
-	}
-
-	public function get_template_multi_last():string
-	{
-		return $this->get_all()['template']['multi']['last'];
+		return $this->get_string('extra_stylesheet');
 	}
 }

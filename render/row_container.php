@@ -9,6 +9,7 @@
 namespace marttiphpbb\calendarmonthview\render;
 
 use marttiphpbb\calendarmonthview\value\calendar_event;
+use marttiphpbb\calendarmonthview\value\dayspan;
 use marttiphpbb\calendarmonthview\render\calendar_event_row;
 
 class row_container
@@ -53,11 +54,11 @@ class row_container
 		}
 	}
 
-	public function sort_and_reset():void
+	public function sort_and_fill(dayspan $dayspan):void
 	{
 		foreach ($this->rows as $row)
 		{
-			$row->sort_and_reset();
+			$row->sort_and_fill($dayspan);
 		}
 	}
 

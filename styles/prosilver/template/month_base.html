@@ -82,5 +82,11 @@
 
 {%- include 'jumpbox.html' -%}
 {%- include 'overall_footer.html' -%}
-{%- INCLUDECSS '@marttiphpbb_calendarmonthview/calendarmonthview.css' -%}
-{%- INCLUDEJS '@marttiphpbb_calendarmonthview/js/calendarmonthview.js' -%}
+{%- if LOAD_STYLESHEET -%}
+	{%- INCLUDECSS '@marttiphpbb_calendarmonthview/calendar_page.css' -%}
+{%- endif -%}
+{%- if EXTRA_STYLESHEET -%}
+	{%- INCLUDECSS EXTRA_STYLESHEET -%}
+{%- endif -%}
+
+{%- INCLUDEJS '@marttiphpbb_calendarmonthview/js/calendar_page.js' -%}

@@ -20,57 +20,77 @@ class dayspan
 
 	public function fits_in(dayspan $dayspan):bool
 	{
-		return $this->start_jd >= $dayspan->get_start_jd() && $this->end_jd <= $dayspan->get_end_jd() ? true : false;
+		return $this->start_jd >= $dayspan->get_start_jd() && $this->end_jd <= $dayspan->get_end_jd();
 	}
 
 	public function contains(dayspan $dayspan):bool
 	{
-		return $this->start_jd <= $dayspan->get_start_jd() && $this->end_jd >= $dayspan->get_end_jd() ? true : false;
+		return $this->start_jd <= $dayspan->get_start_jd() && $this->end_jd >= $dayspan->get_end_jd();
 	}
 
 	public function overlaps(dayspan $dayspan):bool
 	{
-		return $this->start_jd <= $dayspan->get_end_jd() && $this->end_jd >= $dayspan->get_start_jd() ? true : false;
+		return $this->start_jd <= $dayspan->get_end_jd() && $this->end_jd >= $dayspan->get_start_jd();
+	}
+
+	public function touches(dayspan $dayspan):bool
+	{
+		if ($this->get_first_jd_before() === $dayspan->get_end_jd())
+		{
+			return true;
+		}
+
+		if ($this->get_first_jd_after() === $dayspan->get_start_jd())
+		{
+			return true;
+		}
+
+		if ($this->overlaps($dayspan))
+		{
+			return true;
+		}
+
+		return false;
 	}
 
 	public function fits_after_start(dayspan $dayspan):bool
 	{
-		return $this->start_jd <= $dayspan->get_start_jd() ? true : false;
+		return $this->start_jd <= $dayspan->get_start_jd();
 	}
 
 	public function fits_before_end(dayspan $dayspan):bool
 	{
-		return $this->end_jd >= $dayspan->get_end_jd() ? true : false;
+		return $this->end_jd >= $dayspan->get_end_jd();
 	}
 
 	public function starts_before(dayspan $dayspan):bool
 	{
-		return $this->start_jd > $dayspan->get_start_jd() ? true : false;
+		return $this->start_jd < $dayspan->get_start_jd();
 	}
 
 	public function ends_after(dayspan $dayspan):bool
 	{
-		return $this->end_jd < $dayspan->get_end_jd() ? true : false;
+		return $this->end_jd > $dayspan->get_end_jd();
 	}
 
 	public function is_after(dayspan $dayspan):bool
 	{
-		return $this->start_jd > $dayspan->get_end_jd() ? true : false;
+		return $this->start_jd > $dayspan->get_end_jd();
 	}
 
 	public function is_before(dayspan $dayspan):bool
 	{
-		return $this->end_jd < $dayspan->get_start_jd() ? true : false;
+		return $this->end_jd < $dayspan->get_start_jd();
 	}
 
 	public function has_same_start(dayspan $dayspan):bool
 	{
-		return $dayspan->get_start_jd() === $this->start_jd ? true : false;
+		return $dayspan->get_start_jd() === $this->start_jd;
 	}
 
 	public function has_same_end(dayspan $dayspan):bool
 	{
-		return $dayspan->get_end_jd() === $this->end_jd ? true : false;
+		return $dayspan->get_end_jd() === $this->end_jd;
 	}
 
 	public function get_duration():int
@@ -83,6 +103,11 @@ class dayspan
 		return $this->start_jd <=> $dayspan->get_start_jd();
 	}
 
+	public function compare_end_with(dayspan $dayspan):int
+	{
+		return $this->end_jd <=> $dayspan->get_end_jd();
+	}
+
 	public function get_start_jd():int
 	{
 		return $this->start_jd;
@@ -91,5 +116,25 @@ class dayspan
 	public function get_end_jd():int
 	{
 		return $this->end_jd;
+	}
+
+	public function get_first_jd_after():int
+	{
+		return $this->end_jd + 1;
+	}
+
+	public function get_first_jd_before():int
+	{
+		return $this->start_jd - 1;
+	}
+
+	public function create_with_start_jd(int $start_jd):dayspan
+	{
+		return new dayspan($start_jd, $this->end_jd);
+	}
+
+	public function create_with_end_jd(int $end_jd):dayspan
+	{
+		return new dayspan($this->start_jd, $end_jd);
 	}
 }
