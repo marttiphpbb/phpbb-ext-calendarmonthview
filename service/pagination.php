@@ -47,17 +47,23 @@ class pagination
 		$this->language = $language;
 	}
 
-	public function render(int $year, int $month):self
+	public function render(int $year, int $month, bool $show_prev_next, int $num_neighbours):void
 	{
-		$this->template->assign_block_vars('pagination', [
-			'S_IS_PREV'		=> true,
-			'PAGE_URL'		=> $this->helper->route('marttiphpbb_calendarmonthview_page_controller', [
-				'year' 	=> ($month == 1) ? $year - 1 : $year,
-				'month'	=> ($month == 1) ? 12 : $month - 1,
-			]),
-		]);
+		if ($show_prev_next)
+		{
+			$this->template->assign_block_vars('pagination', [
+				'S_IS_PREV'		=> true,
+				'PAGE_URL'		=> $this->helper->route('marttiphpbb_calendarmonthview_page_controller', [
+					'year' 	=> ($month == 1) ? $year - 1 : $year,
+					'month'	=> ($month == 1) ? 12 : $month - 1,
+				]),
+			]);
+		}
 
-		for ($i = -2; $i < 3; $i++)
+		$min = -$num_neighbours;
+		$max = 1 + $num_neighbours;
+
+		for ($i = $min; $i < $max; $i++)
 		{
 			$pag_month = $month + $i;
 			$pag_year = $year;
@@ -83,14 +89,15 @@ class pagination
 			]);
 		}
 
-		$this->template->assign_block_vars('pagination', [
-			'S_IS_NEXT'		=> true,
-			'PAGE_URL'		=> $this->helper->route('marttiphpbb_calendarmonthview_page_controller', [
-				'year' 	=> ($month == 12) ? $year + 1 : $year,
-				'month'	=> ($month == 12) ? 1 : $month + 1,
-			]),
-		]);
-
-		return $this;
+		if ($show_prev_next)
+		{
+			$this->template->assign_block_vars('pagination', [
+				'S_IS_NEXT'		=> true,
+				'PAGE_URL'		=> $this->helper->route('marttiphpbb_calendarmonthview_page_controller', [
+					'year' 	=> ($month == 12) ? $year + 1 : $year,
+					'month'	=> ($month == 12) ? 1 : $month + 1,
+				]),
+			]);
+		}
 	}
 }

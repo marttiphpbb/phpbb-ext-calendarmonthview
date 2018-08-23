@@ -137,4 +137,9 @@ class dayspan
 	{
 		return new dayspan($this->start_jd, $end_jd);
 	}
+
+	public function get_overlap_day_count(dayspan $dayspan):int
+	{
+		return min($this->end_jd, $dayspan->get_end_jd()) - max($this->start_jd, $dayspan->get_start_jd());
+	}
 }

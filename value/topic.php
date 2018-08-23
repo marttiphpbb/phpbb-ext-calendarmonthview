@@ -12,19 +12,16 @@ class topic
 	protected $topic_id;
 	protected $forum_id;
 	protected $topic_title;
-	protected $topic_reported;
 
 	public function __construct(
 		int $topic_id,
 		int $forum_id,
-		string $topic_title,
-		bool $topic_reported
+		string $topic_title
 	)
 	{
 		$this->topic_id = $topic_id;
 		$this->forum_id = $forum_id;
 		$this->topic_title = $topic_title;
-		$this->topic_reported = $topic_reported;
 	}
 
 	public function get_topic_id():int
@@ -40,10 +37,5 @@ class topic
 	public function get_topic_title():string
 	{
 		return $this->topic_title;
-	}
-
-	public function get_topic_reported():bool
-	{
-		return $this->topic_reported;
 	}
 }

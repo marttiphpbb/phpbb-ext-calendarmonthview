@@ -83,7 +83,7 @@ class main
 		 * @var int 	start_jd	start julian day of the view
 		 * @var int 	end_jd		end julian day of the view
 		 * @var array   events      items should contain
-		 * start_jd, end_jd, topic_id, forum_id, topic_title, topic_reported
+		 * start_jd, end_jd, topic_id, forum_id, topic_title
 		 */
 		$vars = ['start_jd', 'end_jd', 'events'];
 		extract($this->dispatcher->trigger_event('marttiphpbb.calendar.view', compact($vars)));
@@ -92,24 +92,17 @@ class main
 
 		foreach($events as $e)
 		{
-			$topic = new topic($e['topic_id'], $e['forum_id'], $e['topic_title'], $e['topic_reported']);
+			$topic = new topic($e['topic_id'], $e['forum_id'], $e['topic_title']);
 			$calendar_event = new calendar_event($e['start_jd'], $e['end_jd'], $topic, $dayspan);
 			$row_container->add_calendar_event($calendar_event);
 		}
 
 		$col = 0;
-		$total_dayspan = new dayspan($start_jd, $end_jd);
 
 		$year_begin_jd = cal_to_jd(CAL_GREGORIAN, 1, 1, $year);
+		$total_dayspan = new dayspan($start_jd, $end_jd);
 		$row_container->sort_and_fill($total_dayspan);
 		$rows = $row_container->get_rows();
-
-		foreach($rows as $row)
-		{
-			var_dump($row->get_segments());
-		}
-
-		var_dump($events);
 
 		for ($jd = $start_jd; $jd <= $end_jd; $jd++)
 		{
@@ -154,8 +147,13 @@ class main
 					$seg_start_jd = $jd;
 					$seg_end_jd = $jd + 6;
 
+					$week_dayspan = new dayspan($seg_start_jd, $seg_end_jd);
+
+					$c = 0;
+
 					while($segment = $row->get_segment(new dayspan($seg_start_jd, $seg_end_jd)))
 					{
+//						var_dump($segment);
 						if ($segment instanceof calendar_event)
 						{
 							$topic = $segment->get_topic();
@@ -169,21 +167,27 @@ class main
 								'TOPIC_ID'			=> $topic->get_topic_id(),
 								'FORUM_ID'			=> $topic->get_forum_id(),
 								'TOPIC_TITLE'		=> $topic->get_topic_title(),
-								'TOPIC_APPROVED'	=> $topic->get_topic_approved(),
 								'TOPIC_LINK'		=> $link,
-								'FLEX'				=> $segment->get_flex(),
+								'FLEX'				=> $segment->get_overlap_day_count($week_dayspan),
 							]);
 						}
 						else if ($segment instanceof dayspan)
 						{
 							$this->template->assign_block_vars('weeks.rows.segments', [
-								'FLEX'		=> $segment,
+								'FLEX'		=> $segment->get_overlap_day_count($week_dayspan),
 							]);
 						}
 
 						$seg_start_jd = $segment->get_end_jd() + 1;
 
 						if ($seg_start_jd > $seg_end_jd)
+						{
+							break;
+						}
+
+						$c++;
+
+						if ($c > 10)
 						{
 							break;
 						}
@@ -210,9 +214,14 @@ class main
 			$col++;
 		}
 
-		$this->pagination->render($year, $month);
-		$this->language->add_lang('calendar_page', cnst::FOLDER);
+		$this->pagination->render(
+			$year,
+			$month,
+			$this->store->get_pag_show_prev_next(),
+			$this->store->get_pag_neighbours()
+		);
 
+		$this->language->add_lang('calendar_page', cnst::FOLDER);
 		make_jumpbox(append_sid($this->root_path . 'viewforum.' . $this->php_ext));
 
 		return $this->helper->render('month.html');
