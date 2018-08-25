@@ -1,9 +1,52 @@
-{%- extends '@marttiphpbb_calendarmonthview/month_event_rows.html' -%}
+{%- include 'overall_header.html' -%}
 
-{%- block foot_rows -%}
-	<tr>
-		{%- for wd in day -%}
-			{%- include '@marttiphpbb_calendarmonthview/include/calendarmonthview_table_td_empty.html' %}
-		{%- endfor -%}
-	</tr>
-{%- endblock foot_rows -%}
+<p>{{- CURRENT_TIME -}}</p>
+<h2>{{- lang('MARTTIPHPBB_CALENDARMONTHVIEW_MONTH_YEAR', MONTH_NAME, YEAR) -}}</h2>
+
+<div class="calendarmonthview">
+	{%- include '@marttiphpbb_calendarmonthview/include/pagination.html' -%}
+	<div class="month">
+	{%- for w in weeks -%}
+		<div class="week">
+			<div class="weekdays">
+				{%- for d in w.weekdays -%}
+					<div class="day{%- if SHOW_TODAY and d.S_TODAY %} today{%- endif -%}">
+						<div class="dayhead">
+							<div class="monthday">{{- d.MONTHDAY -}}</div>
+							<div class="weekday">{{- d.WEEKDAY -}}</div>
+							<div class="isoweek">{{- d.ISOWEEK -}}</div>
+						</div>
+					</div>
+				{%- endfor -%}
+			</div>
+			<div class="eventrows">
+				{%- for er in w.eventrows -%}
+					<div class="evrow">
+					{%- for e in er.eventsegments -%}
+						{%- if e.TOPIC_ID -%}
+							<div class="ev flex-{{- e.FLEX -}}{%- if e.HAS_START %} ev-start{%- endif -%}{%- if e.HAS_END %} ev-end{%- endif -%} ">
+								<a href="{{- e.LINK -}}">{{- e.TOPIC_TITLE -}}</a>
+							</div>
+						{%- else -%}
+							<div class="flex-{{- e.FLEX -}}"></div>
+						{%- endif -%}
+					{%- endfor -%}
+					</div>
+				{%- endfor -%}
+			</div>
+		</div>
+	{%- endfor -%}
+	</div>
+	{%- include '@marttiphpbb_calendarmonthview/include/pagination.html' -%}
+</div>
+
+{%- include 'jumpbox.html' -%}
+{%- include 'overall_footer.html' -%}
+{%- if LOAD_STYLESHEET -%}
+	{%- INCLUDECSS '@marttiphpbb_calendarmonthview/calendar_page.css' -%}
+{%- endif -%}
+{%- if EXTRA_STYLESHEET -%}
+	{%- INCLUDECSS EXTRA_STYLESHEET -%}
+{%- endif -%}
+
+{%- INCLUDEJS '@marttiphpbb_calendarmonthview/js/calendar_page.js' -%}

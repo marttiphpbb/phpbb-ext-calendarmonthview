@@ -28,6 +28,11 @@ class dayspan
 		return $this->start_jd <= $dayspan->get_start_jd() && $this->end_jd >= $dayspan->get_end_jd();
 	}
 
+	public function contains_day(int $jd):bool
+	{
+		return $this->start_jd >= $jd && $this->end_jd <= $jd;
+	}
+
 	public function overlaps(dayspan $dayspan):bool
 	{
 		return $this->start_jd <= $dayspan->get_end_jd() && $this->end_jd >= $dayspan->get_start_jd();

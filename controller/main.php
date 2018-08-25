@@ -76,6 +76,8 @@ class main
 
 		$events = [];
 
+		$this->template->assign_var('ARRAY_VAR', []);
+
 		/**
 		 * Event to fetch the calendar events for the view
 		 *
@@ -138,22 +140,25 @@ class main
 
 			if (!$weekcol)
 			{
-				$this->template->assign_block_vars('weeks', []);
+				$this->template->assign_block_vars('weeks', [
+					'WEEK_DUMMY'	=> true,
+				]);
 
 				foreach($rows as $row)
 				{
-					$this->template->assign_block_vars('weeks.rows', []);
+					$this->template->assign_block_vars('weeks.eventrows', [
+						'EVENT_DUMMY'	=> true,
+					]);
 
 					$seg_start_jd = $jd;
 					$seg_end_jd = $jd + 6;
 
-					$week_dayspan = new dayspan($seg_start_jd, $seg_end_jd);
+					$week_dayspan = $current_dayspan = new dayspan($seg_start_jd, $seg_end_jd);
 
 					$c = 0;
 
-					while($segment = $row->get_segment(new dayspan($seg_start_jd, $seg_end_jd)))
+					while($segment = $row->get_segment($current_dayspan))
 					{
-//						var_dump($segment);
 						if ($segment instanceof calendar_event)
 						{
 							$topic = $segment->get_topic();
@@ -163,17 +168,19 @@ class main
 							];
 							$link = append_sid($this->root_path . 'viewtopic.' . $this->php_ext, $params);
 
-							$this->template->assign_block_vars('weeks.rows.segments', [
+							$this->template->assign_block_vars('weeks.eventrows.eventsegments', [
 								'TOPIC_ID'			=> $topic->get_topic_id(),
 								'FORUM_ID'			=> $topic->get_forum_id(),
 								'TOPIC_TITLE'		=> $topic->get_topic_title(),
 								'TOPIC_LINK'		=> $link,
 								'FLEX'				=> $segment->get_overlap_day_count($week_dayspan),
+								'HAS_START'			=> $week_dayspan->contains_day($segment->get_start_jd()),
+								'HAS_END'			=> $week_dayspan->contains_day($segment->get_end_jd()),
 							]);
 						}
 						else if ($segment instanceof dayspan)
 						{
-							$this->template->assign_block_vars('weeks.rows.segments', [
+							$this->template->assign_block_vars('weeks.eventrows.eventsegments', [
 								'FLEX'		=> $segment->get_overlap_day_count($week_dayspan),
 							]);
 						}
@@ -191,11 +198,13 @@ class main
 						{
 							break;
 						}
+
+						$current_dayspan = new dayspan($seg_start_jd, $seg_end_jd);
 					}
 				}
 			}
 
-			$this->template->assign_block_vars('weeks.days', [
+			$this->template->assign_block_vars('weeks.weekdays', [
 				'JD'				=> $jd,
 				'WEEKDAY'			=> $day['dow'],
 				'WEEKDAY_NAME'		=> $this->language->lang(['datetime', $day['dayname']]),

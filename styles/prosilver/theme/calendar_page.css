@@ -95,12 +95,6 @@ div.calendarmonthview td.sun div
 	color: #333355;
 }
 
-div.calendarmonthview td.today div
-{
-	background-color: #cadceb;
-	color: #333355;
-}
-
 div.calendarmonthview td.blur div
 {
 	background-color: #fff;
@@ -183,6 +177,11 @@ div.calendarmonthview div.month div.week div.day
 	border: 1px solid #aaa;
 }
 
+div.calendarmonthview div.month div.week div.today
+{
+	border: 2px solid #333;
+}
+
 div.calendarmonthview div.month div.week div.dayhead
 {
 	padding: .5em;
@@ -193,6 +192,13 @@ div.calendarmonthview div.month div.week div.dayhead div.monthday
 	font-size: 1.8em;
 	color: #0b004d;
 	float: left;
+}
+
+div.calendarmonthview div.month div.week div.sat,
+div.calendarmonthview div.month div.week div.sun
+{
+	background-color: #64a3d6;
+	color: #333355;
 }
 
 
