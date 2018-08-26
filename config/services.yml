@@ -26,7 +26,7 @@ services:
         class: marttiphpbb\calendarmonthview\event\menu_listener
         arguments:
             - '@controller.helper'
-            - '@user'
+            - '@marttiphpbb.calendarmonthview.user_today'
             - '@auth'
         tags:
             - { name: event.listener }
@@ -36,6 +36,11 @@ services:
         arguments:
             - '@config_text'
             - '@cache.driver'
+
+    marttiphpbb.calendarmonthview.user_today:
+        class: marttiphpbb\calendarmonthview\service\user_today
+        arguments:
+            - '@user'
 
     marttiphpbb.calendarmonthview.controller:
         class: marttiphpbb\calendarmonthview\controller\main
@@ -49,11 +54,12 @@ services:
             - '%core.root_path%'
             - '@marttiphpbb.calendarmonthview.pagination'
             - '@marttiphpbb.calendarmonthview.store'
+            - '@marttiphpbb.calendarmonthview.user_today'
 
     marttiphpbb.calendarmonthview.redirect_controller:
         class: marttiphpbb\calendarmonthview\controller\redirect
         arguments:
-            - '@user'
+            - '@marttiphpbb.calendarmonthview.user_today'
             - '@controller.helper'
 
     marttiphpbb.calendarmonthview.pagination:

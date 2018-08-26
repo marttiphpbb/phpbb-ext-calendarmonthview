@@ -7,13 +7,14 @@
 	{%- include '@marttiphpbb_calendarmonthview/include/pagination.html' -%}
 	<div class="month">
 	{%- for w in weeks -%}
+		<div class="week-container">
 		<div class="week">
 			<div class="weekdays">
 				{%- for d in w.weekdays -%}
-					<div class="day{%- if SHOW_TODAY and d.S_TODAY %} today{%- endif -%}">
+					<div class="day{%- if SHOW_TODAY and d.JD == TODAY_JD %} today{%- endif -%}">
 						<div class="dayhead">
 							<div class="monthday">{{- d.MONTHDAY -}}</div>
-							<div class="weekday">{{- d.WEEKDAY -}}</div>
+							<div class="weekday">{{- d.WEEKDAY_NAME -}}</div>
 							<div class="isoweek">{{- d.ISOWEEK -}}</div>
 						</div>
 					</div>
@@ -34,6 +35,7 @@
 					</div>
 				{%- endfor -%}
 			</div>
+		</div>
 		</div>
 	{%- endfor -%}
 	</div>

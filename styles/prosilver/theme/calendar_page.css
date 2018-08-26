@@ -1,40 +1,3 @@
-td.calendar-topic-hover
-{
-/* darken; */
-}
-
-div.calendarmonthview div.calendarmonthview-panel table
-{
-	border-collapse: collapse;
-	font-size: 1.3em;
-	color: #008;
-	width: 100%;
-	border-spacing: 5px 5px;
-	table-layout: fixed;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	-o-text-overflow: ellipsis;
- 	text-align: left;
-}
-
-div.calendarmonthview div.calendarmonthview-panel table div
-{
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-div.calendarmonthview table tbody td span.mday
-{
-	font-size: 1.3em;
-	color: #222277;
-}
-
-div.calendarmonthview table tbody td.blur span.mday
-{
-	color: #eee;
-}
-
 .moon
 {
 	cursor: default;
@@ -56,85 +19,6 @@ div.calendarmonthview table tbody td.blur span.mday
 	padding-right: 5px;
 }
 
-td.blur .isoweek
-{
-	color: #ddd;
-}
-
-div.calendarmonthview table td > div
-{
-	margin: -3px 3px;
-	padding: 0 7px;
-	height: 1.5em;
-	width: auto;
-}
-
-div.calendarmonthview table td > div > span
-{
-	font-size: .7em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	-o-text-overflow: ellipsis;
-	text-align: left;
-}
-
-div.calendarmonthview td.mon div,
-div.calendarmonthview td.tue div,
-div.calendarmonthview td.wed div,
-div.calendarmonthview td.thu div,
-div.calendarmonthview td.fri div
-{
-	background-color: #f0f8ff;
-	color: #333355;
-}
-
-div.calendarmonthview td.sat div,
-div.calendarmonthview td.sun div
-{
-	background-color: #daecfb;
-	color: #333355;
-}
-
-div.calendarmonthview td.blur div
-{
-	background-color: #fff;
-	color: #ddd;
-}
-
-div.calendarmonthview table tbody tr:first-child td > div
-{
-	border-top-left-radius: 7px;
-	border-top-right-radius: 7px;
-	margin-top: 3px;
-}
-
-div.calendarmonthview table tbody tr:last-child td > div
-{
-	border-bottom-left-radius: 7px;
-	border-bottom-right-radius: 7px;
-	margin-bottom: 3px;
-}
-
-div.calendarmonthview table tbody tr td:first-child div
-{
-	margin-left: 0;
-}
-
-div.calendarmonthview table tbody tr td:last-child div
-{
-	margin-right: 0;
-}
-
-.evt div
-{
-	height: auto;
-}
-
-.evt  div a
-{
-	height: 100%;
-}
-
 @media only screen and (max-width: 500px), only screen and (max-device-width: 500px)
 {
 	div.calendarmonthview div.moon > span
@@ -153,19 +37,30 @@ div.calendarmonthview table tbody tr td:last-child div
 
 div.calendarmonthview div.month
 {
-	position:relative;
+	width: 100%;
+}
+
+div.calendarmonthview div.month div.week-container
+{
+	position: relative;
 	width: 100%;
 	height: 500px;
 }
 
-div.calendarmonthview div.month div.weekdays
+div.calendarmonthview div.month div.week
 {
-	display:flex;
 	position:absolute;
 	width: 100%;
 	height: 100%;
 	top: 0;
 	left: 0;
+}
+
+div.calendarmonthview div.month div.week div.weekdays
+{
+	display:flex;
+	width: 100%;
+	height: 100%;
 }
 
 div.calendarmonthview div.month div.week div.day

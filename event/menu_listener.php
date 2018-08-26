@@ -9,25 +9,25 @@ namespace marttiphpbb\calendarmonthview\event;
 
 use phpbb\controller\helper;
 use phpbb\event\data as event;
-use phpbb\user;
 use phpbb\auth\auth;
+use marttiphpbb\calendarmonthview\service\user_today;
 use marttiphpbb\calendarmonthview\util\cnst;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class menu_listener implements EventSubscriberInterface
 {
 	protected $helper;
-	protected $user;
+	protected $user_today;
 	protected $auth;
 
 	public function __construct(
 		helper $helper,
-		user $user,
+		user_today $user_today,
 		auth $auth
 	)
 	{
 		$this->helper = $helper;
-		$this->user = $user;
+		$this->user_today = $user_today;
 		$this->auth = $auth;
 	}
 
@@ -47,9 +47,7 @@ class menu_listener implements EventSubscriberInterface
 			return;
 		}
 
-		$now = $this->user->create_datetime();
-		$time_offset = $now->getOffset();
-		$now = phpbb_gmgetdate($now->getTimestamp() + $time_offset);
+		$now = $this->user_today->get_date();
 
 		$link = $this->helper->route('marttiphpbb_calendarmonthview_page_controller', [
 			'year'	=> $now['year'],

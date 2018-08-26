@@ -8,31 +8,28 @@
 
 namespace marttiphpbb\calendarmonthview\controller;
 
-use phpbb\user;
+use marttiphpbb\calendarmonthview\service\user_today;
 use phpbb\controller\helper;
-
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class redirect
 {
-	protected $user;
+	protected $user_today;
 	protected $helper;
 
 	public function __construct(
-		user $user,
+		user_today $user_today,
 		helper $helper
 	)
 	{
-		$this->user = $user;
+		$this->user_today = $user_today;
 		$this->helper = $helper;
 	}
 
 	public function to_now():Response
 	{
-		$now = $this->user->create_datetime();
-		$time_offset = $now->getOffset();
-		$now = phpbb_gmgetdate($now->getTimestamp() + $time_offset);
+		$now = $this->user_today->get_date();
 
 		$link = $this->helper->route('marttiphpbb_calendarmonthview_page_controller', [
 			'year'	=> $now['year'],

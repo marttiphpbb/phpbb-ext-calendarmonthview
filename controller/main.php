@@ -18,6 +18,7 @@ use marttiphpbb\calendarmonthview\value\topic;
 use marttiphpbb\calendarmonthview\value\dayspan;
 use marttiphpbb\calendarmonthview\value\calendar_event;
 use marttiphpbb\calendarmonthview\service\store;
+use marttiphpbb\calendarmonthview\service\user_today;
 use marttiphpbb\calendarmonthview\service\pagination;
 use marttiphpbb\calendarmonthview\util\cnst;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,6 +33,8 @@ class main
 	protected $helper;
 	protected $root_path;
 	protected $pagination;
+	protected $store;
+	protected $user_today;
 
 	public function __construct(
 		dispatcher $dispatcher,
@@ -42,7 +45,8 @@ class main
 		helper $helper,
 		string $root_path,
 		pagination $pagination,
-		store $store
+		store $store,
+		user_today $user_today
 	)
 	{
 		$this->dispatcher = $dispatcher;
@@ -54,10 +58,13 @@ class main
 		$this->root_path = $root_path;
 		$this->pagination = $pagination;
 		$this->store = $store;
+		$this->user_today = $user_today;
 	}
 
 	public function page(int $year, int $month):Response
 	{
+		$today_jd = $this->user_today->get_jd();
+
 		$month_start_jd = cal_to_jd(CAL_GREGORIAN, $month, 1, $year);
 		$month_days_num = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 		$month_end_jd = $month_start_jd + $month_days_num;
@@ -67,7 +74,7 @@ class main
 		$days_prefill = $month_start_weekday - $first_weekday;
 		$days_prefill += $days_prefill < 0 ? 7 : 0;
 
-		$days_postfill = 7 - (($month_days_num + $days_prefill) % 7);
+		$days_postfill = 6 - (($month_days_num + $days_prefill) % 7);
 		$days_postfill = $days_postfill == 7 ? 0 : $days_postfill;
 
 		$start_jd = $month_start_jd - $days_prefill;
@@ -130,8 +137,10 @@ class main
 						'MONTH_NAME'		=> $this->language->lang(['datetime', $day['monthname']]),
 						'MONTH_ABBREV'		=> $this->language->lang(['datetime', $month_abbrev]),
 						'YEAR'				=> $year,
+						'TODAY_JD'			=> $today_jd,
 						'TOPIC_HILIT'		=> $this->request->variable('t', 0),
 						'SHOW_ISOWEEK'		=> $this->store->get_show_isoweek(),
+						'SHOW_TODAY'		=> $this->store->get_show_today(),
 						'LOAD_STYLESHEET'	=> $this->store->get_load_stylesheet(),
 						'EXTRA_STYLESHEET'	=> $this->store->get_extra_stylesheet(),
 					]);
