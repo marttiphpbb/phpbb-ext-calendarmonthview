@@ -149,15 +149,11 @@ class main
 
 			if (!$weekcol)
 			{
-				$this->template->assign_block_vars('weeks', [
-					'WEEK_DUMMY'	=> true,
-				]);
+				$this->template->assign_block_vars('weeks', []);
 
 				foreach($rows as $row)
 				{
-					$this->template->assign_block_vars('weeks.eventrows', [
-						'EVENT_DUMMY'	=> true,
-					]);
+					$this->template->assign_block_vars('weeks.eventrows', []);
 
 					$seg_start_jd = $jd;
 					$seg_end_jd = $jd + 6;
@@ -183,8 +179,8 @@ class main
 								'TOPIC_TITLE'		=> $topic->get_topic_title(),
 								'TOPIC_LINK'		=> $link,
 								'FLEX'				=> $segment->get_overlap_day_count($week_dayspan),
-								'HAS_START'			=> $week_dayspan->contains_day($segment->get_start_jd()),
-								'HAS_END'			=> $week_dayspan->contains_day($segment->get_end_jd()),
+								'S_START'			=> $week_dayspan->contains_day($segment->get_start_jd()),
+								'S_END'				=> $week_dayspan->contains_day($segment->get_end_jd()),
 							]);
 						}
 						else if ($segment instanceof dayspan)

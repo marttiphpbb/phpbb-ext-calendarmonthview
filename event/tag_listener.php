@@ -38,15 +38,17 @@ class tag_listener implements EventSubscriberInterface
 			return;
 		}
 
-		$year = $event['year'];
-		$month = $event['month'];
-		$topic_id = $event['topic_id'];
+		$params = [
+			'year'	=> $event['year'],
+			'month'	=> $event['month'],
+		];
 
-		$link = $this->helper->route('marttiphpbb_calendarmonthview_page_controller', [
-			'year'	=> $year,
-			'month'	=> $month,
-			't'		=> $topic_id,
-		]);
+		if ($this->store->get_hilit_topic())
+		{
+			$params['t'] = $event['topic_id'];
+		}
+
+		$link = $this->helper->route('marttiphpbb_calendarmonthview_page_controller', $params);
 
 		$event['link'] = $link;
 	}

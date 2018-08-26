@@ -25,8 +25,8 @@
 					<div class="evrow">
 					{%- for e in er.eventsegments -%}
 						{%- if e.TOPIC_ID -%}
-							<div class="ev flex-{{- e.FLEX -}}{%- if e.HAS_START %} ev-start{%- endif -%}{%- if e.HAS_END %} ev-end{%- endif -%} ">
-								<a href="{{- e.LINK -}}">{{- e.TOPIC_TITLE -}}</a>
+							<div class="ev flex-{{- e.FLEX -}}{%- if e.HAS_START %} ev-start{%- endif -%}{%- if e.HAS_END %} ev-end{%- endif -%}{%- if TOPIC_HILIT == e.TOPIC_ID %} ev-hilit{%- endif -%}" data-topic="{{- e.TOPIC_ID -}}">
+								<a href="{{- e.TOPIC_LINK -}}">{{- e.TOPIC_TITLE -}}</a>
 							</div>
 						{%- else -%}
 							<div class="flex-{{- e.FLEX -}}"></div>

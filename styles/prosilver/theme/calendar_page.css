@@ -118,7 +118,6 @@ div.calendarmonthview div.month div.eventrows div.col
 div.calendarmonthview div.month div.eventrows div.evrow div.ev
 {
 	background: rgb(201, 200, 200);
-	border-radius: 1em;
 	border: 1px solid #444;
 	margin: .2em;
 }
@@ -155,9 +154,9 @@ div.calendarmonthview div.month div.eventrows div.evrow div.ev-end
 	border-top-right-radius: 1em;
 	border-bottom-right-radius: 1em;
 }
-div.calendarmonthview div.month div.eventrows div.evrow div.ev-topic-hilit
+div.calendarmonthview div.month div.eventrows div.evrow div.ev-hilit
 {
-	border: 3px solid #333;
+	border: 2px solid #333;
 }
 
 div.calendarmonthview div.month div.events div.col div.flex-1{
