@@ -43,7 +43,7 @@ class tag_listener implements EventSubscriberInterface
 			'month'	=> $event['month'],
 		];
 
-		if ($this->store->get_hilit_topic())
+		if ($this->store->get_topic_hilit())
 		{
 			$params['t'] = $event['topic_id'];
 		}

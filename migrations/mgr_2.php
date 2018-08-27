@@ -21,11 +21,13 @@ class mgr_2 extends \phpbb\db\migration\migration
 	public function update_data()
 	{
 		$data = [
-			'first_weekday'			=> 0,
 			'min_rows'				=> 5,
+			'max_rows'				=> 30,
+			'first_weekday'			=> 0,
 			'show_today'			=> true,
 			'show_isoweek'			=> false,
-			'hilit_topic'			=> false,
+			'show_moon'				=> false,
+			'topic_hilit'			=> false,
 			'pag_neighbours'		=> 2,
 			'pag_show_prev_next'	=> true,
 			'load_stylesheet'		=> true,

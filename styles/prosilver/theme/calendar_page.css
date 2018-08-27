@@ -63,16 +63,21 @@ div.calendarmonthview div.month div.week div.weekdays
 	height: 100%;
 }
 
-div.calendarmonthview div.month div.week div.day
+div.calendarmonthview div.month div.week div.weekdays div.day
 {
 	flex: 1;
-	background: #ddd;
+	background: #eee;
 	margin: .2em;
 	border-radius: 1em;
+	border: 1px solid #ddd;
+}
+div.calendarmonthview div.month div.week div.weekdays div.day.this-month
+{
+	background: #ddd;
 	border: 1px solid #aaa;
 }
 
-div.calendarmonthview div.month div.week div.today
+div.calendarmonthview div.month div.week div.weekdays div.day.today.this-month
 {
 	border: 2px solid #333;
 }
@@ -85,15 +90,21 @@ div.calendarmonthview div.month div.week div.dayhead
 div.calendarmonthview div.month div.week div.dayhead div.monthday
 {
 	font-size: 1.8em;
-	color: #0b004d;
+	color: #bab6ce;
 	float: left;
 }
 
-div.calendarmonthview div.month div.week div.sat,
-div.calendarmonthview div.month div.week div.sun
+div.calendarmonthview div.month div.week div.day.this-month div.dayhead div.monthday
 {
-	background-color: #64a3d6;
+	color: #0b004d;
+}
+
+div.calendarmonthview div.month div.week div.weekdays div.day.this-month.sat,
+div.calendarmonthview div.month div.week div.weekdays div.day.this-month.sun
+{
+	background-color: #a3c0d8;
 	color: #333355;
+	border-color: #333355;
 }
 
 
@@ -119,6 +130,8 @@ div.calendarmonthview div.month div.eventrows div.evrow div.ev
 {
 	background: rgb(201, 200, 200);
 	border: 1px solid #444;
+	border-left-style: dashed;
+	border-right-style: dashed;
 	margin: .2em;
 }
 
@@ -156,7 +169,7 @@ div.calendarmonthview div.month div.eventrows div.evrow div.ev-end
 }
 div.calendarmonthview div.month div.eventrows div.evrow div.ev-hilit
 {
-	border: 2px solid #333;
+	border-width: 2px;
 }
 
 div.calendarmonthview div.month div.events div.col div.flex-1{

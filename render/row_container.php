@@ -17,12 +17,14 @@ class row_container
 	protected $rows = [];
 	protected $max_rows = 50;
 
-	public function __construct(int $min_rows = 0)
+	public function __construct(int $min_rows, int $max_rows)
 	{
 		for ($row_index = 0; $row_index < $min_rows; $row_index++)
 		{
 			$this->get_or_create_row($row_index);
 		}
+
+		$this->max_rows = $max_rows;
 	}
 
 	private function get_or_create_row(int $row_index):calendar_event_row
@@ -35,30 +37,17 @@ class row_container
 		return $this->rows[$row_index];
 	}
 
-	public function set_max_rows(int $max_rows):void
-	{
-		$this->max_rows = $max_rows;
-	}
-
 	public function add_calendar_event(calendar_event $calendar_event):void
 	{
 		for($row_index = 0; $row_index < $this->max_rows; $row_index++)
 		{
 			$row = $this->get_or_create_row($row_index);
 
-			if ($row->can_insert($calendar_event))
+			if (!is_null($free_segment_index = $row->get_free_segment_index($calendar_event)))
 			{
-				$row->insert($calendar_event);
+				$row->insert($free_segment_index, $calendar_event);
 				return;
 			}
-		}
-	}
-
-	public function sort_and_fill(dayspan $dayspan):void
-	{
-		foreach ($this->rows as $row)
-		{
-			$row->sort_and_fill($dayspan);
 		}
 	}
 

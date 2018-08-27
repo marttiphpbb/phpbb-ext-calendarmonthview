@@ -147,14 +147,14 @@ class store
 		return $this->get_boolean('show_isoweek');
 	}
 
-	public function set_hilit_topic(bool $hilit_topic):void
+	public function set_topic_hilit(bool $topic_hilit):void
 	{
-		$this->set_boolean('hilit_topic', $hilit_topic);
+		$this->set_boolean('topic_hilit', $topic_hilit);
 	}
 
-	public function get_hilit_topic():bool
+	public function get_topic_hilit():bool
 	{
-		return $this->get_boolean('hilit_topic');
+		return $this->get_boolean('topic_hilit');
 	}
 
 	public function set_first_weekday(int $first_weekday):void
@@ -175,6 +175,16 @@ class store
 	public function get_min_rows():int
 	{
 		return $this->get_int('min_rows');
+	}
+
+	public function set_max_rows(int $max_rows):void
+	{
+		$this->set_int('max_rows', $max_rows);
+	}
+
+	public function get_max_rows():int
+	{
+		return $this->get_int('max_rows');
 	}
 
 	public function set_pag_neighbours(int $pag_neighbours):void

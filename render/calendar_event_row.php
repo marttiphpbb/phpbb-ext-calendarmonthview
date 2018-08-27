@@ -15,65 +15,55 @@ class calendar_event_row
 {
 	protected $segments = [];
 
-	public function can_insert(calendar_event $calendar_event):bool
+	public function __construct()
 	{
-		foreach ($this->segments as $c)
-		{
-			if ($c->overlaps($calendar_event))
-			{
-				return false;
-			}
-		}
-
-		return true;
+		$segments[] = new dayspan(1, 5373484);
 	}
 
-	public function insert(calendar_event $calendar_event):void
+	public function get_free_segment_index(calendar_event $calendar_event):?int
 	{
-		$this->segments[] = $calendar_event;
+		$index = count($this->segments) - 1;
+
+		while($s = $this->segments[$index])
+		{
+			if ($s instanceof calendar_event && $s->overlaps($calendar_event))
+			{
+				return null;
+			}
+			else if ($s instanceof dayspan && $s->contains($calendar_event))
+			{
+				return $index;
+			}
+
+			$index--;
+		}
+
+		return null;
+	}
+
+	public function insert(int $index, calendar_event $calendar_event):void
+	{
+		$dayspan = $this->segments[$index];
+		$replace = [];
+
+		if(!$dayspan->has_same_start($calendar_event))
+		{
+			$replace[] = new dayspan($dayspan->get_start_jd(), $calendar_event->get_first_jd_before());
+		}
+
+		$replace[] = $calendar_event;
+
+		if(!$dayspan->has_same_end($calendar_event))
+		{
+			$replace[] = new dayspan($calendar_event->get_first_jd_after(), $dayspan->get_end_jd());
+		}
+
+		array_splice($this->segments, $index, 1, $replace);
 	}
 
 	public function get_segments():array
 	{
 		return $this->segments;
-	}
-
-	public function sort_and_fill(dayspan $dayspan):void
-	{
-		usort($this->segments, function(calendar_event $a, calendar_event $b){
-			return $a->compare_start_with($b);
-		});
-
-		reset($this->segments);
-
-		$segments = [];
-
-		foreach($this->segments as $s)
-		{
-			if ($s->is_before($dayspan))
-			{
-				continue;
-			}
-
-			if ($s->is_after($dayspan))
-			{
-				if (!$s->touches($dayspan))
-				{
-					$segments[] = $dayspan->create_with_end_jd($s->get_jd_before());
-				}
-			}
-
-			$segments[] = $s;
-
-			if ($s->has_same_end($dayspan) || $s->ends_after($dayspan))
-			{
-				break;
-			}
-
-			$dayspan = $dayspan->create_with_start_jd($s->get_first_jd_after());
-		}
-
-		$this->segments = $segments;
 	}
 
 	public function get_segment(dayspan $dayspan):?dayspan

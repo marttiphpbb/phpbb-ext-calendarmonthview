@@ -97,7 +97,7 @@ class main
 		$vars = ['start_jd', 'end_jd', 'events'];
 		extract($this->dispatcher->trigger_event('marttiphpbb.calendar.view', compact($vars)));
 
-		$row_container = new row_container($this->store->get_min_rows());
+		$row_container = new row_container($this->store->get_min_rows(), $this->store->get_max_rows());
 
 		foreach($events as $e)
 		{
@@ -107,10 +107,8 @@ class main
 		}
 
 		$col = 0;
-
 		$year_begin_jd = cal_to_jd(CAL_GREGORIAN, 1, 1, $year);
 		$total_dayspan = new dayspan($start_jd, $end_jd);
-		$row_container->sort_and_fill($total_dayspan);
 		$rows = $row_container->get_rows();
 
 		for ($jd = $start_jd; $jd <= $end_jd; $jd++)
@@ -214,8 +212,9 @@ class main
 				'WEEKDAY'			=> $day['dow'],
 				'WEEKDAY_NAME'		=> $this->language->lang(['datetime', $day['dayname']]),
 				'WEEKDAY_ABBREV'	=> $this->language->lang(['datetime', $day['abbrevdayname']]),
+				'WEEKDAY_CLASS'		=> strtolower($day['abbrevdayname']),
 				'MONTHDAY'			=> $day['day'],
-				'MONTH'				=> $month,
+				'MONTH'				=> $day['month'],
 				'MONTH_NAME'		=> $month_name,
 				'MONTH_ABBREV'		=> $month_abbrev,
 				'YEAR'				=> $day['year'],

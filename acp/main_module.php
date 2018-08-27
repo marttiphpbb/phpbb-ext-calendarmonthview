@@ -76,9 +76,10 @@ class main_module
 					$store->transaction_start();
 					$store->set_show_today($request->variable('show_today', 0) ? true : false);
 					$store->set_show_isoweek($request->variable('show_isoweek', 0) ? true : false);
-					$store->set_hilit_topic($request->variable('hilit_topic', 0) ? true : false);
+					$store->set_topic_hilit($request->variable('topic_hilit', 0) ? true : false);
 					$store->set_first_weekday($request->variable('first_weekday', 0));
 					$store->set_min_rows($request->variable('min_rows', 0));
+					$store->set_max_rows($request->variable('max_rows', 0));
 					$store->set_pag_neighbours($request->variable('pag_neighbours', 0));
 					$store->set_pag_show_prev_next($request->variable('pag_show_prev_next', 0) ? true : false);
 					$store->set_load_stylesheet($request->variable('load_stylesheet', 0) ? true : false);
@@ -91,9 +92,10 @@ class main_module
 				$template->assign_vars([
 					'SHOW_TODAY'			=> $store->get_show_today(),
 					'SHOW_ISOWEEK'			=> $store->get_show_isoweek(),
-					'HILIT_TOPIC'			=> $store->get_hilit_topic(),
+					'TOPIC_HILIT'			=> $store->get_topic_hilit(),
 					'FIRST_WEEKDAY'			=> $store->get_first_weekday(),
 					'MIN_ROWS'				=> $store->get_min_rows(),
+					'MAX_ROWS'				=> $store->get_max_rows(),
 					'PAG_NEIGHBOURS'		=> $store->get_pag_neighbours(),
 					'PAG_SHOW_PREV_NEXT'	=> $store->get_pag_show_prev_next(),
 					'LOAD_STYLESHEET'		=> $store->get_load_stylesheet(),

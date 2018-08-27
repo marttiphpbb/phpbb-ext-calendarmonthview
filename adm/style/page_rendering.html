@@ -39,18 +39,24 @@
 			{%- endblock -%}
 		{%- endembed -%}
 
-		{%- embed '@marttiphpbb_calendarmonthview/include/radio.html' with {'checked': HILIT_TOPIC} only -%}
+		{%- embed '@marttiphpbb_calendarmonthview/include/radio.html' with {'checked': TOPIC_HILIT} only -%}
 			{%- block label -%}
-				{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_HILIT_TOPIC') -}}
+				{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_TOPIC_HILIT') -}}
 			{%- endblock -%}
 			{%- block explain -%}
 				<br>
-				{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_HILIT_TOPIC_EXPLAIN') -}}
+				{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_TOPIC_HILIT_EXPLAIN') -}}
 			{%- endblock -%}
 			{%- block name -%}
-				hilit_topic
+				topic_hilit
 			{%- endblock -%}
 		{%- endembed -%}
+	</fieldset>
+
+	<fieldset>
+		<legend>
+			{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_EVENT_ROWS') -}}
+		</legend>
 
 		{%- embed '@marttiphpbb_calendarmonthview/include/number.html' -%}
 			{%- block label -%}
@@ -66,6 +72,24 @@
 
 		{%- embed '@marttiphpbb_calendarmonthview/include/number.html' -%}
 			{%- block label -%}
+				{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_MAX_ROWS') -}}
+			{%- endblock -%}
+			{%- block name -%}
+				max_rows
+			{%- endblock -%}
+			{%- block value -%}
+				{{- MAX_ROWS -}}
+			{%- endblock -%}
+		{%- endembed -%}
+	</fieldset>
+
+	<fieldset>
+		<legend>
+			{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_PAGINATION') -}}
+		</legend>
+
+		{%- embed '@marttiphpbb_calendarmonthview/include/number.html' -%}
+			{%- block label -%}
 				{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_PAGINATION_NEIGHBOURS') -}}
 			{%- endblock -%}
 			{%- block name -%}
@@ -74,7 +98,7 @@
 			{%- block value -%}
 				{{- PAG_NEIGHBOURS -}}
 			{%- endblock -%}
-			{%- block attr %} min="-1" max="7"{%- endblock -%}
+			{%- block attr %} min="-1" max="9"{%- endblock -%}
 		{%- endembed -%}
 
 		{%- embed '@marttiphpbb_calendarmonthview/include/radio.html' with {'checked': PAG_SHOW_PREV_NEXT} only -%}
@@ -85,6 +109,12 @@
 				pag_show_prev_next
 			{%- endblock -%}
 		{%- endembed -%}
+	</fieldset>
+
+	<fieldset>
+		<legend>
+			{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_STYLESHEET') -}}
+		</legend>
 
 		{%- embed '@marttiphpbb_calendarmonthview/include/radio.html' with {'checked': LOAD_STYLESHEET} only -%}
 			{%- block label -%}

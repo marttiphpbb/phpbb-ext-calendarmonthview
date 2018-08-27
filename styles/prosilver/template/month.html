@@ -11,11 +11,20 @@
 		<div class="week">
 			<div class="weekdays">
 				{%- for d in w.weekdays -%}
-					<div class="day{%- if SHOW_TODAY and d.JD == TODAY_JD %} today{%- endif -%}">
+					<div class="day {{ d.WEEKDAY_CLASS }}{%- if SHOW_TODAY and d.JD == TODAY_JD %} today{%- endif -%}{%- if MONTH == d.MONTH %} this-month{%- endif -%}{% EVENT marttiphpbb_calendarmonthview_day %}">
 						<div class="dayhead">
 							<div class="monthday">{{- d.MONTHDAY -}}</div>
-							<div class="weekday">{{- d.WEEKDAY_NAME -}}</div>
-							<div class="isoweek">{{- d.ISOWEEK -}}</div>
+							{%- EVENT marttiphpbb_calendarmonthview_monthday_after -%}
+							{%- if SHOW_WEEKDAY -%}
+								{%- if S_WEEKDAY_ABBREV -%}
+									<div class="weekday-abbrev">{{- d.WEEKDAY_ABBREV -}}</div>
+								{%- else -%}
+									<div class="weekday">{{- d.WEEKDAY_NAME -}}</div>
+								{%- endif -%}
+							{%- endif -%}
+							{%- if d.WEEKDAY == 1 and SHOW_ISOWEEK -%}
+								<div class="isoweek">{{- d.ISOWEEK -}}</div>
+							{%- endif -%}
 						</div>
 					</div>
 				{%- endfor -%}
@@ -25,7 +34,7 @@
 					<div class="evrow">
 					{%- for e in er.eventsegments -%}
 						{%- if e.TOPIC_ID -%}
-							<div class="ev flex-{{- e.FLEX -}}{%- if e.HAS_START %} ev-start{%- endif -%}{%- if e.HAS_END %} ev-end{%- endif -%}{%- if TOPIC_HILIT == e.TOPIC_ID %} ev-hilit{%- endif -%}" data-topic="{{- e.TOPIC_ID -}}">
+							<div class="ev flex-{{- e.FLEX -}}{%- if e.HAS_START %} ev-start{%- endif -%}{%- if e.HAS_END %} ev-end{%- endif -%}{%- if TOPIC_HILIT == e.TOPIC_ID %} ev-hilit{%- endif -%}{% EVENT marttiphpbb_calendarmonthview_ev_class %}" data-topic="{{- e.TOPIC_ID -}}">
 								<a href="{{- e.TOPIC_LINK -}}">{{- e.TOPIC_TITLE -}}</a>
 							</div>
 						{%- else -%}
