@@ -147,6 +147,16 @@ class store
 		return $this->get_boolean('show_isoweek');
 	}
 
+	public function set_show_moon_phase(bool $show_moon_phase):void
+	{
+		$this->set_boolean('show_moon_phase', $show_moon_phase);
+	}
+
+	public function get_show_moon_phase():bool
+	{
+		return $this->get_boolean('show_moon_phase');
+	}
+
 	public function set_topic_hilit(bool $topic_hilit):void
 	{
 		$this->set_boolean('topic_hilit', $topic_hilit);

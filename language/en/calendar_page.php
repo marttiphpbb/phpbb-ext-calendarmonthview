@@ -18,5 +18,14 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 
-	'MARTTIPHPBB_CALENDARMONTHVIEW_MONTH_YEAR'	=> '%1$s %2$s',
+	'MARTTIPHPBB_CALENDARMONTHVIEW_MONTH_YEAR'
+	=> '%1$s %2$s',
+	'MARTTIPHPBB_CALENDARMONTHVIEW_NEW_MOON'
+	=> 'New moon@%s',
+	'MARTTIPHPBB_CALENDARMONTHVIEW_FIRST_QUARTER_MOON'
+	=> 'First quarter moon@%s',
+	'MARTTIPHPBB_CALENDARMONTHVIEW_FULL_MOON'
+	=> 'Full moon@%s',
+	'MARTTIPHPBB_CALENDARMONTHVIEW_THIRD_QUARTER_MOON'
+	=> 'Third quarter moon@%s',
 ]);

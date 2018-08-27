@@ -26,7 +26,7 @@ class mgr_2 extends \phpbb\db\migration\migration
 			'first_weekday'			=> 0,
 			'show_today'			=> true,
 			'show_isoweek'			=> false,
-			'show_moon'				=> false,
+			'show_moon_phase'		=> false,
 			'topic_hilit'			=> false,
 			'pag_neighbours'		=> 2,
 			'pag_show_prev_next'	=> true,

@@ -76,6 +76,7 @@ class main_module
 					$store->transaction_start();
 					$store->set_show_today($request->variable('show_today', 0) ? true : false);
 					$store->set_show_isoweek($request->variable('show_isoweek', 0) ? true : false);
+					$store->set_show_moon_phase($request->variable('show_moon_phase', 0) ? true : false);
 					$store->set_topic_hilit($request->variable('topic_hilit', 0) ? true : false);
 					$store->set_first_weekday($request->variable('first_weekday', 0));
 					$store->set_min_rows($request->variable('min_rows', 0));
@@ -92,6 +93,7 @@ class main_module
 				$template->assign_vars([
 					'SHOW_TODAY'			=> $store->get_show_today(),
 					'SHOW_ISOWEEK'			=> $store->get_show_isoweek(),
+					'SHOW_MOON_PHASE'		=> $store->get_show_moon_phase(),
 					'TOPIC_HILIT'			=> $store->get_topic_hilit(),
 					'FIRST_WEEKDAY'			=> $store->get_first_weekday(),
 					'MIN_ROWS'				=> $store->get_min_rows(),

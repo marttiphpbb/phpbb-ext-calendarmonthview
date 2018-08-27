@@ -35,6 +35,8 @@ $lang = array_merge($lang, [
 	=> 'Calendar page',
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_ISOWEEK'
 	=> 'Display the week number (ISO 1806)',
+	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_MOON_PHASE'
+	=> 'Display the moon phase',
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_TOPIC_HILIT'
 	=> 'Hilight topic',
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_TOPIC_HILIT_EXPLAIN'
