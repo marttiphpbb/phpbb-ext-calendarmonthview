@@ -17,7 +17,7 @@ class calendar_event_row
 
 	public function __construct()
 	{
-		$segments[] = new dayspan(1, 5373484);
+		$this->segments[] = new dayspan(1, 5373484);
 	}
 
 	public function get_free_segment_index(calendar_event $calendar_event):?int
@@ -61,26 +61,18 @@ class calendar_event_row
 		array_splice($this->segments, $index, 1, $replace);
 	}
 
-	public function get_segments():array
+	public function get_segments(dayspan $dayspan):array
 	{
-		return $this->segments;
-	}
+		$return_ary = [];
 
-	public function get_segment(dayspan $dayspan):?dayspan
-	{
-		$segment = current($this->segments);
-
-		if (!$segment)
+		foreach ($this->segments as $index => $segment)
 		{
-			return $dayspan;
+			if ($segment->overlaps($dayspan))
+			{
+				$return_ary[$index] = $segment;
+			}
 		}
 
-		return $segment;
-
-		if ($segment->is_before($dayspan))
-		{
-		}
-
-
+		return $return_ary;
 	}
 }

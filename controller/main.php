@@ -75,7 +75,7 @@ class main
 		$days_prefill += $days_prefill < 0 ? 7 : 0;
 
 		$days_postfill = 6 - (($month_days_num + $days_prefill) % 7);
-		$days_postfill = $days_postfill == 7 ? 0 : $days_postfill;
+		$days_postfill = $days_postfill == 6 ? -1 : $days_postfill;
 
 		$start_jd = $month_start_jd - $days_prefill;
 		$end_jd = $month_end_jd + $days_postfill;
@@ -153,14 +153,12 @@ class main
 				{
 					$this->template->assign_block_vars('weeks.eventrows', []);
 
-					$seg_start_jd = $jd;
-					$seg_end_jd = $jd + 6;
+					$week_end_jd = $jd + 6;
 
-					$week_dayspan = $current_dayspan = new dayspan($seg_start_jd, $seg_end_jd);
+					$week_dayspan = new dayspan($jd, $week_end_jd);
+					$segments = $row->get_segments($week_dayspan);
 
-					$c = 0;
-
-					while($segment = $row->get_segment($current_dayspan))
+					foreach($segments as $segment)
 					{
 						if ($segment instanceof calendar_event)
 						{
@@ -187,22 +185,6 @@ class main
 								'FLEX'		=> $segment->get_overlap_day_count($week_dayspan),
 							]);
 						}
-
-						$seg_start_jd = $segment->get_end_jd() + 1;
-
-						if ($seg_start_jd > $seg_end_jd)
-						{
-							break;
-						}
-
-						$c++;
-
-						if ($c > 10)
-						{
-							break;
-						}
-
-						$current_dayspan = new dayspan($seg_start_jd, $seg_end_jd);
 					}
 				}
 			}
