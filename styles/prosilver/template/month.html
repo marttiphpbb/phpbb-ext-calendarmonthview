@@ -7,7 +7,7 @@
 	{%- include '@marttiphpbb_calendarmonthview/include/pagination.html' -%}
 	<div class="month">
 	{%- for w in weeks -%}
-		<div class="week-container">
+		<div class="week-container" style="height: 16em;">
 		<div class="week">
 			<div class="weekdays">
 				{%- for d in w.weekdays -%}
@@ -34,8 +34,10 @@
 					{%- for e in er.eventsegments -%}
 						<div class="f-con flex-{{- e.FLEX -}}">
 						{%- if e.TOPIC_ID -%}
-							<div class="ev{%- if e.S_START %} ev-start{%- endif -%}{%- if e.S_END %} ev-end{%- endif -%}{%- if TOPIC_HILIT == e.TOPIC_ID %} ev-hilit{%- endif -%}" data-topic="{{- e.TOPIC_ID -}}" data-forum="{{- e.FORUM_ID -}}">
-								<a href="{{- e.TOPIC_LINK -}}">{{- e.TOPIC_TITLE -}}</a>
+							<div class="ev forum-{{- e.FORUM_ID }}{%- if e.S_START %} ev-start{%- endif -%}{%- if e.S_END %} ev-end{%- endif -%}{%- if TOPIC_HILIT == e.TOPIC_ID %} ev-hilit{%- endif -%}" data-topic="{{- e.TOPIC_ID -}}" data-forum="{{- e.FORUM_ID -}}">
+								<div class="ev-overlay">
+									<a href="{{- e.TOPIC_LINK -}}">{{- e.TOPIC_TITLE -}}</a>
+								</div>
 							</div>
 						{%- endif -%}
 						</div>

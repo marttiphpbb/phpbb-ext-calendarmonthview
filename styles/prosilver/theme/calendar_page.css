@@ -136,8 +136,21 @@ div.calendarmonthview div.month div.eventrows div.evrow div.f-con div.ev
 div.calendarmonthview div.month div.eventrows div.evrow:nth-child(even) div.f-con div.ev{
 	background: rgb(182, 182, 182);
 }
-
-div.calendarmonthview div.month div.eventrows div.evrow div.ev:hover a{
+div.calendarmonthview div.month div.eventrows div.evrow div.ev.ev-start div.ev-overlay{
+	border-top-left-radius: 1em;
+	border-bottom-left-radius: 1em;
+}
+div.calendarmonthview div.month div.eventrows div.evrow div.ev.ev-end div.ev-overlay{
+	border-top-right-radius: 1em;
+	border-bottom-right-radius: 1em;
+}
+div.calendarmonthview div.month div.eventrows div.evrow div.ev div.ev-overlay{
+	width: 100%;
+	height: 100%;
+}
+div.calendarmonthview div.month div.eventrows div.evrow div.ev div.ev-overlay:hover,
+div.calendarmonthview div.month div.eventrows div.evrow div.ev div.ev-overlay.hover
+{
 	background: rgba(0, 0, 0, 0.2);
 }
 

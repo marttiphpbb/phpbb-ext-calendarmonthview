@@ -1,15 +1,15 @@
 ;(function($, window, document) {
 	$('document').ready(function(){
-		var $topic = $('table tr td[data-topic]');
-		$topic.hover(function(){
+		var $ev = $('div.calendarmonthview div.month div.eventrows div.evrow div.ev');
+		$ev.hover(function(){
 			var t = $(this).data('topic');
-			$('table tr td[data-topic="' + t + '"').each(function(){
-				$(this).removeClass('calendarevent-hover');
+			$ev.filter('[data-topic="' + t + '"]').find('div.ev-overlay').each(function(){
+				$(this).addClass('hover');
 			});
 		}, function(){
 			t = $(this).data('topic');
-			$('table tr td[data-topic="' + t + '"').each(function(){
-				$(this).removeClass('calendarevent-hover');
+			$ev.filter('[data-topic="' + t + '"]').find('div.ev-overlay').each(function(){
+				$(this).removeClass('hover');
 			});
 		});
 	});
