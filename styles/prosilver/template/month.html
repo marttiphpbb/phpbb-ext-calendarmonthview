@@ -29,14 +29,15 @@
 				{%- endfor -%}
 			</div>
 			<div class="eventrows">
+				<div class="evrow-head"></div>
 				{%- for er in w.eventrows -%}
 					<div class="evrow">
 					{%- for e in er.eventsegments -%}
 						<div class="f-con flex-{{- e.FLEX -}}">
 						{%- if e.TOPIC_ID -%}
-							<div class="ev forum-{{- e.FORUM_ID }}{%- if e.S_START %} ev-start{%- endif -%}{%- if e.S_END %} ev-end{%- endif -%}{%- if TOPIC_HILIT == e.TOPIC_ID %} ev-hilit{%- endif -%}" data-topic="{{- e.TOPIC_ID -}}" data-forum="{{- e.FORUM_ID -}}">
+							<div class="ev forum-{{- e.FORUM_ID }}{%- if e.S_START %} ev-start{%- endif -%}{%- if e.S_END %} ev-end{%- endif -%}{%- if TOPIC_HILIT == e.TOPIC_ID %} topic-hilit{%- endif -%}" data-topic="{{- e.TOPIC_ID -}}" data-forum="{{- e.FORUM_ID -}}">
 								<div class="ev-overlay">
-									<a href="{{- e.TOPIC_LINK -}}">{{- e.TOPIC_TITLE -}}</a>
+									<a href="{{- e.TOPIC_LINK -}}" title="{{- e.TOPIC_TITLE -}}">{{- e.TOPIC_TITLE -}}</a>
 								</div>
 							</div>
 						{%- endif -%}
@@ -44,6 +45,7 @@
 					{%- endfor -%}
 					</div>
 				{%- endfor -%}
+				<div class="evrow-foot"></div>
 			</div>
 		</div>
 		</div>

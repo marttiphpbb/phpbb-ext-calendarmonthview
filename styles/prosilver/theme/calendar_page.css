@@ -74,7 +74,7 @@ div.calendarmonthview div.month div.week div.weekdays div.day
 div.calendarmonthview div.month div.week div.weekdays div.day.this-month
 {
 	background: #ddd;
-	border: 1px solid #aaa;
+	border: 1px solid #bbb;
 }
 
 div.calendarmonthview div.month div.week div.weekdays div.day.today.this-month
@@ -96,15 +96,27 @@ div.calendarmonthview div.month div.week div.dayhead div.monthday
 
 div.calendarmonthview div.month div.week div.day.this-month div.dayhead div.monthday
 {
-	color: #0b004d;
+	color: #444;
 }
 
+div.calendarmonthview div.month div.week div.weekdays div.day.sat,
+div.calendarmonthview div.month div.week div.weekdays div.day.sun
+{
+	background-color: #e8f5ff;
+	color: #b0b0e0;
+	border-color: #dbdbf7;
+}
 div.calendarmonthview div.month div.week div.weekdays div.day.this-month.sat,
 div.calendarmonthview div.month div.week div.weekdays div.day.this-month.sun
 {
-	background-color: #a3c0d8;
-	color: #333355;
-	border-color: #333355;
+	background-color: #cadceb;
+	color: #3c3c42;
+	border-color: #a4c3d8;
+}
+div.calendarmonthview div.month div.week div.weekdays div.day.this-month.sat.today,
+div.calendarmonthview div.month div.week div.weekdays div.day.this-month.sun.today
+{
+	border-color: #45555f;
 }
 
 div.calendarmonthview div.month div.eventrows
@@ -113,36 +125,52 @@ div.calendarmonthview div.month div.eventrows
 	flex-direction: column;
 	position:absolute;
 	width: 100%;
-	height: 85%;
-	top: 5em;
+	height: 100%;
+	top: 0;
 	left: 0;
 }
 
+div.calendarmonthview div.month div.eventrows div.evrow-head
+{
+	height: 4em;
+}
+div.calendarmonthview div.month div.eventrows div.evrow-foot
+{
+	height: 1.5em;
+}
 div.calendarmonthview div.month div.eventrows div.evrow
 {
 	flex: 1;
 	display: flex;
+	justify-content: space-evenly;
 	z-index: 10;
 }
+
+div.calendarmonthview div.month div.eventrows div.evrow div.f-con
+{
+	min-width: 0;
+}
+
 div.calendarmonthview div.month div.eventrows div.evrow div.f-con div.ev
 {
 	margin: .2em;
-	background: rgb(201, 200, 200);
-	border: 1px solid #444;
+	background: rgb(238, 246, 255);
+	border: 1px solid rgb(123, 163, 200);
 	border-left-style: dashed;
 	border-right-style: dashed;
+	min-width: 0;
 }
 
 div.calendarmonthview div.month div.eventrows div.evrow:nth-child(even) div.f-con div.ev{
-	background: rgb(182, 182, 182);
+	background: rgb(220, 235, 255);
 }
 div.calendarmonthview div.month div.eventrows div.evrow div.ev.ev-start div.ev-overlay{
-	border-top-left-radius: 1em;
-	border-bottom-left-radius: 1em;
+	border-top-left-radius: .7em;
+	border-bottom-left-radius: .7em;
 }
 div.calendarmonthview div.month div.eventrows div.evrow div.ev.ev-end div.ev-overlay{
-	border-top-right-radius: 1em;
-	border-bottom-right-radius: 1em;
+	border-top-right-radius: .7em;
+	border-bottom-right-radius: .7em;
 }
 div.calendarmonthview div.month div.eventrows div.evrow div.ev div.ev-overlay{
 	width: 100%;
@@ -151,7 +179,7 @@ div.calendarmonthview div.month div.eventrows div.evrow div.ev div.ev-overlay{
 div.calendarmonthview div.month div.eventrows div.evrow div.ev div.ev-overlay:hover,
 div.calendarmonthview div.month div.eventrows div.evrow div.ev div.ev-overlay.hover
 {
-	background: rgba(0, 0, 0, 0.2);
+	background: rgba(250, 225, 0, 0.2);
 }
 
 div.calendarmonthview div.month div.eventrows div.evrow div.ev a
@@ -159,30 +187,32 @@ div.calendarmonthview div.month div.eventrows div.evrow div.ev a
 	display:inline-block;
 	width: 100%;
 	height: 100%;
-	line-height: 2em;
+	/*line-height: 2em;*/
 	font-size: 1.5em;
+	font-weight: bold;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	-o-text-overflow: ellipsis;
 	text-align: left;
 	padding-left: .5em;
+	min-width: 0;
 }
 div.calendarmonthview div.month div.eventrows div.evrow div.f-con div.ev.ev-start
 {
-	border-top-left-radius: 1em;
-	border-bottom-left-radius: 1em;
+	border-top-left-radius: .7em;
+	border-bottom-left-radius: .7em;
 	border-left-style: solid;
 }
 div.calendarmonthview div.month div.eventrows div.evrow div.f-con div.ev.ev-end
 {
-	border-top-right-radius: 1em;
-	border-bottom-right-radius: 1em;
+	border-top-right-radius: .7em;
+	border-bottom-right-radius: .7em;
 	border-right-style: solid;
 }
-div.calendarmonthview div.month div.eventrows div.evrow div.ev-hilit
+div.calendarmonthview div.month div.eventrows div.evrow div.f-con div.ev.topic-hilit
 {
 	border-width: 2px;
+	border-color: rgb(61, 99, 148);
 }
 
 div.calendarmonthview div.month div.eventrows div.evrow div.flex-1
