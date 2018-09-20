@@ -54,6 +54,7 @@ class main
 		$this->request = $request;
 		$this->php_ext = $php_ext;
 		$this->template = $template;
+		$this->twig_environment = $twig_environment;
 		$this->language = $language;
 		$this->helper = $helper;
 		$this->root_path = $root_path;
@@ -147,6 +148,7 @@ class main
 						'SHOW_MOON_PHASE'	=> $this->store->get_show_moon_phase(),
 						'LOAD_STYLESHEET'	=> $this->store->get_load_stylesheet(),
 						'EXTRA_STYLESHEET'	=> $this->store->get_extra_stylesheet(),
+						'EVENT_ROW_COUNT'	=> count($rows),
 					]);
 				}
 			}

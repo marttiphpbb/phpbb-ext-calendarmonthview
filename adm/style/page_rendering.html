@@ -77,6 +77,7 @@
 			{%- block value -%}
 				{{- MIN_ROWS -}}
 			{%- endblock -%}
+			{%- block attr %} min="1"{%- endblock -%}
 		{%- endembed -%}
 
 		{%- embed '@marttiphpbb_calendarmonthview/include/number.html' -%}
@@ -89,6 +90,7 @@
 			{%- block value -%}
 				{{- MAX_ROWS -}}
 			{%- endblock -%}
+			{%- block attr %} min="1"{%- endblock -%}
 		{%- endembed -%}
 	</fieldset>
 

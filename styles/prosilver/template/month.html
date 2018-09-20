@@ -1,5 +1,11 @@
 {%- include 'overall_header.html' -%}
 
+<style>
+div.week-container{
+  height: {{ 5 + (EVENT_ROW_COUNT * 2) -}}em;
+}
+</style>
+
 <p>{{- CURRENT_TIME -}}</p>
 <h2>{{- lang('MARTTIPHPBB_CALENDARMONTHVIEW_MONTH_YEAR', MONTH_NAME, YEAR) -}}</h2>
 
@@ -7,7 +13,7 @@
 	{%- include '@marttiphpbb_calendarmonthview/include/pagination.html' -%}
 	<div class="month">
 	{%- for w in weeks -%}
-		<div class="week-container" style="height: 16em;">
+		<div class="week-container">
 		<div class="week">
 			<div class="weekdays">
 				{%- for d in w.weekdays -%}
