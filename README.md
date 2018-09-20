@@ -6,6 +6,7 @@ This phpBB extension provides a Calendar Month View page for the [Calendar exten
 
 * phpBB 3.2.1
 * PHP 7.1+
+* PHP calendar extension (PHP compiled with --enable-calendar)
 
 ## Quick Install
 
