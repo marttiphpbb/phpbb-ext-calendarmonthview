@@ -21,33 +21,33 @@
 
 @media only screen and (max-width: 500px), only screen and (max-device-width: 500px)
 {
-	div.calendarmonthview div.moon > span
+	div.moon > span
 	{
 		display: none;
 	}
-	div.calendarmonthview td > div > span
+	td > div > span
 	{
 		display: none;
 	}
-	div.calendarmonthview td div.isoweek
+	td div.isoweek
 	{
 		display: none;
 	}
 }
 
-div.calendarmonthview div.month
+div.month
 {
 	width: 100%;
 }
 
-div.calendarmonthview div.month div.week-container
+div.month div.week-container
 {
 	position: relative;
 	width: 100%;
 	height: 500px;
 }
 
-div.calendarmonthview div.month div.week
+div.month div.week
 {
 	position:absolute;
 	width: 100%;
@@ -56,14 +56,14 @@ div.calendarmonthview div.month div.week
 	left: 0;
 }
 
-div.calendarmonthview div.month div.week div.weekdays
+div.month div.week div.weekdays
 {
 	display:flex;
 	width: 100%;
 	height: 100%;
 }
 
-div.calendarmonthview div.month div.week div.weekdays div.day
+div.month div.week div.weekdays div.day
 {
 	flex: 1;
 	background: #eee;
@@ -71,55 +71,55 @@ div.calendarmonthview div.month div.week div.weekdays div.day
 	border-radius: 1em;
 	border: 1px solid #ddd;
 }
-div.calendarmonthview div.month div.week div.weekdays div.day.this-month
+div.month div.week div.weekdays div.day.this-month
 {
 	background: #ddd;
 	border: 1px solid #bbb;
 }
 
-div.calendarmonthview div.month div.week div.weekdays div.day.today.this-month
+div.month div.week div.weekdays div.day.today.this-month
 {
 	border: 2px solid #333;
 }
 
-div.calendarmonthview div.month div.week div.dayhead
+div.month div.week div.dayhead
 {
 	padding: .5em;
 }
 
-div.calendarmonthview div.month div.week div.dayhead div.monthday
+div.month div.week div.dayheaddiv.monthday
 {
 	font-size: 1.8em;
 	color: #bab6ce;
 	float: left;
 }
 
-div.calendarmonthview div.month div.week div.day.this-month div.dayhead div.monthday
+div.month div.week div.day.this-month div.dayheaddiv.monthday
 {
 	color: #444;
 }
 
-div.calendarmonthview div.month div.week div.weekdays div.day.sat,
-div.calendarmonthview div.month div.week div.weekdays div.day.sun
+div.month div.week div.weekdays div.day.sat,
+div.month div.week div.weekdays div.day.sun
 {
 	background-color: #e8f5ff;
 	color: #b0b0e0;
 	border-color: #dbdbf7;
 }
-div.calendarmonthview div.month div.week div.weekdays div.day.this-month.sat,
-div.calendarmonthview div.month div.week div.weekdays div.day.this-month.sun
+div.month div.week div.weekdays div.day.this-month.sat,
+div.month div.week div.weekdays div.day.this-month.sun
 {
 	background-color: #cadceb;
 	color: #3c3c42;
 	border-color: #a4c3d8;
 }
-div.calendarmonthview div.month div.week div.weekdays div.day.this-month.sat.today,
-div.calendarmonthview div.month div.week div.weekdays div.day.this-month.sun.today
+div.month div.week div.weekdays div.day.this-month.sat.today,
+div.month div.week div.weekdays div.day.this-month.sun.today
 {
 	border-color: #45555f;
 }
 
-div.calendarmonthview div.month div.eventrows
+div.month div.eventrows
 {
 	display:flex;
 	flex-direction: column;
@@ -130,15 +130,15 @@ div.calendarmonthview div.month div.eventrows
 	left: 0;
 }
 
-div.calendarmonthview div.month div.eventrows div.evrow-head
+div.month div.eventrows div.evrow-head
 {
 	height: 4em;
 }
-div.calendarmonthview div.month div.eventrows div.evrow-foot
+div.month div.eventrows div.evrow-foot
 {
 	height: 1.5em;
 }
-div.calendarmonthview div.month div.eventrows div.evrow
+div.month div.eventrows div.evrow
 {
 	flex: 1;
 	display: flex;
@@ -146,12 +146,12 @@ div.calendarmonthview div.month div.eventrows div.evrow
 	z-index: 10;
 }
 
-div.calendarmonthview div.month div.eventrows div.evrow div.f-con
+div.month div.eventrows div.evrow div.f-con
 {
 	min-width: 0;
 }
 
-div.calendarmonthview div.month div.eventrows div.evrow div.f-con div.ev
+div.month div.eventrows div.evrow div.f-con div.ev
 {
 	margin: .2em;
 	background: rgb(238, 246, 255);
@@ -161,28 +161,28 @@ div.calendarmonthview div.month div.eventrows div.evrow div.f-con div.ev
 	min-width: 0;
 }
 
-div.calendarmonthview div.month div.eventrows div.evrow:nth-child(even) div.f-con div.ev{
+div.month div.eventrows div.evrow:nth-child(even) div.f-con div.ev{
 	background: rgb(220, 235, 255);
 }
-div.calendarmonthview div.month div.eventrows div.evrow div.ev.ev-start div.ev-overlay{
+div.month div.eventrows div.evrow div.ev.ev-start div.ev-overlay{
 	border-top-left-radius: .7em;
 	border-bottom-left-radius: .7em;
 }
-div.calendarmonthview div.month div.eventrows div.evrow div.ev.ev-end div.ev-overlay{
+div.month div.eventrows div.evrow div.ev.ev-end div.ev-overlay{
 	border-top-right-radius: .7em;
 	border-bottom-right-radius: .7em;
 }
-div.calendarmonthview div.month div.eventrows div.evrow div.ev div.ev-overlay{
+div.month div.eventrows div.evrow div.ev div.ev-overlay{
 	width: 100%;
 	height: 100%;
 }
-div.calendarmonthview div.month div.eventrows div.evrow div.ev div.ev-overlay:hover,
-div.calendarmonthview div.month div.eventrows div.evrow div.ev div.ev-overlay.hover
+div.month div.eventrows div.evrow div.ev div.ev-overlay:hover,
+div.month div.eventrows div.evrow div.ev div.ev-overlay.hover
 {
 	background: rgba(250, 225, 0, 0.2);
 }
 
-div.calendarmonthview div.month div.eventrows div.evrow div.ev a
+div.month div.eventrows div.evrow div.ev a
 {
 	display:inline-block;
 	width: 100%;
@@ -197,49 +197,49 @@ div.calendarmonthview div.month div.eventrows div.evrow div.ev a
 	padding-left: .5em;
 	min-width: 0;
 }
-div.calendarmonthview div.month div.eventrows div.evrow div.f-con div.ev.ev-start
+div.month div.eventrows div.evrow div.f-con div.ev.ev-start
 {
 	border-top-left-radius: .7em;
 	border-bottom-left-radius: .7em;
 	border-left-style: solid;
 }
-div.calendarmonthview div.month div.eventrows div.evrow div.f-con div.ev.ev-end
+div.month div.eventrows div.evrow div.f-con div.ev.ev-end
 {
 	border-top-right-radius: .7em;
 	border-bottom-right-radius: .7em;
 	border-right-style: solid;
 }
-div.calendarmonthview div.month div.eventrows div.evrow div.f-con div.ev.topic-hilit
+div.month div.eventrows div.evrow div.f-con div.ev.topic-hilit
 {
 	border-width: 2px;
 	border-color: rgb(61, 99, 148);
 }
 
-div.calendarmonthview div.month div.eventrows div.evrow div.flex-1
+div.month div.eventrows div.evrow div.flex-1
 {
 	flex: 1;
 }
-div.calendarmonthview div.month div.eventrows div.evrow div.flex-2
+div.month div.eventrows div.evrow div.flex-2
 {
 	flex: 2;
 }
-div.calendarmonthview div.month div.eventrows div.evrow div.flex-3
+div.month div.eventrows div.evrow div.flex-3
 {
 	flex: 3;
 }
-div.calendarmonthview div.month div.eventrows div.evrow div.flex-4
+div.month div.eventrows div.evrow div.flex-4
 {
 	flex: 4;
 }
-div.calendarmonthview div.month div.eventrows div.evrow div.flex-5
+div.month div.eventrows div.evrow div.flex-5
 {
 	flex: 5;
 }
-div.calendarmonthview div.month div.eventrows div.evrow div.flex-6
+div.month div.eventrows div.evrow div.flex-6
 {
 	flex: 6;
 }
-div.calendarmonthview div.month div.eventrows div.evrow div.flex-7
+div.month div.eventrows div.evrow div.flex-7
 {
 	flex: 7;
 }
