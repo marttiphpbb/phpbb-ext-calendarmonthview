@@ -14,13 +14,12 @@
 					<div class="day {{ d.WEEKDAY_CLASS }}{%- if SHOW_TODAY and d.JD == TODAY_JD %} today{%- endif -%}{%- if MONTH == d.MONTH %} this-month{%- endif -%}">
 						<div class="dayhead">
 							<div class="monthday">{{- d.MONTHDAY -}}</div>
-							{%- if S_WEEKDAY_ABBREV -%}
-								<div class="weekday-abbrev">{{- d.WEEKDAY_ABBREV -}}</div>
-							{%- else -%}
-								<div class="weekday">{{- d.WEEKDAY_NAME -}}</div>
-							{%- endif -%}
-							{%- if d.WEEKDAY == 1 and SHOW_ISOWEEK -%}
-								<div class="isoweek">{{- d.ISOWEEK -}}</div>
+							{%- if MONTH == d.MONTH -%}
+								<div class="weekday">{{- d.WEEKDAY_ABBREV -}}</div>
+
+								{%- if d.WEEKDAY == 1 and SHOW_ISOWEEK -%}
+									<div class="isoweek">{{- d.ISOWEEK -}}</div>
+								{%- endif -%}
 							{%- endif -%}
 						</div>
 					</div>

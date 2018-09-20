@@ -67,8 +67,8 @@ div.month div.week div.weekdays div.day
 {
 	flex: 1;
 	background: #eee;
-	margin: .2em;
-	border-radius: 1em;
+	margin: .1em;
+	border-radius: .8em;
 	border: 1px solid #ddd;
 }
 div.month div.week div.weekdays div.day.this-month
@@ -82,28 +82,54 @@ div.month div.week div.weekdays div.day.today.this-month
 	border: 2px solid #333;
 }
 
-div.month div.week div.dayhead
+div.month div.week div.weekdays div.day div.dayhead
 {
-	padding: .5em;
+	padding: .4em .8em;
 }
 
-div.month div.week div.dayheaddiv.monthday
+div.month div.week div.weekdays div.day div.dayhead div.monthday
 {
 	font-size: 1.8em;
-	color: #bab6ce;
 	float: left;
 }
 
-div.month div.week div.day.this-month div.dayheaddiv.monthday
+div.month div.week div.weekdays div.day div.dayhead div.weekday
 {
-	color: #444;
+	font-size: .9em;
+	float: left;
+	padding: .1em .2em;
+}
+
+div.month div.week div.weekdays div.day div.dayhead div.moon
+{
+	font-size: .9em;
+	float: right;
+	padding: .1em .2em;
+}
+
+div.month div.week div.weekdays div.day div.dayhead div.isoweek
+{
+	font-style: italic;
+	font-size: 0.9em;
+	float: right;
+	clear: right;
+	padding: .1em .2em;
+}
+
+div.month div.week div.weekdays div.day
+{
+	color: #dbd8e9;
+}
+
+div.month div.week div.weekdays div.day.this-month
+{
+	color: #45434e;
 }
 
 div.month div.week div.weekdays div.day.sat,
 div.month div.week div.weekdays div.day.sun
 {
 	background-color: #e8f5ff;
-	color: #b0b0e0;
 	border-color: #dbdbf7;
 }
 div.month div.week div.weekdays div.day.this-month.sat,
@@ -153,7 +179,7 @@ div.month div.eventrows div.evrow div.f-con
 
 div.month div.eventrows div.evrow div.f-con div.ev
 {
-	margin: .2em;
+	margin: .1em;
 	background: rgb(238, 246, 255);
 	border: 1px solid rgb(123, 163, 200);
 	border-left-style: dashed;
@@ -187,14 +213,13 @@ div.month div.eventrows div.evrow div.ev a
 	display:inline-block;
 	width: 100%;
 	height: 100%;
-	/*line-height: 2em;*/
 	font-size: 1.5em;
 	font-weight: bold;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	text-align: left;
-	padding-left: .5em;
+	padding-left: .3em;
 	min-width: 0;
 }
 div.month div.eventrows div.evrow div.f-con div.ev.ev-start
