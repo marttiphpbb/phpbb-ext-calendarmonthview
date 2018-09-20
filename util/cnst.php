@@ -30,4 +30,10 @@ class cnst
 		2	=> 'fa-circle-o',
 		3	=> 'fa-adjust',
 	];
+	const MOON_LANG = [
+		0	=> 'NEW_MOON',
+		1	=> 'FIRST_QUARTER_MOON',
+		2	=> 'FULL_MOON',
+		3	=> 'THIRD_QUARTER_MOON',
+	];
 }

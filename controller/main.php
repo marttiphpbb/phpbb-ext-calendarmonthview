@@ -21,6 +21,7 @@ use marttiphpbb\calendarmonthview\service\store;
 use marttiphpbb\calendarmonthview\service\user_today;
 use marttiphpbb\calendarmonthview\service\pagination;
 use marttiphpbb\calendarmonthview\util\cnst;
+use marttiphpbb\calendarmonthview\util\moon_phase;
 use Symfony\Component\HttpFoundation\Response;
 
 class main
@@ -63,6 +64,8 @@ class main
 
 	public function page(int $year, int $month):Response
 	{
+		$this->language->add_lang('calendar_page', cnst::FOLDER);
+
 		$today_jd = $this->user_today->get_jd();
 
 		$month_start_jd = cal_to_jd(CAL_GREGORIAN, $month, 1, $year);
@@ -81,9 +84,11 @@ class main
 		$end_jd = $month_end_jd + $days_postfill;
 		$days_num = $end_jd - $start_jd;
 
-		$events = [];
+		$moon_phase = new moon_phase();
+		$moon_phases = $moon_phase->find($start_jd, $end_jd);
+		$mphase = reset($moon_phases);
 
-		$this->template->assign_var('ARRAY_VAR', []);
+		$events = [];
 
 		/**
 		 * Event to fetch the calendar events for the view
@@ -139,6 +144,7 @@ class main
 						'TOPIC_HILIT'		=> $this->request->variable('t', 0),
 						'SHOW_ISOWEEK'		=> $this->store->get_show_isoweek(),
 						'SHOW_TODAY'		=> $this->store->get_show_today(),
+						'SHOW_MOON_PHASE'	=> $this->store->get_show_moon_phase(),
 						'LOAD_STYLESHEET'	=> $this->store->get_load_stylesheet(),
 						'EXTRA_STYLESHEET'	=> $this->store->get_extra_stylesheet(),
 					]);
@@ -189,6 +195,21 @@ class main
 				}
 			}
 
+			if (isset($mphase['jd']) && $mphase['jd'] === $jd)
+			{
+				$phase = $mphase['phase'];
+				$m_time = $mphase['time'];
+				$moon_time = 'ooOOoo';
+				$moon_title = $this->language->lang(cnst::L . '_' . cnst::MOON_LANG[$phase], $moon_time);
+				$moon_icon = cnst::MOON_ICON[$phase];
+				$mphase = next($moon_phases);
+			}
+			else
+			{
+				$moon_title = false;
+				$moon_icon = false;
+			}
+
 			$this->template->assign_block_vars('weeks.weekdays', [
 				'JD'				=> $jd,
 				'WEEKDAY'			=> $day['dow'],
@@ -202,6 +223,8 @@ class main
 				'YEAR'				=> $day['year'],
 				'YEARDAY'			=> $year_begin_jd - $jd + 1,
 				'ISOWEEK'			=> $isoweek,
+				'MOON_TITLE'		=> $moon_title,
+				'MOON_ICON'			=> $moon_icon,
 				'COL'				=> $col,
 				'WEEKCOL'			=> $weekcol,
 			]);
@@ -216,7 +239,6 @@ class main
 			$this->store->get_pag_neighbours()
 		);
 
-		$this->language->add_lang('calendar_page', cnst::FOLDER);
 		make_jumpbox(append_sid($this->root_path . 'viewforum.' . $this->php_ext));
 
 		return $this->helper->render('month.html');

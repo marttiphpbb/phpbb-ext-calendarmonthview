@@ -27,7 +27,7 @@ class moon_phase
 	* 				time  	unix time
 	* 				jd 		Julian Day (for PHP functions)
 	*/
-	public function find(int $start_jd, int $end_jd)
+	public function find(int $start_jd, int $end_jd):array
 	{
 		$phases = [];
 
@@ -152,8 +152,8 @@ class moon_phase
 
 				$phases[] = [
 					'phase'	=> $phase,
-					'time'	=> round(($phase_time - 2440587.5) * 86400),
-					'jd'	=> round($phase_time + .5),
+					'time'	=> (int) round(($phase_time - 2440587.5) * 86400),
+					'jd'	=> (int) round($phase_time + .5),
 				];
 			}
 		}

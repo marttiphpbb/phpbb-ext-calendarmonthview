@@ -1,40 +1,3 @@
-.moon
-{
-	cursor: default;
-	font-size: 8px;
-}
-
-.moon span
-{
-	padding-left: 10px;
-	padding-top: 5px;
-}
-
-.isoweek
-{
-	font-style: italic;
-	font-size: 0.9em;
-	float: right;
-	clear: right;
-	padding-right: 5px;
-}
-
-@media only screen and (max-width: 500px), only screen and (max-device-width: 500px)
-{
-	div.moon > span
-	{
-		display: none;
-	}
-	td > div > span
-	{
-		display: none;
-	}
-	td div.isoweek
-	{
-		display: none;
-	}
-}
-
 div.month
 {
 	width: 100%;
@@ -95,16 +58,21 @@ div.month div.week div.weekdays div.day div.dayhead div.monthday
 
 div.month div.week div.weekdays div.day div.dayhead div.weekday
 {
-	font-size: .9em;
+	font-size: 1.2em;
 	float: left;
 	padding: .1em .2em;
 }
 
 div.month div.week div.weekdays div.day div.dayhead div.moon
 {
-	font-size: .9em;
+	font-size: 1.2em;
 	float: right;
 	padding: .1em .2em;
+}
+
+div.month div.week div.weekdays div.day div.dayhead div.moon span
+{
+	z-index: 20;
 }
 
 div.month div.week div.weekdays div.day div.dayhead div.isoweek
@@ -114,6 +82,14 @@ div.month div.week div.weekdays div.day div.dayhead div.isoweek
 	float: right;
 	clear: right;
 	padding: .1em .2em;
+}
+
+@media only screen and (max-width: 500px), only screen and (max-device-width: 500px)
+{
+	div.moon > span, div.isoweek, div.weekdays div.day div.weekday
+	{
+		display: none;
+	}
 }
 
 div.month div.week div.weekdays div.day
