@@ -9,17 +9,21 @@
 namespace marttiphpbb\calendarmonthview\service;
 
 use phpbb\user;
+use marttiphpbb\calendarmonthview\service\store;
 
 class user_time
 {
 	protected $user;
+	protected $store;
 	protected $format;
 
 	public function __construct(
-		user $user
+		user $user,
+		store $store
 	)
 	{
 		$this->user = $user;
+		$this->store = $store;
 	}
 
 	public function get(int $time):string
@@ -32,15 +36,21 @@ class user_time
 		return $this->user->format_date($time, $this->format);
 	}
 
-	public function find_format()
+	private function find_format()
 	{
+		if (!$this->store->get_derive_user_time_format())
+		{
+			$this->set_default_format();
+			return;
+		}
+
 		$user_date_format = $this->user->date_format;
 
 		$i_pos = strpos($user_date_format, 'i');
 
 		if ($i_pos === false)
 		{
-			$this->format = 'H:i';
+			$this->set_default_format();
 			return;
 		}
 
@@ -52,7 +62,7 @@ class user_time
 
 		if ($x_pos === false || $i_pos <= $x_pos)
 		{
-			$this->format = 'H:i';
+			$this->set_default_format();
 			return;
 		}
 
@@ -63,5 +73,11 @@ class user_time
 			$this->format .= ' ';
 			$this->format .= substr($user_date_format, $a_pos, 1);
 		}
+	}
+
+	private function set_default_format()
+	{
+		$this->format = $this->store->get_default_time_format();
+		return;
 	}
 }

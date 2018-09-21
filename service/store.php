@@ -236,4 +236,44 @@ class store
 	{
 		return $this->get_string('extra_stylesheet');
 	}
+
+	public function set_height_event_row(int $height_event_row):void
+	{
+		$this->set_int('height_event_row', $height_event_row);
+	}
+
+	public function get_height_event_row():int
+	{
+		return $this->get_int('height_event_row');
+	}
+
+	public function set_height_offset_week_cont(int $height_offset_week_cont):void
+	{
+		$this->set_int('height_offset_week_cont', $height_offset_week_cont);
+	}
+
+	public function get_height_offset_week_cont():int
+	{
+		return $this->get_int('height_offset_week_cont');
+	}
+
+	public function set_derive_user_time_format(bool $derive_user_time_format):void
+	{
+		$this->set_boolean('derive_user_time_format', $derive_user_time_format);
+	}
+
+	public function get_derive_user_time_format():bool
+	{
+		return $this->get_boolean('derive_user_time_format');
+	}
+
+	public function set_default_time_format(string $default_time_format):void
+	{
+		$this->set_string('default_time_format', $default_time_format);
+	}
+
+	public function get_default_time_format():string
+	{
+		return $this->get_string('default_time_format');
+	}
 }

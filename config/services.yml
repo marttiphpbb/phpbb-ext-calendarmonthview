@@ -46,6 +46,7 @@ services:
         class: marttiphpbb\calendarmonthview\service\user_time
         arguments:
             - '@user'
+            - '@marttiphpbb.calendarmonthview.store'
 
     marttiphpbb.calendarmonthview.controller:
         class: marttiphpbb\calendarmonthview\controller\main

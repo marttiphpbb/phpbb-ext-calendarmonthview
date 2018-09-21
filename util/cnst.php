@@ -18,12 +18,7 @@ class cnst
 	const L_MCP = 'MCP_' . self::L;
 	const TPL = '@' . self::ID . '/';
 	const EXT_PATH = 'ext/' . self::FOLDER . '/';
-	const MOON_NAME = [
-		0	=> 'new',
-		1	=> 'q1',
-		2	=> 'full',
-		3	=> 'q3',
-	];
+
 	const MOON_ICON = [
 		0 	=> 'fa-circle',
 		1	=> 'fa-adjust fa-rotate-180',
