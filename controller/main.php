@@ -159,6 +159,8 @@ class main
 						'SHOW_MOON_PHASE'	=> $this->store->get_show_moon_phase(),
 						'LOAD_STYLESHEET'	=> $this->store->get_load_stylesheet(),
 						'EXTRA_STYLESHEET'	=> $this->store->get_extra_stylesheet(),
+						'HEIGHT_OFFSET'		=> $this->store->get_height_offset_week_cont(),
+						'HEIGHT_EVENT_ROW'	=> $this->store->get_height_event_row(),
 						'EVENT_ROW_COUNT'	=> count($rows),
 					]);
 				}

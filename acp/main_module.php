@@ -81,6 +81,8 @@ class main_module
 					$store->set_first_weekday($request->variable('first_weekday', 0));
 					$store->set_min_rows($request->variable('min_rows', 0));
 					$store->set_max_rows($request->variable('max_rows', 0));
+					$store->set_height_offset_week_cont($request->variable('height_offset_week_cont', 0));
+					$store->set_height_event_row($request->variable('height_event_row', 0));
 					$store->set_pag_neighbours($request->variable('pag_neighbours', 0));
 					$store->set_pag_show_prev_next($request->variable('pag_show_prev_next', 0) ? true : false);
 					$store->set_load_stylesheet($request->variable('load_stylesheet', 0) ? true : false);
@@ -91,17 +93,19 @@ class main_module
 				}
 
 				$template->assign_vars([
-					'SHOW_TODAY'			=> $store->get_show_today(),
-					'SHOW_ISOWEEK'			=> $store->get_show_isoweek(),
-					'SHOW_MOON_PHASE'		=> $store->get_show_moon_phase(),
-					'TOPIC_HILIT'			=> $store->get_topic_hilit(),
-					'FIRST_WEEKDAY'			=> $store->get_first_weekday(),
-					'MIN_ROWS'				=> $store->get_min_rows(),
-					'MAX_ROWS'				=> $store->get_max_rows(),
-					'PAG_NEIGHBOURS'		=> $store->get_pag_neighbours(),
-					'PAG_SHOW_PREV_NEXT'	=> $store->get_pag_show_prev_next(),
-					'LOAD_STYLESHEET'		=> $store->get_load_stylesheet(),
-					'EXTRA_STYLESHEET'		=> $store->get_extra_stylesheet(),
+					'SHOW_TODAY'				=> $store->get_show_today(),
+					'SHOW_ISOWEEK'				=> $store->get_show_isoweek(),
+					'SHOW_MOON_PHASE'			=> $store->get_show_moon_phase(),
+					'TOPIC_HILIT'				=> $store->get_topic_hilit(),
+					'FIRST_WEEKDAY'				=> $store->get_first_weekday(),
+					'MIN_ROWS'					=> $store->get_min_rows(),
+					'MAX_ROWS'					=> $store->get_max_rows(),
+					'HEIGHT_OFFSET_WEEK_CONT'	=> $store->get_height_offset_week_cont(),
+					'HEIGHT_EVENT_ROW'			=> $store->get_height_event_row(),
+					'PAG_NEIGHBOURS'			=> $store->get_pag_neighbours(),
+					'PAG_SHOW_PREV_NEXT'		=> $store->get_pag_show_prev_next(),
+					'LOAD_STYLESHEET'			=> $store->get_load_stylesheet(),
+					'EXTRA_STYLESHEET'			=> $store->get_extra_stylesheet(),
 				]);
 
 			break;

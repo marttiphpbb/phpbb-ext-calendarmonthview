@@ -96,6 +96,42 @@
 
 	<fieldset>
 		<legend>
+			{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_HEIGHT_WEEK_CONTAINER') -}}
+		</legend>
+
+		{%- embed '@marttiphpbb_calendarmonthview/include/number.html' -%}
+			{%- block label -%}
+				{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_HEIGHT_OFFSET') -}}
+			{%- endblock -%}
+			{%- block explain -%}
+				<br>
+				{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_HEIGHT_OFFSET_EXPLAIN') -}}
+			{%- endblock -%}
+			{%- block name -%}
+				height_offset_week_cont
+			{%- endblock -%}
+			{%- block value -%}
+				{{- HEIGHT_OFFSET_WEEK_CONT -}}
+			{%- endblock -%}
+			{%- block attr %} min="1"{%- endblock -%}
+		{%- endembed -%}
+
+		{%- embed '@marttiphpbb_calendarmonthview/include/number.html' -%}
+			{%- block label -%}
+				{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_HEIGHT_EVENT_ROW') -}}
+			{%- endblock -%}
+			{%- block name -%}
+				height_event_row
+			{%- endblock -%}
+			{%- block value -%}
+				{{- HEIGHT_EVENT_ROW -}}
+			{%- endblock -%}
+			{%- block attr %} min="1"{%- endblock -%}
+		{%- endembed -%}
+	</fieldset>
+
+	<fieldset>
+		<legend>
 			{{- lang('ACP_MARTTIPHPBB_CALENDARMONTHVIEW_PAGINATION') -}}
 		</legend>
 
