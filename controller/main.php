@@ -19,6 +19,7 @@ use marttiphpbb\calendarmonthview\value\dayspan;
 use marttiphpbb\calendarmonthview\value\calendar_event;
 use marttiphpbb\calendarmonthview\service\store;
 use marttiphpbb\calendarmonthview\service\user_today;
+use marttiphpbb\calendarmonthview\service\user_time;
 use marttiphpbb\calendarmonthview\service\pagination;
 use marttiphpbb\calendarmonthview\util\cnst;
 use marttiphpbb\calendarmonthview\util\moon_phase;
@@ -36,6 +37,7 @@ class main
 	protected $pagination;
 	protected $store;
 	protected $user_today;
+	protected $user_time;
 
 	public function __construct(
 		dispatcher $dispatcher,
@@ -47,7 +49,8 @@ class main
 		string $root_path,
 		pagination $pagination,
 		store $store,
-		user_today $user_today
+		user_today $user_today,
+		user_time $user_time
 	)
 	{
 		$this->dispatcher = $dispatcher;
@@ -61,6 +64,7 @@ class main
 		$this->pagination = $pagination;
 		$this->store = $store;
 		$this->user_today = $user_today;
+		$this->user_time = $user_time;
 	}
 
 	public function page(int $year, int $month):Response
@@ -85,9 +89,16 @@ class main
 		$end_jd = $month_end_jd + $days_postfill;
 		$days_num = $end_jd - $start_jd;
 
-		$moon_phase = new moon_phase();
-		$moon_phases = $moon_phase->find($start_jd, $end_jd);
-		$mphase = reset($moon_phases);
+		if ($this->store->get_show_moon_phase())
+		{
+			$moon_phase = new moon_phase();
+			$moon_phases = $moon_phase->find($start_jd, $end_jd);
+			$mphase = reset($moon_phases);
+		}
+		else
+		{
+			$mphase = [];
+		}
 
 		$events = [];
 
@@ -200,8 +211,7 @@ class main
 			if (isset($mphase['jd']) && $mphase['jd'] === $jd)
 			{
 				$phase = $mphase['phase'];
-				$m_time = $mphase['time'];
-				$moon_time = 'ooOOoo';
+				$moon_time = $this->user_time->get($mphase['time']);
 				$moon_title = $this->language->lang(cnst::L . '_' . cnst::MOON_LANG[$phase], $moon_time);
 				$moon_icon = cnst::MOON_ICON[$phase];
 				$mphase = next($moon_phases);

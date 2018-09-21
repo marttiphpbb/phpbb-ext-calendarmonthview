@@ -21,11 +21,11 @@ $lang = array_merge($lang, [
 	'MARTTIPHPBB_CALENDARMONTHVIEW_MONTH_YEAR'
 	=> '%1$s %2$s',
 	'MARTTIPHPBB_CALENDARMONTHVIEW_NEW_MOON'
-	=> 'New moon&#10;@%s',
+	=> 'New moon&#10;@ %s',
 	'MARTTIPHPBB_CALENDARMONTHVIEW_FIRST_QUARTER_MOON'
-	=> 'First quarter moon&#10;@%s',
+	=> 'First quarter moon&#10;@ %s',
 	'MARTTIPHPBB_CALENDARMONTHVIEW_FULL_MOON'
-	=> 'Full moon&#10;@%s',
+	=> 'Full moon&#10;@ %s',
 	'MARTTIPHPBB_CALENDARMONTHVIEW_THIRD_QUARTER_MOON'
-	=> 'Third quarter moon&#10;@%s',
+	=> 'Third quarter moon&#10;@ %s',
 ]);

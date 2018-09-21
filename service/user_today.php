@@ -19,7 +19,6 @@ class user_today
 	)
 	{
 		$this->user = $user;
-		$this->helper = $helper;
 	}
 
 	public function get_date():array

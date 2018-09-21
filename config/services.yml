@@ -42,6 +42,11 @@ services:
         arguments:
             - '@user'
 
+    marttiphpbb.calendarmonthview.user_time:
+        class: marttiphpbb\calendarmonthview\service\user_time
+        arguments:
+            - '@user'
+
     marttiphpbb.calendarmonthview.controller:
         class: marttiphpbb\calendarmonthview\controller\main
         arguments:
@@ -55,6 +60,7 @@ services:
             - '@marttiphpbb.calendarmonthview.pagination'
             - '@marttiphpbb.calendarmonthview.store'
             - '@marttiphpbb.calendarmonthview.user_today'
+            - '@marttiphpbb.calendarmonthview.user_time'
 
     marttiphpbb.calendarmonthview.redirect_controller:
         class: marttiphpbb\calendarmonthview\controller\redirect
