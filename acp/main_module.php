@@ -79,6 +79,8 @@ class main_module
 					$store->set_show_moon_phase($request->variable('show_moon_phase', 0) ? true : false);
 					$store->set_topic_hilit($request->variable('topic_hilit', 0) ? true : false);
 					$store->set_first_weekday($request->variable('first_weekday', 0));
+					$store->set_derive_user_time_format($request->variable('derive_user_time_format', 0) ? true : false);
+					$store->set_default_time_format($request->variable('default_time_format', ''));
 					$store->set_min_rows($request->variable('min_rows', 0));
 					$store->set_max_rows($request->variable('max_rows', 0));
 					$store->set_height_offset_week_cont($request->variable('height_offset_week_cont', 0));
@@ -98,6 +100,8 @@ class main_module
 					'SHOW_MOON_PHASE'			=> $store->get_show_moon_phase(),
 					'TOPIC_HILIT'				=> $store->get_topic_hilit(),
 					'FIRST_WEEKDAY'				=> $store->get_first_weekday(),
+					'DERIVE_USER_TIME_FORMAT'	=> $store->get_derive_user_time_format(),
+					'DEFAULT_TIME_FORMAT'		=> $store->get_default_time_format(),
 					'MIN_ROWS'					=> $store->get_min_rows(),
 					'MAX_ROWS'					=> $store->get_max_rows(),
 					'HEIGHT_OFFSET_WEEK_CONT'	=> $store->get_height_offset_week_cont(),

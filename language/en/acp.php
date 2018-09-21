@@ -46,6 +46,19 @@ $lang = array_merge($lang, [
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_FIRST_WEEKDAY'
 	=> 'First day of the week',
 
+	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_TIME_FORMAT'
+	=> 'Time format',
+	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_TIME_FORMAT_EXPLAIN'
+	=> 'This is the format used for displaying the time of the moon phases.',
+	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_DERIVE_USER_TIME_FORMAT'
+	=> 'Derive user time format',
+	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_DERIVE_USER_TIME_FORMAT_EXPLAIN'
+	=> 'Try to derive the time format from the user datetime configuration. Fallback on the default setting below when this fails.',
+	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_DEFAULT_TIME_FORMAT'
+	=> 'Default time format',
+	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_DEFAULT_TIME_FORMAT_EXPLAIN'
+	=> 'See the %1$sPHP date() function%2$s for defining the format.',
+
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_EVENT_ROWS'
 	=> 'Event rows',
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_MIN_ROWS'
