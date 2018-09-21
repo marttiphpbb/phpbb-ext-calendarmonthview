@@ -2,9 +2,19 @@
 
 This phpBB extension provides a Calendar Month View page for the [Calendar extension set](https://github.com/marttiphpbb/phpbb-ext-calendarmono)
 
-## Screenshot
+## Screenshots
+
+### Calendar page
 
 ![Calendar page](doc/calendar.png)
+
+### ACP Links
+
+![ACP Links](doc/acp_links.png)
+
+### ACP Page Rendering
+
+![ACP Page Rendering](doc/acp_page.png)
 
 ## Requirements
 
