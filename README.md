@@ -2,25 +2,18 @@
 
 This phpBB extension provides a Calendar Month View page for the [Calendar extension set](https://github.com/marttiphpbb/phpbb-ext-calendarmono)
 
-## Screenshots
-
-### Calendar page
+## Screenshot
 
 ![Calendar page](doc/calendar.png)
-
-### ACP Links
-
-![ACP Links](doc/acp_links.png)
-
-### ACP Page Rendering
-
-![ACP Page Rendering](doc/acp_page.png)
 
 ## Requirements
 
 * phpBB 3.2.1
 * PHP 7.1+
 * PHP calendar extension (PHP compiled with --enable-calendar)
+* phpBB extension [Menu Items](https://github.com/marttiphpbb/phpbb-ext-menuitems)
+* phpBB extension [Calendar Tag](https://github.com/marttiphpbb/phpbb-ext-calendartag)
+* phpBB extension [Calendar Mono](https://github.com/marttiphpbb/phpbb-ext-calendarmono)
 
 ## Quick Install
 
@@ -42,3 +35,13 @@ You can install this on the latest release of phpBB 3.2 by following the steps b
 ## License
 
 [GPL-2.0](license.txt)
+
+## Screenshots of the configuration in the ACP
+
+### Links
+
+![ACP Links](doc/acp_links.png)
+
+### Page Rendering
+
+![ACP Page Rendering](doc/acp_page.png)
