@@ -1,5 +1,7 @@
 # phpBB Extension - marttiphpbb Calendar Month View
 
+[Topic on phpbb.com](https://www.phpbb.com/community/viewtopic.php?f=456&t=2487146)
+
 ## Description
 
 This phpBB extension provides a Calendar Month View page for the [Calendar extension set](https://github.com/marttiphpbb/phpbb-ext-calendarmono/blob/master/doc/calendar-set.md)
