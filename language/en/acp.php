@@ -40,7 +40,7 @@ $lang = array_merge($lang, [
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_TOPIC_HILIT'
 	=> 'Hilight topic',
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_TOPIC_HILIT_EXPLAIN'
-	=> 'when linked from a topic tag',
+	=> 'when linked from a calendar topic tag',
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_TODAY'
 	=> 'Mark today´s date',
 	'ACP_MARTTIPHPBB_CALENDARMONTHVIEW_FIRST_WEEKDAY'
