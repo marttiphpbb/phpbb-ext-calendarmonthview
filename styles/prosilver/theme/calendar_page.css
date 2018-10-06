@@ -135,10 +135,12 @@ div.month div.eventrows
 
 div.month div.eventrows div.evrow-head
 {
+	flex-basis: auto;
 	height: 3.5em;
 }
 div.month div.eventrows div.evrow-foot
 {
+	flex-basis: auto;
 	height: 1.5em;
 }
 div.month div.eventrows div.evrow
