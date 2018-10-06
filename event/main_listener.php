@@ -16,7 +16,7 @@ class main_listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return [
-			'core.user_setup'						=> 'core_user_setup',
+			'core.user_setup'	=> 'core_user_setup',
 		];
 	}
 

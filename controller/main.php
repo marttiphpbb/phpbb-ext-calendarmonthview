@@ -255,6 +255,7 @@ class main
 
 		make_jumpbox(append_sid($this->root_path . 'viewforum.' . $this->php_ext));
 
-		return $this->helper->render('month.html');
+		$title = $this->language->lang('MARTTIPHPBB_CALENDARMONTHVIEW_CALENDAR');
+		return $this->helper->render('month.html', $title);
 	}
 }
