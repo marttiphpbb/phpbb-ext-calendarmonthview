@@ -14,10 +14,16 @@ This phpBB extension provides a Calendar Month View page for the [Calendar exten
 
 * phpBB 3.2.1+
 * PHP 7.1+
-* PHP calendar extension (PHP compiled with --enable-calendar)
 * phpBB extension [Menu Items](https://github.com/marttiphpbb/phpbb-ext-menuitems)
 * phpBB extension [Calendar Tag](https://github.com/marttiphpbb/phpbb-ext-calendartag)
 * phpBB extension [Calendar Mono](https://github.com/marttiphpbb/phpbb-ext-calendarmono)
+* PHP calendar extension (PHP compiled with --enable-calendar)
+
+When you don't have PHP compiled with --enable-calendar be sure to
+download the build with the vendor directory included (See the latest [Release](https://github.com/marttiphpbb/phpbb-ext-calendarmonthview/releases)) or run
+`composer update` in the root of this extension. This way the
+missing calendar functions are provided by the
+[fisharebest/ext-calendar](https://github.com/fisharebest/ext-calendar) package.
 
 ## Quick Install
 
