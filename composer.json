@@ -14,8 +14,7 @@
 		"role": "Developer"
 	}],
 	"require": {
-		"php": ">=7.1",
-		"fisharebest/ext-calendar": "^2.5"
+		"php": ">=7.1"
 	},
 	"extra": {
 		"display-name": "Calendar Month View",
