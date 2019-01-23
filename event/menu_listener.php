@@ -34,7 +34,7 @@ class menu_listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return [
-			'marttiphpbb.menuitems.add_items'	=> 'add_items',
+			'marttiphpbb.menuitems'	=> 'add_items',
 		];
 	}
 
