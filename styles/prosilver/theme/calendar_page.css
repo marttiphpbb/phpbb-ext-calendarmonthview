@@ -73,7 +73,7 @@ div.month div.week div.weekdays div.day div.dayhead div.moon
 
 div.month div.week div.weekdays div.day div.dayhead div.moon span
 {
-	z-index: 20;
+	z-index: 1;
 }
 
 div.month div.week div.weekdays div.day div.dayhead div.isoweek
@@ -148,7 +148,7 @@ div.month div.eventrows div.evrow
 	flex: 1;
 	display: flex;
 	justify-content: space-evenly;
-	z-index: 10;
+	z-index: 1;
 }
 
 div.month div.eventrows div.evrow div.f-con
