@@ -153,7 +153,7 @@ class moon_phase
 				$phases[] = [
 					'phase'	=> $phase,
 					'time'	=> (int) round(($phase_time - 2440587.5) * 86400),
-					'jd'	=> (int) round($phase_time + .5),
+					'jd'	=> (int) round($phase_time - .5),
 				];
 			}
 		}
