@@ -3,8 +3,8 @@
 	"type": "phpbb-extension",
 	"description": "Calendar Month View Extension for phpBB 3.2",
 	"homepage": "https://github.com/marttiphpbb/phpbb-ext-calendarmonthview",
-	"version": "0.5.0",
-	"time": "2019-01-23",
+	"version": "0.6.0",
+	"time": "2019-02-01",
 	"keywords": ["phpbb", "extension", "calendar", "monthview"],
 	"license": "GPL-2.0",
 	"authors": [{
