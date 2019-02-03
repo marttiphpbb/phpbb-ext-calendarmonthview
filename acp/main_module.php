@@ -83,8 +83,6 @@ class main_module
 					$store->set_default_time_format($request->variable('default_time_format', ''));
 					$store->set_min_rows($request->variable('min_rows', 0));
 					$store->set_max_rows($request->variable('max_rows', 0));
-					$store->set_height_offset_week_cont($request->variable('height_offset_week_cont', 0));
-					$store->set_height_event_row($request->variable('height_event_row', 0));
 					$store->set_pag_neighbours($request->variable('pag_neighbours', 0));
 					$store->set_pag_show_prev_next($request->variable('pag_show_prev_next', 0) ? true : false);
 					$store->set_load_stylesheet($request->variable('load_stylesheet', 0) ? true : false);
@@ -104,8 +102,6 @@ class main_module
 					'DEFAULT_TIME_FORMAT'		=> $store->get_default_time_format(),
 					'MIN_ROWS'					=> $store->get_min_rows(),
 					'MAX_ROWS'					=> $store->get_max_rows(),
-					'HEIGHT_OFFSET_WEEK_CONT'	=> $store->get_height_offset_week_cont(),
-					'HEIGHT_EVENT_ROW'			=> $store->get_height_event_row(),
 					'PAG_NEIGHBOURS'			=> $store->get_pag_neighbours(),
 					'PAG_SHOW_PREV_NEXT'		=> $store->get_pag_show_prev_next(),
 					'LOAD_STYLESHEET'			=> $store->get_load_stylesheet(),
