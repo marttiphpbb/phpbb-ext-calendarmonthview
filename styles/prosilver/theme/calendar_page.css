@@ -9,60 +9,54 @@ div.month div.week-container
 	width: 100%;
 }
 
-div.month div.week
+div.month div.weekdays
 {
 	position:absolute;
+	display:flex;
 	width: 100%;
 	height: 100%;
 	top: 0;
 	left: 0;
 }
 
-div.month div.week div.weekdays
-{
-	display:flex;
-	width: 100%;
-	height: 100%;
-}
-
-div.month div.week div.weekdays div.day
+div.month div.weekdays div.day
 {
 	flex: 1;
 	background: rgb(250, 250, 250);
 	margin: .15em;
-	border-radius: 1em;
+	border-radius: .5em;
 	border: 1px solid #ddd;
 }
-div.month div.week div.weekdays div.day.this-month
+div.month div.weekdays div.day.this-month
 {
 	background: #eee;
 	border: 1px solid #bbb;
 }
 
-div.month div.week div.weekdays div.day.today.this-month
+div.month div.weekdays div.day.today.this-month
 {
 	border: 2px solid #333;
 }
 
-div.month div.week div.weekdays div.day div.dayhead
+div.month div.weekdays div.day div.dayhead
 {
 	padding: .4em .8em;
 }
 
-div.month div.week div.weekdays div.day div.dayhead div.monthday
+div.month div.weekdays div.day div.dayhead div.monthday
 {
 	font-size: 1.8em;
 	float: left;
 }
 
-div.month div.week div.weekdays div.day div.dayhead div.weekday
+div.month div.weekdays div.day div.dayhead div.weekday
 {
 	font-size: 1.2em;
 	float: left;
 	padding: .1em .2em;
 }
 
-div.month div.week div.weekdays div.day div.dayhead div.moon
+div.month div.weekdays div.day div.dayhead div.moon
 {
 	font-size: 1.2em;
 	float: right;
@@ -71,12 +65,12 @@ div.month div.week div.weekdays div.day div.dayhead div.moon
 	margin: -.5em;
 }
 
-div.month div.week div.weekdays div.day div.dayhead div.moon span
+div.month div.weekdays div.day div.dayhead div.moon span
 {
 	z-index: 1;
 }
 
-div.month div.week div.weekdays div.day div.dayhead div.isoweek
+div.month div.weekdays div.day div.dayhead div.isoweek
 {
 	font-style: italic;
 	font-size: 0.9em;
@@ -93,31 +87,31 @@ div.month div.week div.weekdays div.day div.dayhead div.isoweek
 	}
 }
 
-div.month div.week div.weekdays div.day
+div.month div.weekdays div.day
 {
 	color: #dbd8e9;
 }
 
-div.month div.week div.weekdays div.day.this-month
+div.month div.weekdays div.day.this-month
 {
 	color: #45434e;
 }
 
-div.month div.week div.weekdays div.day.sat,
-div.month div.week div.weekdays div.day.sun
+div.month div.weekdays div.day.sat,
+div.month div.weekdays div.day.sun
 {
 	background-color: #e8f5ff;
 	border-color: #dbdbf7;
 }
-div.month div.week div.weekdays div.day.this-month.sat,
-div.month div.week div.weekdays div.day.this-month.sun
+div.month div.weekdays div.day.this-month.sat,
+div.month div.weekdays div.day.this-month.sun
 {
 	background-color: #cadceb;
 	color: #3c3c42;
 	border-color: #a4c3d8;
 }
-div.month div.week div.weekdays div.day.this-month.sat.today,
-div.month div.week div.weekdays div.day.this-month.sun.today
+div.month div.weekdays div.day.this-month.sat.today,
+div.month div.weekdays div.day.this-month.sun.today
 {
 	border-color: #45555f;
 }
@@ -126,26 +120,20 @@ div.month div.eventrows
 {
 	display:flex;
 	flex-direction: column;
-	position:absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
 }
 
 div.month div.eventrows div.evrow-head
 {
-	flex-basis: auto;
-	height: 3.5em;
+	height: 2.5em;
 }
 div.month div.eventrows div.evrow-foot
 {
-	flex-basis: auto;
-	height: 1.5em;
+	height: .7em;
 }
 div.month div.eventrows div.evrow
 {
-	flex: 1;
+	height: 2em;
+	padding: .15em 0;
 	display: flex;
 	justify-content: space-evenly;
 	z-index: 1;
@@ -184,7 +172,7 @@ div.month div.eventrows div.evrow div.ev div.ev-overlay{
 div.month div.eventrows div.evrow div.ev div.ev-overlay:hover,
 div.month div.eventrows div.evrow div.ev div.ev-overlay.hover
 {
-	background: rgba(250, 225, 0, 0.2);
+	background: rgba(255, 255, 255, 0.9);
 }
 
 div.month div.eventrows div.evrow div.ev a

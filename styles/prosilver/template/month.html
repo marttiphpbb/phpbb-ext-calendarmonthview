@@ -1,11 +1,5 @@
 {%- include 'overall_header.html' -%}
 
-<style>
-div.week-container{
-  height: {{ (HEIGHT_OFFSET + (EVENT_ROW_COUNT * HEIGHT_EVENT_ROW)) / 10 -}}em;
-}
-</style>
-
 <p>{{- CURRENT_TIME -}}</p>
 <h2>{{- lang('MARTTIPHPBB_CALENDARMONTHVIEW_MONTH_YEAR', MONTH_NAME, YEAR) -}}</h2>
 
@@ -14,7 +8,6 @@ div.week-container{
 	<div class="month">
 	{%- for w in weeks -%}
 		<div class="week-container">
-		<div class="week">
 			<div class="weekdays">
 				{%- for d in w.weekdays -%}
 					<div class="day {{ d.WEEKDAY_CLASS }}{%- if SHOW_TODAY and d.JD == TODAY_JD %} today{%- endif -%}{%- if MONTH == d.MONTH %} this-month{%- endif -%}">
@@ -58,7 +51,6 @@ div.week-container{
 				{%- endfor -%}
 				<div class="evrow-foot"></div>
 			</div>
-		</div>
 		</div>
 	{%- endfor -%}
 	</div>
