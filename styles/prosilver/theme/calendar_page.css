@@ -22,20 +22,19 @@ div.month div.weekdays
 div.month div.weekdays div.day
 {
 	flex: 1;
-	background: rgb(250, 250, 250);
+	background: #eee;
 	margin: .15em;
 	border-radius: .5em;
-	border: 1px solid #ddd;
 }
 div.month div.weekdays div.day.this-month
 {
-	background: #eee;
-	border: 1px solid #bbb;
+	color: rgb(12, 56, 133);
+	background: rgb(202, 220, 235);
 }
 
 div.month div.weekdays div.day.today.this-month
 {
-	border: 2px solid #333;
+	border: 2px solid rgb(12, 56, 133);
 }
 
 div.month div.weekdays div.day div.dayhead
@@ -92,28 +91,15 @@ div.month div.weekdays div.day
 	color: #dbd8e9;
 }
 
-div.month div.weekdays div.day.this-month
-{
-	color: #45434e;
-}
-
 div.month div.weekdays div.day.sat,
 div.month div.weekdays div.day.sun
 {
 	background-color: #e8f5ff;
-	border-color: #dbdbf7;
 }
 div.month div.weekdays div.day.this-month.sat,
 div.month div.weekdays div.day.this-month.sun
 {
-	background-color: #cadceb;
-	color: #3c3c42;
-	border-color: #a4c3d8;
-}
-div.month div.weekdays div.day.this-month.sat.today,
-div.month div.weekdays div.day.this-month.sun.today
-{
-	border-color: #45555f;
+	background-color: #94c2e7;
 }
 
 div.month div.eventrows

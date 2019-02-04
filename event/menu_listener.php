@@ -31,14 +31,14 @@ class menu_listener implements EventSubscriberInterface
 		$this->auth = $auth;
 	}
 
-	static public function getSubscribedEvents()
+	static public function getSubscribedEvents():array
 	{
 		return [
 			'marttiphpbb.menuitems'	=> 'add_items',
 		];
 	}
 
-	public function add_items(event $event)
+	public function add_items(event $event):void
 	{
 		$items = $event['items'];
 

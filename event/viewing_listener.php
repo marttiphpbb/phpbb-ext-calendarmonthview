@@ -34,14 +34,14 @@ class viewing_listener implements EventSubscriberInterface
 		$this->user = $user;
 	}
 
-	static public function getSubscribedEvents()
+	static public function getSubscribedEvents():array
 	{
 		return [
 			'core.viewonline_overwrite_location'	=> 'core_viewonline_overwrite_location',
 		];
 	}
 
-	public function core_viewonline_overwrite_location(event $event)
+	public function core_viewonline_overwrite_location(event $event):void
 	{
 		if (strrpos($event['row']['session_page'], 'app.' . $this->php_ext . '/calendar') === 0)
 		{

@@ -8,24 +8,22 @@
 namespace marttiphpbb\calendarmonthview\event;
 
 use phpbb\controller\helper;
-use marttiphpbb\calendarmonthview\service\store;
 use phpbb\event\data as event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class tag_listener implements EventSubscriberInterface
+class link_listener implements EventSubscriberInterface
 {
 	protected $helper;
 
-	public function __construct(helper $helper, store $store)
+	public function __construct(helper $helper)
 	{
 		$this->helper = $helper;
-		$this->store = $store;
 	}
 
-	static public function getSubscribedEvents():array
+	static public function getSubscribedEvents()
 	{
 		return [
-			'marttiphpbb.calendartag.link'	=> 'link',
+			'marttiphpbb.calendar.view_link'	=> 'link',
 		];
 	}
 
@@ -42,11 +40,6 @@ class tag_listener implements EventSubscriberInterface
 			'year'	=> $event['year'],
 			'month'	=> $event['month'],
 		];
-
-		if ($this->store->get_topic_hilit())
-		{
-			$params['t'] = $event['topic_id'];
-		}
 
 		$link = $this->helper->route('marttiphpbb_calendarmonthview_page_controller', $params);
 

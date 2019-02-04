@@ -14,6 +14,13 @@ services:
         tags:
             - { name: event.listener }
 
+    marttiphpbb.calendarmonthview.link_listener:
+        class: marttiphpbb\calendarmonthview\event\link_listener
+        arguments:
+            - '@controller.helper'
+        tags:
+            - { name: event.listener }
+
     marttiphpbb.calendarmonthview.tag_listener:
         class: marttiphpbb\calendarmonthview\event\tag_listener
         arguments:

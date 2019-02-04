@@ -13,14 +13,14 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class main_listener implements EventSubscriberInterface
 {
-	static public function getSubscribedEvents()
+	static public function getSubscribedEvents():array
 	{
 		return [
 			'core.user_setup'	=> 'core_user_setup',
 		];
 	}
 
-	public function core_user_setup(event $event)
+	public function core_user_setup(event $event):void
 	{
 		$lang_set_ext = $event['lang_set_ext'];
 		$lang_set_ext[] = [
