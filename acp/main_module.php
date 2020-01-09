@@ -13,16 +13,14 @@ class main_module
 {
 	var $u_action;
 
-	function main($id, $mode)
+	function main($id, $mode):void
 	{
 		global $phpbb_container;
 
 		$template = $phpbb_container->get('template');
-		$config = $phpbb_container->get('config');
 		$request = $phpbb_container->get('request');
 		$ext_manager = $phpbb_container->get('ext.manager');
 		$store = $phpbb_container->get('marttiphpbb.calendarmonthview.store');
-		$phpbb_root_path = $phpbb_container->getParameter('core.root_path');
 
 		$language = $phpbb_container->get('language');
 		$language->add_lang('acp', cnst::FOLDER);

@@ -125,7 +125,6 @@ class main
 
 		$col = 0;
 		$year_begin_jd = cal_to_jd(CAL_GREGORIAN, 1, 1, $year);
-		$total_dayspan = new dayspan($start_jd, $end_jd);
 		$rows = $row_container->get_rows();
 
 		for ($jd = $start_jd; $jd <= $end_jd; $jd++)

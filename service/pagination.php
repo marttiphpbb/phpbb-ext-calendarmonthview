@@ -47,7 +47,12 @@ class pagination
 		$this->language = $language;
 	}
 
-	public function render(int $year, int $month, bool $show_prev_next, int $num_neighbours):void
+	public function render(
+		int $year,
+		int $month,
+		bool $show_prev_next,
+		int $num_neighbours
+	):void
 	{
 		if ($show_prev_next)
 		{

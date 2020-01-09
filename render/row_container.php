@@ -9,7 +9,6 @@
 namespace marttiphpbb\calendarmonthview\render;
 
 use marttiphpbb\calendarmonthview\value\calendar_event;
-use marttiphpbb\calendarmonthview\value\dayspan;
 use marttiphpbb\calendarmonthview\render\calendar_event_row;
 
 class row_container

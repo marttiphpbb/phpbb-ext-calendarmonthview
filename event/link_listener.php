@@ -20,7 +20,7 @@ class link_listener implements EventSubscriberInterface
 		$this->helper = $helper;
 	}
 
-	static public function getSubscribedEvents()
+	static public function getSubscribedEvents():array
 	{
 		return [
 			'marttiphpbb.calendar.view_link'	=> 'link',
