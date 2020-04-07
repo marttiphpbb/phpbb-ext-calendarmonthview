@@ -3,10 +3,10 @@
 	"type": "phpbb-extension",
 	"description": "Calendar Month View Extension for phpBB 3.3",
 	"homepage": "https://github.com/marttiphpbb/phpbb-ext-calendarmonthview",
-	"version": "0.8.0",
-	"time": "2020-01-09",
+	"version": "0.9.0",
+	"time": "2020-04-07",
 	"keywords": ["phpbb", "extension", "calendar", "monthview"],
-	"license": "GPL-2.0",
+	"license": "GPL-2.0-only",
 	"authors": [{
 		"name": "martti",
 		"email": "info@martti.be",

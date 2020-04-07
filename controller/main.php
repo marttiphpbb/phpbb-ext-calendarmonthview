@@ -94,6 +94,11 @@ class main
 			$moon_phase = new moon_phase();
 			$moon_phases = $moon_phase->find($start_jd, $end_jd);
 			$mphase = reset($moon_phases);
+
+			if ($mphase['jd'] < $start_jd)
+			{
+				$mphase = next($moon_phases);
+			}
 		}
 		else
 		{
