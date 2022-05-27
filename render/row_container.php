@@ -2,7 +2,7 @@
 
 /**
 * phpBB Extension - marttiphpbb calendarmonthview
-* @copyright (c) 2014 - 2020 marttiphpbb <info@martti.be>
+* @copyright (c) 2014 - 2022 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
@@ -28,7 +28,7 @@ class row_container
 
 	private function get_row(int $row_index):calendar_event_row
 	{
-		if (!$this->rows[$row_index])
+		if (!isset($this->rows[$row_index]))
 		{
 			$this->rows[$row_index] = new calendar_event_row();
 		}

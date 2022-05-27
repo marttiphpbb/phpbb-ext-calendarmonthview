@@ -2,7 +2,7 @@
 
 /**
 * phpBB Extension - marttiphpbb calendarmonthview
-* @copyright (c) 2014 - 2020 marttiphpbb <info@martti.be>
+* @copyright (c) 2014 - 2022 marttiphpbb <info@martti.be>
 * @license GNU General Public License, version 2 (GPL-2.0)
 */
 
@@ -57,7 +57,6 @@ class main
 		$this->request = $request;
 		$this->php_ext = $php_ext;
 		$this->template = $template;
-		$this->twig_environment = $twig_environment;
 		$this->language = $language;
 		$this->helper = $helper;
 		$this->root_path = $root_path;
@@ -124,7 +123,7 @@ class main
 		foreach($events as $e)
 		{
 			$topic = new topic($e['topic_id'], $e['forum_id'], $e['topic_title']);
-			$calendar_event = new calendar_event($e['start_jd'], $e['end_jd'], $topic, $dayspan);
+			$calendar_event = new calendar_event($e['start_jd'], $e['end_jd'], $topic);
 			$row_container->add_calendar_event($calendar_event);
 		}
 
